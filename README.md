@@ -6,7 +6,7 @@ Card PvP RPG
 __Story/Narrative:__ 
 You're a casual D&D player in a basement challenging your friends. The game is about evil versus good. Humans versus demons and creatures.
 
-![Storyboard](/StoryBoard_3D&D_Colored.png)
+![Storyboard](/StoryBoard_3D&D_Colored.jpg)
 
 
 __Characters:__
