@@ -6,7 +6,7 @@ Card PvP RPG
 __Story/Narrative:__ 
 You're a casual D&D player in a basement challenging your friends. The game is about evil versus good. Humans versus demons and creatures.
 
-![Storyboard](/StoryBoard_3D&D_Colored.jpg)
+![Storyboard](./images/StoryBoard_3D&D_Colored.jpg)
 
 
 __Characters:__
@@ -25,23 +25,23 @@ This arena will be a board with pieces and other decoration.
 
 The board will be divided into tiles, where each piece can be placed.
 
-![Board Arena](/Board.png)
+![Board Arena](./images/Board.png)
 
 The different pieces will be summoned from cards, each player will have it´s own deck of cards.
 
-![Summoning monsters](/SummonCards.png)
+![Summoning monsters](./images/SummonCards.png)
 
 The different pieces will have their own cards, either for attacking, moving or special abilities.
 
-![Board Arena](/MonsterCards.png)
+![Board Arena](./images/MonsterCards.png)
 
 Every card will have its own mana cost, which will be spend from the player´s pool, which will renew each turn.
 
-![Mana](/Mana.png)
+![Mana](./images/Mana.png)
 
 The objective of the game its to depleat the enemies health bar, each player has its own commander, the only unit which can summon other units.
 
-![Victory](/victory.png)
+![Victory](./images/victory.png)
 
 __Audionarrator/dialoguetree:__
 
@@ -54,6 +54,29 @@ the player could also use a cardboard vr or a bluetooth gamepad aswell.
 
 The player will be able to select the different pieces on the board, both enemies and allies to check their skills, and also select the cards in their hand to see
 it´s details.
+
+    Button A: Confirm
+    Button B: Cancel / Back
+    Button X: Quick Change
+    Button Y: t (Only Oculus)
+
+    Button Start: Pause Menu
+    Button Select: Show / Hide Card Info
+    Joystick Right: Rotate Table ?
+    Joystick Left: Move between cards and existing pieces on the table.
+
+    DPad Up: Joystick Left equivalent.
+    DPad Down: Joystick Left equivalent.
+    DPad Left: Joystick Left equivalent.
+    DPad Right: Joystick Left equivalent.
+    
+    Rigth Bumper: -
+    Right Trigger: t (Oculus Only)
+    Left Bumper: -
+    Left Trigger: -
+
+![Victory](./images/xbox_controller.jpg)
+![Victory](./images/quest_2_controllers.png)
 
 __Wish-list:__
 
