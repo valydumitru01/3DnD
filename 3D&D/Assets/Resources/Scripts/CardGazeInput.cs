@@ -13,7 +13,7 @@ public class CardGazeInput : MonoBehaviour
     public float timerDuration = 3f;
     private float lookTimer = 0f;
 
-    public bool IsClicked { get; set; }
+    public bool IsSelected { get; set; }
     public bool IsLooked { get; set; }
     public bool CanBeFocused { get; set; }
 
@@ -47,7 +47,7 @@ public class CardGazeInput : MonoBehaviour
         if (CanBeFocused)
         {
             IsLooked = looked;
-            MoveCard(IsLooked);
+            JumpCard(IsLooked);
         }
     }
 
@@ -55,22 +55,22 @@ public class CardGazeInput : MonoBehaviour
     {
         if (CanBeFocused)
         {
-            if (IsClicked)
+            if (IsSelected)
             {
                 transform.position = initialPosition;
-                IsClicked = false;
+                IsSelected = false;
             }
             else
             {
                 transform.position += new Vector3(0, 0.5f, -2.5f);
-                IsClicked = true;
+                IsSelected = true;
             }
         }
     }
 
-    private void MoveCard(bool isLooked)
+    private void JumpCard(bool isLooked)
     {
-        if (!IsClicked)
+        if (!IsSelected)
         {
             if (isLooked)
                 transform.position += new Vector3(0, 0.25f, 0);
