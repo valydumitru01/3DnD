@@ -1,4 +1,3 @@
-//New
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -56,6 +55,8 @@ public class Grid : MonoBehaviour
                 float yPosition = 0;
                 float zPosition = row * tile.transform.localScale.z * tileSize;
                 tile.transform.localPosition = new Vector3(xPosition, yPosition, zPosition);
+
+                tile.AddComponent<Tile>();
             }
         }
 

@@ -805,7 +805,7 @@ m_PackageAssets:
         email: 
         url: 
       category: 
-      type: 
+      type: asset
       description: Use Unity Timeline to create cinematic content, game-play sequences,
         audio sequences, and complex particle effects.
       status: 4
@@ -884,6 +884,7 @@ m_PackageAssets:
         - 1.7.0-pre.2
         - 1.7.0
         - 1.7.1
+        - 1.7.2
         compatible:
         - 1.4.8
         - 1.5.0-pre.2
@@ -912,6 +913,7 @@ m_PackageAssets:
         - 1.7.0-pre.2
         - 1.7.0
         - 1.7.1
+        - 1.7.2
         verified: 1.4.8
       dependencies:
       - name: com.unity.modules.director
@@ -945,7 +947,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 1
+      hideInEditor: 0
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -2841,7 +2843,7 @@ m_PackageAssets:
         email: 
         url: 
       category: 
-      type: 
+      type: asset
       description: 'This package defines common components used by multiple Game
         Service packages.
 
@@ -2866,6 +2868,8 @@ m_PackageAssets:
         - 1.4.1
         - 1.4.2
         - 1.4.3
+        - 1.5.2
+        - 1.6.0
         compatible:
         - 1.0.1
         - 1.1.0-pre.7
@@ -2882,6 +2886,8 @@ m_PackageAssets:
         - 1.4.1
         - 1.4.2
         - 1.4.3
+        - 1.5.2
+        - 1.6.0
         verified: 1.4.3
       dependencies:
       - name: com.unity.modules.unitywebrequest
@@ -2898,7 +2904,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 1
+      hideInEditor: 0
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -3157,7 +3163,7 @@ m_PackageAssets:
         email: 
         url: 
       category: 
-      type: 
+      type: asset
       description: Provides internal registration mechanism for standalone subsystems. 
         It allows a standalone subsystem to inform the Subsystem Manager of its existence.
       status: 4
@@ -3170,11 +3176,13 @@ m_PackageAssets:
         - 1.0.6
         - 1.1.0
         - 1.1.1
+        - 1.1.2
         compatible:
         - 1.0.6
         - 1.1.0
         - 1.1.1
-        verified: 1.1.1
+        - 1.1.2
+        verified: 1.1.2
       dependencies: []
       resolvedDependencies: []
       keywords:
@@ -3189,7 +3197,7 @@ m_PackageAssets:
         isDefault: 1
         capabilities: 7
       hasRegistry: 1
-      hideInEditor: 1
+      hideInEditor: 0
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0

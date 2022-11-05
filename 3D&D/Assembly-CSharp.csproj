@@ -94,7 +94,6 @@
      <Compile Include="Assets\GoogleVR\Scripts\Utilities\GvrIntent.cs" />
      <Compile Include="Assets\GoogleVR\Scripts\Controller\GvrControllerVisual.cs" />
      <Compile Include="Assets\GoogleVR\Scripts\Controller\GvrTrackedController.cs" />
-     <Compile Include="Assets\Scripts\Grid.cs" />
      <Compile Include="Assets\GoogleVR\Scripts\EventSystem\InputModule\IGvrInputModuleController.cs" />
      <Compile Include="Assets\GoogleVR\Scripts\Controller\Internal\ControllerUtils.cs" />
      <Compile Include="Assets\GoogleVR\Scripts\EventSystem\GvrPointerEventDataExtension.cs" />
@@ -121,6 +120,8 @@
      <Compile Include="Assets\GoogleVR\Scripts\Keyboard\GvrKeyboardDelegateBase.cs" />
      <Compile Include="Assets\GoogleVR\Scripts\Controller\Internal\ControllerProviders\DummyControllerProvider.cs" />
      <Compile Include="Assets\GoogleVR\Scripts\GvrUnitySdkVersion.cs" />
+     <Compile Include="Assets\Scripts\Grid.cs" />
+     <Compile Include="Assets\Scripts\Tile.cs" />
      <None Include="Assets\GoogleVR\Shaders\GvrUIOverlayFont.shader" />
      <None Include="Assets\GoogleVR\Shaders\GvrReticleShader.shader" />
      <None Include="Assets\GoogleVR\Beta\Shaders\GvrSeeThroughUI.shader" />
