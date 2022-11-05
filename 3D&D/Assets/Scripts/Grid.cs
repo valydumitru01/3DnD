@@ -3,27 +3,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Grid : MonoBehaviour
 {
     private const int rows = 6;
     private const int cols = 6;
-    // Define la separación entre Tiles
-    // 10f No hay separación, 20f Hay 1 Tile de separación
+
+    // Defines the separaction between Tiles
+    // 10f No separation, 20f 1 Tile separation
     private const float tileSize = 10f;
     private Vector3 tileScale = new Vector3(1f, 1f, 1f);
     private Vector3 boardPosition = new Vector3(0f, 0f, 0f);
+
+    // Input can be on Grid or on Cards
+    private bool isInputGrid = false;
+    private float deadZoneMargin = 0.5f;
+
+    private GameObject[,] tiles = new GameObject[rows, cols];
+    // Any negative or above rows/cols value will count as nothing selected
+    // Value should not go below -1 or above rows/cols
+    private Vector2 selectedTile = new Vector2(0, 0);
+
+    // Defines if actual turn player is Local Player.
+    private bool isLocal = true;
+    private ControllerControls controls;
+
+    void Awake()
+    {
+        controls = new ControllerControls();
+
+        // If player is not local the Grid for them would be 180 Degrees Rotated, so controls will be inverted
+        controls.Gameplay.Left.performed += context => { if (isLocal) MoveLeft(); else MoveRight(); };
+        controls.Gameplay.Right.performed += context => { if (isLocal) MoveRight(); else MoveLeft(); };
+        controls.Gameplay.Down.performed += context => { if (isLocal) MoveDown(); else MoveUp(); };
+        controls.Gameplay.Up.performed += context => { if (isLocal) MoveUp(); else MoveDown(); };
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         GenerateGrid();
-    }
+        GameObject selectedTileObject = tiles[(int)selectedTile.x, (int)selectedTile.y];
+        selectedTileObject.GetComponent<Tile>().Select();
+        controls.Gameplay.Enable();
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        // TODO Temporal
+        ReceiveInput();
     }
 
     /**
@@ -57,6 +83,8 @@ public class Grid : MonoBehaviour
                 tile.transform.localPosition = new Vector3(xPosition, yPosition, zPosition);
 
                 tile.AddComponent<Tile>();
+
+                tiles[row, col] = tile;
             }
         }
 
@@ -65,5 +93,88 @@ public class Grid : MonoBehaviour
 
         // Grid Position
         transform.position = boardPosition;
+    }
+
+    private void MoveLeft()
+    {
+        // Inside Grid
+        if ((int)selectedTile.y > 0 && (int)selectedTile.x >= 0 && (int)selectedTile.x < rows)
+        {
+            GameObject selectedTileObject = tiles[(int)selectedTile.x, (int)selectedTile.y];
+            selectedTile.y += -1;
+            GameObject nextTileObject = tiles[(int)selectedTile.x, (int)selectedTile.y];
+            selectedTileObject.GetComponent<Tile>().Deselect();
+            nextTileObject.GetComponent<Tile>().Select();
+        }
+    }
+    private void MoveRight()
+    {
+        // Inside Grid
+        if ((int)selectedTile.y < cols - 1 && (int)selectedTile.x >= 0 && (int)selectedTile.x < rows)
+        {
+            GameObject selectedTileObject = tiles[(int)selectedTile.x, (int)selectedTile.y];
+            selectedTile.y += 1;
+            GameObject nextTileObject = tiles[(int)selectedTile.x, (int)selectedTile.y];
+            selectedTileObject.GetComponent<Tile>().Deselect();
+            nextTileObject.GetComponent<Tile>().Select();
+        }
+    }
+
+    private void MoveDown()
+    {
+        // Inside Grid
+        if ((int)selectedTile.x > 0 && (int)selectedTile.y >= 0 && (int)selectedTile.x < cols)
+        {
+            GameObject selectedTileObject = tiles[(int)selectedTile.x, (int)selectedTile.y];
+            selectedTile.x += -1;
+            GameObject nextTileObject = tiles[(int)selectedTile.x, (int)selectedTile.y];
+            selectedTileObject.GetComponent<Tile>().Deselect();
+            nextTileObject.GetComponent<Tile>().Select();
+        }
+        // Wehn out of
+        else if ((int)selectedTile.x == 0 && (int)selectedTile.y >= 0 && (int)selectedTile.x < cols)
+        {
+            GameObject selectedTileObject = tiles[(int)selectedTile.x, (int)selectedTile.y];
+            selectedTile.x += -1;
+            selectedTileObject.GetComponent<Tile>().Deselect();
+            // Transfer Input to cards
+        }
+    }
+
+    private void MoveUp()
+    {
+        // Inside Grid
+        if ((int)selectedTile.x == -1 && (int)selectedTile.y >= 0 && (int)selectedTile.x < cols)
+        {
+            selectedTile.x += 1;
+            GameObject nextTileObject = tiles[(int)selectedTile.x, (int)selectedTile.y];
+            nextTileObject.GetComponent<Tile>().Select();
+        }
+        else if ((int)selectedTile.x < rows - 1 && (int)selectedTile.y >= 0 && (int)selectedTile.x < cols)
+        {
+            GameObject selectedTileObject = tiles[(int)selectedTile.x, (int)selectedTile.y];
+            selectedTile.x += 1;
+            GameObject nextTileObject = tiles[(int)selectedTile.x, (int)selectedTile.y];
+            selectedTileObject.GetComponent<Tile>().Deselect();
+            nextTileObject.GetComponent<Tile>().Select();
+        }
+
+    }
+    /**
+    * Transfers the Input from selecting Tiles from the Grid to selecting Cards from the Hand.
+    * TODO Maybe would be better to call this DisableInput and EnableInput?
+    */
+    private void TransferInput()
+    {
+        isInputGrid = false;
+        controls.Gameplay.Disable();
+        // Cards.ReceiveInput();
+    }
+
+    private void ReceiveInput()
+    {
+        isInputGrid = true;
+        controls.Gameplay.Enable();
+        // MoveUp()
     }
 }

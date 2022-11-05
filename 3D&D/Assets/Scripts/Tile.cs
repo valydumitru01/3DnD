@@ -7,13 +7,13 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     // This should not be used on production it is only to test the behaviour in the editor
-    public bool testIsSelected = false;
+    // public bool testIsSelected = false;
     private bool isSelected = false;
     private ParticleSystem particleSystem;
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         particleSystem = gameObject.GetComponent<ParticleSystem>();
         particleSystem.Stop();
@@ -23,26 +23,26 @@ public class Tile : MonoBehaviour
     void Update()
     {
         // Debug Test
-        if (testIsSelected != isSelected)
-        {
-            if (testIsSelected)
-            {
-                OnSelection();
-            }
-            else
-            {
-                OnDeselection();
-            }
-        }
+        // if (testIsSelected != isSelected)
+        // {
+        //     if (testIsSelected)
+        //     {
+        //         Select();
+        //     }
+        //     else
+        //     {
+        //         Deselect();
+        //     }
+        // }
     }
 
-    void OnSelection()
+    public void Select()
     {
         isSelected = true;
         particleSystem.Play();
     }
 
-    void OnDeselection()
+    public void Deselect()
     {
         isSelected = false;
         particleSystem.Stop();
