@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{ad44fa78-8024-740c-ee68-0d91125f1d14}</ProjectGuid>
+    <ProjectGuid>{aef2469e-4144-aa44-34cf-c19f4bb7c844}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -271,9 +271,6 @@
     <Reference Include="UnityEditor.Graphs">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.37f1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.WebGL.Extensions">
-        <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.37f1\Editor\Data\PlaybackEngines\WebGLSupport\UnityEditor.WebGL.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.Android.Extensions">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.37f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
     </Reference>
@@ -281,22 +278,22 @@
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.37f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\PackageCache\com.unity.collab-proxy@1.17.0\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\PackageCache\com.unity.collab-proxy@1.17.0\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\PackageCache\com.unity.collab-proxy@1.17.0\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\PackageCache\com.unity.collab-proxy@1.17.0\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="unityplastic">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\PackageCache\com.unity.collab-proxy@1.17.0\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\PackageCache\com.unity.collab-proxy@1.17.0\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
     </Reference>
     <Reference Include="log4netPlastic">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\PackageCache\com.unity.collab-proxy@1.17.0\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\PackageCache\com.unity.collab-proxy@1.17.0\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
     </Reference>
     <Reference Include="Google.ProtocolBuffers">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Assets\GoogleVR\Plugins\Google.ProtocolBuffers.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Assets\GoogleVR\Plugins\Google.ProtocolBuffers.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.37f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
@@ -647,72 +644,72 @@
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.37f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.TestRunner">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.Management.Editor">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\Unity.XR.Management.Editor.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\Unity.XR.Management.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.Management">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\Unity.XR.Management.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\Unity.XR.Management.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Subsystem.Registration">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\Unity.Subsystem.Registration.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\Unity.Subsystem.Registration.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\UnityEditor.SpatialTracking.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\UnityEngine.SpatialTracking.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Google.XR.Cardboard.Editor">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\Google.XR.Cardboard.Editor.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\Google.XR.Cardboard.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Google.XR.Cardboard">
-        <HintPath>C:\Users\Universidad\OneDrive - Universidad de Oviedo\Escritorio\GoogleVR2022\Library\ScriptAssemblies\Google.XR.Cardboard.dll</HintPath>
+        <HintPath>C:\Users\Álvaro\Documents\GitHub\3DnD\3D&amp;D\Library\ScriptAssemblies\Google.XR.Cardboard.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{8c6894f8-1b97-161d-ff14-c864bfe8e681}</Project>
+      <Project>{00391818-4178-be70-1842-bccb9db31a96}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
   </ItemGroup>
