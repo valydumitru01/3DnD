@@ -41,5 +41,11 @@ public class Tile : MonoBehaviour
     {
         gameObject.transform.position = this.gameObject.transform.position;
     }
+
+    // Attack
+    // Check the gameObject 
+    // get Character/NPC component
+    // get if attack ranged or melee
+    // get attack distance
 }
 
