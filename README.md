@@ -128,18 +128,18 @@ The board will be placed in the middle of the table.
 
 ### Characters
 
-We have designed the cards of some of the characters.
+We have designed the cards of some of the characters. This cards will have the name, life and damage of the characters.
 
 ![Carta guerrero](./images/carta_front_guerrero.png)
 ![Carta hada](./images/carta_front_hada.png)
 ![Carta mago](./images/carta_front_mago.png)
 
-We are also modelling some of the characters in Blender.
+We are also modelling some of the main characters in Blender.
 
 ![Dragon blender](./images/dragon_blender.png)
 <!-- Añadir modelos Valentín -->
 
-For the rest of the character we will download them from the asset store. We will animate the characters.
+For the rest of the character we will download them from the asset store. We will animate the characters so they will have an idle and an attack animations.
 
 ![Esqueleto](./images/esqueleto.gif)
 ![Dog](./images/dog.gif)
