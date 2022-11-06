@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:3D&D/Assets/Scripts/ControllerControls.cs.meta
+guid: 2540a24f6903fc647867dad436761b7d
+========
 guid: 3c34fee1ad3740a4da48036710067bcf
+>>>>>>>> origin/develop:3D&D/Assets/Resources/Scripts/CardGazeInput.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
