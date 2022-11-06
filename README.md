@@ -144,5 +144,6 @@ For the rest of the character we will download them from the asset store. We wil
 ### Gameplay
 
 For the management of the hand of cards we made some scripts that let the player select cards and cycle through the hand. The player can also place the cards on the board.
+
 ![Manejo mano](./images/card_jump.png)
 ![Seleccionar carta](./images/card_selected.png)
