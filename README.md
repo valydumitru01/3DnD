@@ -113,3 +113,41 @@ Once the functionality is finished, the item will go here. It will be awaiting t
 Here will be stored the functionalities that are approved and there is nothing to be worked on anymore. 
 
 ___Note:___ It is possible that more than one person can be assigned to a single functionality.
+
+
+## Sprint 2
+
+### World
+
+We have built the room where the game is going to be played based on the rooms where D&D is played.
+
+![Room](./images/room.png)
+
+The board will be placed in the middle of the table.
+<!-- Añadir imagen del tablero con personajes en la mesa -->
+
+### Characters
+
+We have designed the cards of some of the characters. This cards will have the name, life and damage of the characters.
+
+![Carta guerrero](./images/carta_front_guerrero.png)
+![Carta hada](./images/carta_front_hada.png)
+![Carta mago](./images/carta_front_mago.png)
+
+We are also modelling some of the main characters in Blender.
+
+![Dragon blender](./images/dragon_blender.png)
+<!-- Añadir modelos Valentín -->
+
+For the rest of the characters, we will download them from the asset store. The characters will be animated with an idle, walk and attack animations.
+
+![Esqueleto](./images/esqueleto.gif)
+![Dog](./images/dog.gif)
+![Goblin](./images/goblin.gif)
+
+### Gameplay
+
+For the management of the hand of cards we made some scripts that let the player select cards and cycle through the hand. The player can also place the cards on the board.
+
+![Manejo mano](./images/card_jump.png)
+![Seleccionar carta](./images/card_selected.png)
