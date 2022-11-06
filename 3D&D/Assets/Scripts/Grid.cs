@@ -9,6 +9,7 @@ public class Grid : MonoBehaviour
 {
     private const int rows = 6;
     private const int cols = 6;
+    
 
     // Defines the separaction between Tiles
     // 10f No separation, 20f 1 Tile separation
@@ -56,6 +57,7 @@ public class Grid : MonoBehaviour
     {
         GameObject templateBlackTile = (GameObject)Instantiate(Resources.Load("BlackTile"));
         GameObject templateWhiteTile = (GameObject)Instantiate(Resources.Load("WhiteTile"));
+
         for (int row = 0; row < rows; row++)
         {
             for (int col = 0; col < cols; col++)
