@@ -120,6 +120,7 @@ ___Note:___ It is possible that more than one person can be assigned to a single
 ### World
 
 We have built the room where the game is going to be played based on the rooms where D&D is played.
+
 ![Room](./images/room.png)
 
 The board will be placed in the middle of the table.
@@ -128,15 +129,18 @@ The board will be placed in the middle of the table.
 ### Characters
 
 We have designed the cards of some of the characters.
+
 ![Carta guerrero](./images/carta_front_guerrero.png)
 ![Carta hada](./images/carta_front_hada.png)
 ![Carta mago](./images/carta_front_mago.png)
 
 We are also modelling some of the characters in Blender.
+
 ![Dragon blender](./images/dragon_blender.png)
 <!-- Añadir modelos Valentín -->
 
 For the rest of the character we will download them from the asset store. We will animate the characters.
+
 ![Esqueleto](./images/esqueleto.gif)
 ![Dog](./images/dog.gif)
 ![Goblin](./images/goblin.gif)
