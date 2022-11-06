@@ -121,10 +121,10 @@ ___Note:___ It is possible that more than one person can be assigned to a single
 
 We have built the room where the game is going to be played based on the rooms where D&D is played.
 
-![Room](./images/room.png)
+![Entorno de juego](./images/vista_entorno.png)
 
 The board will be placed in the middle of the table.
-<!-- Añadir imagen del tablero con personajes en la mesa -->
+![Tablero de juego](./images/vista_tablero.png)
 
 ### Characters
 
@@ -136,14 +136,18 @@ We have designed the cards of some of the characters. This cards will have the n
 
 We are also modelling some of the main characters in Blender.
 
+![Mago principal](./images/avatar_mago.jpg)
+![Caballero principal](./images/avatar_caballero.jpg)
 ![Dragon blender](./images/dragon_blender.png)
-<!-- Añadir modelos Valentín -->
 
 For the rest of the characters, we will download them from the asset store. The characters will be animated with an idle, walk and attack animations.
 
 ![Esqueleto](./images/esqueleto.gif)
 ![Dog](./images/dog.gif)
 ![Goblin](./images/goblin.gif)
+![Caballero](./images/caballero.png)
+![Mariposa](./images/mariposa.png)
+![Mago](./images/mago.png)
 
 ### Gameplay
 
