@@ -13,8 +13,7 @@ public class Grid : MonoBehaviour
     // Defines the separaction between Tiles
     // 10f No separation, 20f 1 Tile separation
     private const float tileSize = 10f;
-    private Vector3 tileScale = new Vector3(1f, 1f, 1f);
-    private Vector3 boardPosition = new Vector3(0f, 0f, 0f);
+    private Vector3 tileScale = new Vector3(0.05f, 0.05f, 0.05f);
 
     private GameObject[,] tiles = new GameObject[rows, cols];
     // Any negative or above rows/cols value will count as nothing selected
@@ -24,6 +23,8 @@ public class Grid : MonoBehaviour
     // Defines if actual turn player is Local Player.
     private bool isLocal = true;
     private ControllerControls controls;
+
+    private bool isGazeInput = false;
 
     void Awake()
     {
@@ -62,9 +63,9 @@ public class Grid : MonoBehaviour
                 bool isEvenTile = (row + col) % 2 == 0;
                 GameObject tile;
                 if (isEvenTile)
-                    tile = (GameObject)Instantiate(templateBlackTile);
+                    tile = Instantiate(templateBlackTile);
                 else
-                    tile = (GameObject)Instantiate(templateWhiteTile);
+                    tile = Instantiate(templateWhiteTile);
 
                 // Set tile parent (the Grid)
                 tile.transform.parent = gameObject.transform;
@@ -86,9 +87,6 @@ public class Grid : MonoBehaviour
 
         Destroy(templateBlackTile);
         Destroy(templateWhiteTile);
-
-        // Grid Position
-        transform.position = boardPosition;
     }
 
     private void MoveLeft()
