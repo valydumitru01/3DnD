@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 46022227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14be1f47a1c853e448884626e11a4cc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0dc121690389d5d48af71d58614e84b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &498791770
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 498791775}
   - component: {fileID: 498791774}
   - component: {fileID: 498791773}
-  - component: {fileID: 498791772}
+  - component: {fileID: 498791779}
   m_Layer: 0
   m_Name: Card2
   m_TagString: Card
@@ -211,19 +211,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1.5, y: -0.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &498791772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 498791770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99a3bf30044be84ebee022e859912b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerDuration: 3
 --- !u!114 &498791773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +228,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 498791772}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GazeInput, Assembly-CSharp
           m_MethodName: OnPointerClick
           m_Mode: 1
@@ -257,7 +244,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 498791772}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GazeInput, Assembly-CSharp
           m_MethodName: setIsLooked
           m_Mode: 6
@@ -273,7 +260,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 498791772}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GazeInput, Assembly-CSharp
           m_MethodName: setIsLooked
           m_Mode: 6
@@ -385,6 +372,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498791770}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &498791779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498791770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9245d20bc1a9cd42ad384a0779bc490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerDuration: 3
 --- !u!1001 &604374539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -568,7 +568,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 672295531}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GazeInput, Assembly-CSharp
           m_MethodName: OnPointerClick
           m_Mode: 1
@@ -584,7 +584,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 672295531}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GazeInput, Assembly-CSharp
           m_MethodName: setIsLooked
           m_Mode: 6
@@ -600,7 +600,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 672295531}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GazeInput, Assembly-CSharp
           m_MethodName: setIsLooked
           m_Mode: 6
@@ -659,7 +659,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 672295522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99a3bf30044be84ebee022e859912b5, type: 3}
+  m_Script: {fileID: 11500000, guid: d9245d20bc1a9cd42ad384a0779bc490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timerDuration: 3
@@ -909,7 +909,7 @@ GameObject:
   - component: {fileID: 1251177574}
   - component: {fileID: 1251177573}
   - component: {fileID: 1251177572}
-  - component: {fileID: 1251177571}
+  - component: {fileID: 1251177578}
   m_Layer: 0
   m_Name: Card1
   m_TagString: Card
@@ -936,19 +936,6 @@ RectTransform:
   m_AnchoredPosition: {x: -1.5, y: -0.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1251177571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1251177569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99a3bf30044be84ebee022e859912b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerDuration: 3
 --- !u!114 &1251177572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -966,7 +953,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1251177571}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GazeInput, Assembly-CSharp
           m_MethodName: OnPointerClick
           m_Mode: 1
@@ -982,7 +969,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1251177571}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GazeInput, Assembly-CSharp
           m_MethodName: setIsLooked
           m_Mode: 6
@@ -998,7 +985,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1251177571}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: GazeInput, Assembly-CSharp
           m_MethodName: setIsLooked
           m_Mode: 6
@@ -1110,6 +1097,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251177569}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1251177578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251177569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9245d20bc1a9cd42ad384a0779bc490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerDuration: 3
 --- !u!1 &1452490619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1327,7 +1327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5d4e14a07d7514992809317061b69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerDuration: 3
 --- !u!114 &1614161233
 MonoBehaviour:
   m_ObjectHideFlags: 0
