@@ -62,5 +62,15 @@ public class PositionCard : MonoBehaviour
         }
         yield return new WaitForSeconds(time);
         selectedCard.gameObject.SetActive(false);
+        invocateMinion(transform.position);
+    }
+
+    private void invocateMinion(Vector3 position)
+    {
+        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        sphere.transform.position = position + new Vector3(0f, 0.2f, 0f);
+        sphere.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        Color brown = new Color(139f/255f, 69f/255f, 19f/255f, 1f);
+        sphere.GetComponent<Renderer>().material.color = brown;
     }
 }
