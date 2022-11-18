@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Card
   - CardText
+  - Mago
+  - Hada
+  - Guerrero
   layers:
   - Default
   - TransparentFX

@@ -8,7 +8,7 @@
 public class CardGazeInput : MonoBehaviour
 {
     private Vector3 initialPosition;
-
+    private Character character;
     //TIMER
     public float timerDuration = 3f;
     private float lookTimer = 0f;
@@ -22,6 +22,7 @@ public class CardGazeInput : MonoBehaviour
         // Disable screen dimming
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         initialPosition = transform.position;
+        character = GetComponent<Character>();
     }
 
     void Update()
@@ -78,5 +79,8 @@ public class CardGazeInput : MonoBehaviour
                 transform.position = initialPosition;
         }
     }
-
+    public void InvocateMinion(Transform transform)
+    {
+        character.InvocateMinion(transform);
+    }
 }

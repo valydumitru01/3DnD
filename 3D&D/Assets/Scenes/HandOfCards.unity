@@ -493,6 +493,7 @@ GameObject:
   - component: {fileID: 219086849}
   - component: {fileID: 219086848}
   - component: {fileID: 219086847}
+  - component: {fileID: 219086846}
   m_Layer: 0
   m_Name: Card1
   m_TagString: Card
@@ -522,6 +523,23 @@ RectTransform:
   m_AnchoredPosition: {x: -1.5, y: -0.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &219086846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219086844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e008f002077dc5341a41494adb8c8976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: Mago
+  lifes: 3
+  damage: 4
+  character: {fileID: 1248815240492774, guid: ccd8c3b89aa02e943a08ab9238a8a70c, type: 3}
+  offset: {x: 0, y: 0.1, z: 0}
 --- !u!114 &219086847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1624,6 +1642,7 @@ GameObject:
   - component: {fileID: 672295528}
   - component: {fileID: 672295527}
   - component: {fileID: 672295531}
+  - component: {fileID: 672295530}
   m_Layer: 0
   m_Name: Card
   m_TagString: Card
@@ -1814,6 +1833,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &672295530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672295522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e008f002077dc5341a41494adb8c8976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: Guerrero
+  lifes: 5
+  damage: 3
+  character: {fileID: 121574, guid: fe2a5bf9b4c2d4a4b9853a8506f18c40, type: 3}
+  offset: {x: 0, y: 0.1, z: 0}
 --- !u!114 &672295531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2597,7 +2633,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1250226171}
-  - component: {fileID: 1250226172}
   m_Layer: 0
   m_Name: Texts
   m_TagString: Untagged
@@ -2622,21 +2657,6 @@ Transform:
   m_Father: {fileID: 1914023980}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1250226172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250226170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2540a24f6903fc647867dad436761b7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardName: Hada
-  lifes: 2
-  damage: 2
 --- !u!1 &1296853866
 GameObject:
   m_ObjectHideFlags: 0
@@ -4014,6 +4034,7 @@ GameObject:
   - component: {fileID: 1914023984}
   - component: {fileID: 1914023983}
   - component: {fileID: 1914023982}
+  - component: {fileID: 1914023981}
   m_Layer: 0
   m_Name: Card2
   m_TagString: Card
@@ -4043,6 +4064,23 @@ RectTransform:
   m_AnchoredPosition: {x: 1.5, y: -0.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1914023981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914023979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e008f002077dc5341a41494adb8c8976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: Hada
+  lifes: 2
+  damage: 2
+  character: {fileID: 3509250616930223806, guid: 94627e1867eb31e4583550292fbbb516, type: 3}
+  offset: {x: 0, y: 0.25, z: 0}
 --- !u!114 &1914023982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4420,7 +4458,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2075791512}
-  - component: {fileID: 2075791513}
   m_Layer: 0
   m_Name: Texts
   m_TagString: Untagged
@@ -4445,21 +4482,6 @@ Transform:
   m_Father: {fileID: 672295523}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2075791513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2075791511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2540a24f6903fc647867dad436761b7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardName: Caballero
-  lifes: 5
-  damage: 3
 --- !u!1001 &2090971042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4638,7 +4660,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2124966791}
-  - component: {fileID: 2124966792}
   m_Layer: 0
   m_Name: Texts
   m_TagString: Untagged
@@ -4663,18 +4684,3 @@ Transform:
   m_Father: {fileID: 219086845}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2124966792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2124966790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2540a24f6903fc647867dad436761b7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardName: Mago
-  lifes: 3
-  damage: 4
