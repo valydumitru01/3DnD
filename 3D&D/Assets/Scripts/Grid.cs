@@ -1,15 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEditor.Build.Reporting;
+using UnityEditor.Events;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class Grid : MonoBehaviour
 {
     private const int rows = 6;
     private const int cols = 6;
-    
+
 
     // Defines the separaction between Tiles
     // 10f No separation, 20f 1 Tile separation
@@ -82,6 +85,29 @@ public class Grid : MonoBehaviour
                 tile.transform.localPosition = new Vector3(xPosition, yPosition, zPosition);
 
                 tile.AddComponent<Tile>();
+
+                tile.AddComponent<PositionCard>();
+                PositionCard pc = tile.GetComponent<PositionCard>();
+                tile.AddComponent<GvrPointerGraphicRaycaster>();
+
+                tile.AddComponent<EventTrigger>();
+                EventTrigger eventTrigger = tile.GetComponent<EventTrigger>();
+
+                EventTrigger.Entry entry = new EventTrigger.Entry();
+                // Click en casilla
+                entry.eventID = EventTriggerType.PointerClick;
+                entry.callback.AddListener((data) => pc.OnPointerClick());
+                eventTrigger.triggers.Add(entry);
+
+                // Mirar casilla
+                entry.eventID = EventTriggerType.PointerEnter;
+                entry.callback.AddListener((data) => pc.setIsLooked(true));
+                eventTrigger.triggers.Add(entry);
+
+                // Quitar mirada casilla
+                entry.eventID = EventTriggerType.PointerExit;
+                entry.callback.AddListener((data) => pc.setIsLooked(false));
+                eventTrigger.triggers.Add(entry);
 
                 tiles[row, col] = tile;
             }

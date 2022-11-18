@@ -63,7 +63,7 @@ public class CardGazeInput : MonoBehaviour
             }
             else
             {
-                transform.position += new Vector3(0, 0.5f, -2.5f);
+                transform.position += new Vector3(0, 0.5f, 0.5f);
                 IsSelected = true;
             }
         }

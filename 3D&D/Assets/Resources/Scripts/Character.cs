@@ -25,7 +25,9 @@ public class Character : MonoBehaviour
         if (character != null && transform.childCount < 1)
         {
             character.tag = cardName;
-            character.transform.position = transform.position + offset;
+            character.transform.position = offset;
+            character.transform.rotation = Quaternion.Euler(0, 180, 0);
+            character.transform.localScale = new Vector3(3f, 3f, 3f);
             Instantiate(character, transform);
         }
     }
