@@ -168,7 +168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 46022227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14be1f47a1c853e448884626e11a4cc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0dc121690389d5d48af71d58614e84b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &87813472
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 219086844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99a3bf30044be84ebee022e859912b5, type: 3}
+  m_Script: {fileID: 11500000, guid: d9245d20bc1a9cd42ad384a0779bc490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timerDuration: 3
@@ -914,7 +914,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 321540341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99a3bf30044be84ebee022e859912b5, type: 3}
+  m_Script: {fileID: 11500000, guid: d9245d20bc1a9cd42ad384a0779bc490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timerDuration: 3
@@ -1403,12 +1403,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 611075661}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c34fee1ad3740a4da48036710067bcf, type: 3}
+  m_Script: {fileID: 11500000, guid: 2540a24f6903fc647867dad436761b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Moverse
+  cardName: Movimiento
   lifes: 
-  damage: 2
+  damage: 3
 --- !u!1 &630480045
 GameObject:
   m_ObjectHideFlags: 0
@@ -1823,7 +1823,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 672295522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99a3bf30044be84ebee022e859912b5, type: 3}
+  m_Script: {fileID: 11500000, guid: d9245d20bc1a9cd42ad384a0779bc490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timerDuration: 3
@@ -2631,7 +2631,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1250226170}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c34fee1ad3740a4da48036710067bcf, type: 3}
+  m_Script: {fileID: 11500000, guid: 2540a24f6903fc647867dad436761b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardName: Hada
@@ -2680,7 +2680,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1296853866}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c34fee1ad3740a4da48036710067bcf, type: 3}
+  m_Script: {fileID: 11500000, guid: 2540a24f6903fc647867dad436761b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardName: Ataque
@@ -2822,7 +2822,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1423125469}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99a3bf30044be84ebee022e859912b5, type: 3}
+  m_Script: {fileID: 11500000, guid: d9245d20bc1a9cd42ad384a0779bc490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timerDuration: 3
@@ -3395,7 +3395,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1614161227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb5d4e14a07d7514992809317061b69f, type: 3}
+  m_Script: {fileID: 11500000, guid: db6bd7510f36d4346acf69c148c78bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timerDuration: 3
@@ -4052,7 +4052,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1914023979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99a3bf30044be84ebee022e859912b5, type: 3}
+  m_Script: {fileID: 11500000, guid: d9245d20bc1a9cd42ad384a0779bc490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timerDuration: 3
@@ -4454,7 +4454,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2075791511}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c34fee1ad3740a4da48036710067bcf, type: 3}
+  m_Script: {fileID: 11500000, guid: 2540a24f6903fc647867dad436761b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardName: Caballero
@@ -4672,7 +4672,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2124966790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c34fee1ad3740a4da48036710067bcf, type: 3}
+  m_Script: {fileID: 11500000, guid: 2540a24f6903fc647867dad436761b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardName: Mago
