@@ -58,8 +58,8 @@ public class Grid : MonoBehaviour
     */
     private void GenerateGrid()
     {
-        GameObject templateBlackTile = (GameObject)Instantiate(Resources.Load("BlackTile"));
-        GameObject templateWhiteTile = (GameObject)Instantiate(Resources.Load("WhiteTile"));
+        GameObject templateBlackTile = (GameObject)Instantiate(Resources.Load("Prefabs/BlackTile"));
+        GameObject templateWhiteTile = (GameObject)Instantiate(Resources.Load("Prefabs/WhiteTile"));
 
         for (int row = 0; row < rows; row++)
         {
