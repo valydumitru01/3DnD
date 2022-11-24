@@ -1427,6 +1427,55 @@ MonoBehaviour:
   cardName: Movimiento
   lifes: 
   damage: 3
+--- !u!1 &626393357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 626393358}
+  - component: {fileID: 626393359}
+  m_Layer: 0
+  m_Name: CardGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &626393358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626393357}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 865694117}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &626393359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626393357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086af9d1e8826e24b97777daff00be3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generated: {fileID: 1423125469}
+  amount: 8
+  radius: 3.94
+  range: 4.93
+  distance: -4.53
+  height: -1.65
 --- !u!1 &630480045
 GameObject:
   m_ObjectHideFlags: 0
@@ -2266,6 +2315,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1452490622}
+  - {fileID: 626393358}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3659,7 +3709,7 @@ Transform:
   m_LocalScale: {x: 0.13993245, y: 0.09996217, z: 1.33084}
   m_Children: []
   m_Father: {fileID: 1914023980}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -15, y: 180, z: 0}
 --- !u!212 &1634369729
 SpriteRenderer:
@@ -3965,7 +4015,7 @@ Transform:
   m_LocalScale: {x: 0.13993245, y: 0.09996217, z: 1.33084}
   m_Children: []
   m_Father: {fileID: 1914023980}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1728721044
 SpriteRenderer:
@@ -4053,8 +4103,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1.5, z: 0.005}
   m_Children:
-  - {fileID: 1728721043}
   - {fileID: 1634369728}
+  - {fileID: 1728721043}
   - {fileID: 1250226171}
   m_Father: {fileID: 46022228}
   m_RootOrder: 2
