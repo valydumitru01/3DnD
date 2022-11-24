@@ -40,7 +40,7 @@ public class PositionCard : MonoBehaviour
     public void OnPointerClick()
     {
         IEnumerable<CardGazeInput> selectedCard = cardsInput.Where(card => card.IsSelected && card.gameObject.activeSelf);
-        if (selectedCard.Count() > 0)
+        if (selectedCard.Count() > 0 && transform.childCount < 1)
         {
             StartCoroutine(UseCard(selectedCard.First(), 1));
         }
@@ -62,5 +62,6 @@ public class PositionCard : MonoBehaviour
         }
         yield return new WaitForSeconds(time);
         selectedCard.gameObject.SetActive(false);
+        selectedCard.InvocateMinion(transform);
     }
 }
