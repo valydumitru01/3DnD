@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class manaManager : MonoBehaviour
 {
+    [Range(0, 1000)]
     public int maxMana=100;
+    [Range(0, 1000)]
     public int currentMana=100;
+    [Range(0, 1000)]
     public int manaRecoveryPerTurn=10;
     private TextMesh text;
     
@@ -13,11 +16,14 @@ public class manaManager : MonoBehaviour
         text=GetComponentInChildren<TextMesh>();
         updateString();
     }
+    private void Update() {
+        updateString();
+        updateColor();
+    }
     public void nextTurn(){
         if(currentMana<maxMana){
             currentMana=Mathf.Min(currentMana+manaRecoveryPerTurn,maxMana);
         }
-        updateString();
     }
     public void useCard(int manaCost){
         if(currentMana<manaCost) 
@@ -25,9 +31,20 @@ public class manaManager : MonoBehaviour
         else
             currentMana-=manaCost;
         
-        updateString();
     }
     private void updateString(){
         text.text=currentMana+"/"+maxMana;
+    }
+    private void updateColor(){
+        
+        if(maxMana>0 && currentMana>0){
+            float r=255-255*currentMana/maxMana;
+            float g=Color.cyan.g*currentMana/maxMana;
+            float b=Color.cyan.b*currentMana/maxMana;
+
+            //Cyan=rgb(0,188,227)
+            text.color=new Color(r,g,b,255);
+        }
+        
     }
 }
