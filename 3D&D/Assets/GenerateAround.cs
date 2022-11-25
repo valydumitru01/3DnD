@@ -1,33 +1,50 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GenerateAround : MonoBehaviour
 {
-    public GameObject generated;
-    public int amount = 5;
-    public float radius = 5f;
-    public float range = 5f;
-    public float distance = -5f;
-    public float height = -5f;
+    private Dictionary<string, float[]> characters = new Dictionary<string, float[]>() { { "Guerrero", new[] { 5, 3 , 0.1f} },
+                                                                                        { "Mago", new[] { 3, 4, 0.1f } },
+                                                                                        { "Hada", new[] { 2, 2, 0.25f } } };
+    public float radius = 3.94f;
+    public float range = 4.93f;
+    public float distance = -4.53f;
+    public float height = -1.65f;
     private List<GameObject> cards = new List<GameObject>();
     private Transform playerTransform;
+    private Transform cardsHand;
+
     // Start is called before the first frame update
     void Start()
     {
-        playerTransform = this.GetComponentInParent<Transform>();
-        for (int i = 0; i < amount; i++)
+        playerTransform = GetComponentInParent<Transform>();
+        cardsHand = GameObject.FindWithTag("CardsHand").transform;
+
+        foreach (var character in characters)
         {
-            GameObject newObj = Instantiate(generated, Vector3.zero, Quaternion.identity);
-            cards.Add(newObj);
+            GenerateCharacter(character);
         }
 
+        PositionCards();
     }
-    private void Update()
+
+    private void GenerateCharacter(KeyValuePair<string, float[]> character)
+    {
+        GameObject newCard = Instantiate(Resources.Load<GameObject>("Prefabs/InvocationCard"), cardsHand);
+        var characterData = newCard.GetComponent<Character>();
+        characterData.name = $"{character.Key}Card";
+        characterData.cardName = character.Key;
+        characterData.lifes = (int)character.Value[0];
+        characterData.damage = (int)character.Value[1];
+        characterData.offset.y = character.Value[2];
+        cards.Add(newCard);
+    }
+
+    private void PositionCards()
     {
         Vector3 position;
-        float angle = 180.0f / amount;
-        for (int i=0;i<amount;i++)
+        float angle = 180.0f / characters.Count;
+        for (int i = 0; i < characters.Count; i++)
         {
             float x;
             float z;
@@ -48,8 +65,7 @@ public class GenerateAround : MonoBehaviour
             cards[i].transform.LookAt(playerTransform);
 
             //Set the position generated
-            cards[i].transform.position=position;
+            cards[i].transform.position = position;
         }
     }
-
 }

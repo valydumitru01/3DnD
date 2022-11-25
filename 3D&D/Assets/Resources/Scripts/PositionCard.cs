@@ -40,9 +40,10 @@ public class PositionCard : MonoBehaviour
     public void OnPointerClick()
     {
         IEnumerable<CardGazeInput> selectedCard = cardsInput.Where(card => card.IsSelected && card.gameObject.activeSelf);
-        if (selectedCard.Count() > 0 && transform.childCount < 1)
+        int row = gameObject.name[5] - '0';
+        if (selectedCard.Count() > 0 && transform.childCount < 1 && row < 3)
         {
-            StartCoroutine(UseCard(selectedCard.First(), 1));
+            StartCoroutine(UseCard(selectedCard.First(), 0.5f));
         }
     }
 
@@ -54,10 +55,12 @@ public class PositionCard : MonoBehaviour
     IEnumerator UseCard(CardGazeInput selectedCard, float time)
     {
         selectedCard.CanBeFocused = false;
-        while (selectedCard.transform.position != transform.position)
+        var objective = transform.position;
+        objective.y += 0.01f;
+        while (selectedCard.transform.position != objective)
         {
-            selectedCard.transform.position = Vector3.MoveTowards(selectedCard.transform.position, transform.position, 15 * Time.deltaTime);
-            selectedCard.transform.rotation = Quaternion.Lerp(selectedCard.transform.rotation, Quaternion.Euler(90, 0, 0), 10 * Time.deltaTime);
+            selectedCard.transform.position = Vector3.MoveTowards(selectedCard.transform.position, objective, 3 * Time.deltaTime);
+            selectedCard.transform.rotation = Quaternion.Lerp(selectedCard.transform.rotation, Quaternion.Euler(90, 180, 0), 10 * Time.deltaTime);
             yield return null;
         }
         yield return new WaitForSeconds(time);

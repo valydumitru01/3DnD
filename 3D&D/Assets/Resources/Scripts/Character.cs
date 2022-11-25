@@ -1,23 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
     public string cardName;
-    public string lifes;
-    public string damage;
+    public int lifes;
+    public int damage;
     public GameObject character;
     public Vector3 offset;
-    private TextMesh[] texts;
 
     // Start is called before the first frame update
     void Start()
     {
-        texts = gameObject.GetComponentsInChildren<TextMesh>();
+        SetTexts();
+        SetSprite();
+        SetPrefab();
+    }
+
+    private void SetTexts()
+    {
+        var texts = gameObject.GetComponentsInChildren<TextMesh>();
         texts[0].text = cardName;
-        texts[1].text = lifes;
-        texts[2].text = damage;
+        texts[1].text = lifes.ToString();
+        texts[2].text = damage.ToString();
+    }
+
+    private void SetSprite()
+    {
+        var cardPath = $"Images/Cards/carta_front_{cardName.ToLower()}";
+        var cardFront = gameObject.GetComponentInChildren<SpriteRenderer>();
+        cardFront.sprite = Resources.Load<Sprite>(cardPath);
+    }
+
+    private void SetPrefab()
+    {
+        var prefabPath = $"Characters/Prefabs/{cardName}/{cardName}";
+        character = Resources.Load<GameObject>(prefabPath);
     }
 
     public void InvocateMinion(Transform transform)

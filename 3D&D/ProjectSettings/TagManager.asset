@@ -9,6 +9,7 @@ TagManager:
   - Mago
   - Hada
   - Guerrero
+  - CardsHand
   layers:
   - Default
   - TransparentFX
