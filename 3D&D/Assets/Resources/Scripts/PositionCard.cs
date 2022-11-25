@@ -40,7 +40,7 @@ public class PositionCard : MonoBehaviour
     public void OnPointerClick()
     {
         IEnumerable<CardGazeInput> selectedCard = cardsInput.Where(card => card.IsSelected && card.gameObject.activeSelf);
-        int row = gameObject.name[5] - '0';
+        var row = char.GetNumericValue(gameObject.name[5]);
         if (selectedCard.Count() > 0 && transform.childCount < 1 && row < 3)
         {
             StartCoroutine(UseCard(selectedCard.First(), 0.5f));
