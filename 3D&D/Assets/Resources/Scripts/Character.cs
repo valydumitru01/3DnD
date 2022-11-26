@@ -5,7 +5,8 @@ public class Character : MonoBehaviour
     public string cardName;
     public int lifes;
     public int damage;
-    public GameObject character;
+    public int manaCost;
+    private GameObject character;
     public Vector3 offset;
 
     // Start is called before the first frame update

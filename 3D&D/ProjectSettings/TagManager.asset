@@ -10,6 +10,7 @@ TagManager:
   - Hada
   - Guerrero
   - CardsHand
+  - Mana
   layers:
   - Default
   - TransparentFX

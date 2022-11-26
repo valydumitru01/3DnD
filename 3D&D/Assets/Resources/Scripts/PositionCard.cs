@@ -10,12 +10,15 @@ public class PositionCard : MonoBehaviour
     public float timerDuration = 3f;
     private float lookTimer = 0f;
     public bool IsLooked { get; set; }
+    private ManaManager mana;
 
     // Start is called before the first frame update
     void Start()
     {
         cardsInput = GameObject.FindGameObjectsWithTag("Card")
                            .Select(card => card.GetComponent<CardGazeInput>());
+
+        mana = GameObject.FindWithTag("Mana").GetComponent<ManaManager>();
     }
 
     // Update is called once per frame
@@ -40,8 +43,9 @@ public class PositionCard : MonoBehaviour
     public void OnPointerClick()
     {
         IEnumerable<CardGazeInput> selectedCard = cardsInput.Where(card => card.IsSelected && card.gameObject.activeSelf);
+        // var row = 0;
         var row = char.GetNumericValue(gameObject.name[5]);
-        if (selectedCard.Count() > 0 && transform.childCount < 1 && row < 3)
+        if (selectedCard.Count() > 0 && transform.childCount < 1 && row < 3 && mana.CanUpdate(selectedCard.First().GetComponent<Character>().manaCost))
         {
             StartCoroutine(UseCard(selectedCard.First(), 0.5f));
         }
@@ -60,7 +64,7 @@ public class PositionCard : MonoBehaviour
         while (selectedCard.transform.position != objective)
         {
             selectedCard.transform.position = Vector3.MoveTowards(selectedCard.transform.position, objective, 3 * Time.deltaTime);
-            selectedCard.transform.rotation = Quaternion.Lerp(selectedCard.transform.rotation, Quaternion.Euler(90, 180, 0), 10 * Time.deltaTime);
+            selectedCard.transform.rotation = Quaternion.Lerp(selectedCard.transform.rotation, Quaternion.Euler(-90, 0, 0), 10 * Time.deltaTime);
             yield return null;
         }
         yield return new WaitForSeconds(time);

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 
 ///--------------------------------
 ///   Author: Victor Alvarez, Ph.D.
@@ -16,12 +18,13 @@ public class CardGazeInput : MonoBehaviour
     public bool IsSelected { get; set; }
     public bool IsLooked { get; set; }
     public bool CanBeFocused { get; set; }
+    public Vector3 InitialPosition { get => initialPosition; set => initialPosition = value; }
 
     void Start()
     {
         // Disable screen dimming
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
-        initialPosition = transform.position;
+        // InitialPosition = transform.localPosition;
         character = GetComponent<Character>();
     }
 
@@ -43,7 +46,7 @@ public class CardGazeInput : MonoBehaviour
         }
     }
 
-    public void setIsLooked(bool looked)
+    public void SetIsLooked(bool looked)
     {
         if (CanBeFocused)
         {
@@ -58,12 +61,13 @@ public class CardGazeInput : MonoBehaviour
         {
             if (IsSelected)
             {
-                transform.position = initialPosition;
+                StartCoroutine(Move(InitialPosition));
                 IsSelected = false;
             }
             else
             {
-                transform.position += new Vector3(0, 0.5f, 0.5f);
+                var endPosition = transform.localPosition + new Vector3(0, 1.7f, 1.5f);
+                StartCoroutine(Move(endPosition));
                 IsSelected = true;
             }
         }
@@ -74,13 +78,27 @@ public class CardGazeInput : MonoBehaviour
         if (!IsSelected)
         {
             if (isLooked)
-                transform.position += new Vector3(0, 0.25f, 0);
+            {
+                var endPosition = transform.localPosition + new Vector3(0, 0.25f, 0);
+                StartCoroutine(Move(endPosition));
+            }
             else
-                transform.position = initialPosition;
+            {
+                StartCoroutine(Move(InitialPosition));
+            }
         }
     }
     public void InvocateMinion(Transform transform)
     {
         character.InvocateMinion(transform);
+    }
+
+    private IEnumerator Move(Vector3 endPosition)
+    {
+        while (transform.localPosition != endPosition)
+        {
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, endPosition, 5 * Time.deltaTime);
+            yield return null;
+        }
     }
 }

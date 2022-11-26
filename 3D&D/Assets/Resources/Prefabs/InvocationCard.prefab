@@ -337,7 +337,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4272604249989091045}
-  m_LocalRotation: {x: -0.13052624, y: 0, z: 0, w: 0.9914449}
+  m_LocalRotation: {x: -0.258819, y: 0, z: 0, w: 0.9659259}
   m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1.5, z: 0.005}
   m_Children:
@@ -346,7 +346,7 @@ RectTransform:
   - {fileID: 4272604250783413279}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -15, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -30, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0.8}
@@ -486,8 +486,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 4272604249989091052}
-          m_TargetAssemblyTypeName: GazeInput, Assembly-CSharp
-          m_MethodName: setIsLooked
+          m_TargetAssemblyTypeName: CardGazeInput, Assembly-CSharp
+          m_MethodName: SetIsLooked
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -502,8 +502,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 4272604249989091052}
-          m_TargetAssemblyTypeName: GazeInput, Assembly-CSharp
-          m_MethodName: setIsLooked
+          m_TargetAssemblyTypeName: CardGazeInput, Assembly-CSharp
+          m_MethodName: SetIsLooked
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -541,7 +541,7 @@ MonoBehaviour:
   cardName: Guerrero
   lifes: 5
   damage: 3
-  character: {fileID: 121574, guid: fe2a5bf9b4c2d4a4b9853a8506f18c40, type: 3}
+  manaCost: 0
   offset: {x: 0, y: 0.1, z: 0}
 --- !u!1 &4272604250473040359
 GameObject:
