@@ -7,7 +7,7 @@ public class GenerateAround : MonoBehaviour
 {
     private Dictionary<string, float[]> characters = new Dictionary<string, float[]>() { { "Guerrero", new[] {5, 3,0.1f, 10} },
                                                                                         { "Mago", new[] {3, 4, 0.1f, 8} },
-                                                                                        { "Hada", new[] {2, 2, 0.25f, 5} } };
+                                                                                        { "Hada", new[] {2, 2, 5f, 5} } };
     public float radius = 3.94f;
     public float range = 4.93f;
     public float distance = -4.53f;
@@ -89,7 +89,7 @@ public class GenerateAround : MonoBehaviour
             finalPosition.x -= 1.5f;
         }
     }
-    
+
     private IEnumerator Move(GameObject card, Vector3 endPosition)
     {
         card.GetComponent<CardGazeInput>().InitialPosition = endPosition;
