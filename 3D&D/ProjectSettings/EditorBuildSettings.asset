@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/3DnD Menu.unity
     guid: 09e6abb64c9718a4db43acbee789e2a2
   - enabled: 1

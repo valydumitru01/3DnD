@@ -11,6 +11,8 @@ TagManager:
   - Guerrero
   - CardsHand
   - Mana
+  - UI
+  - Orbit
   layers:
   - Default
   - TransparentFX
