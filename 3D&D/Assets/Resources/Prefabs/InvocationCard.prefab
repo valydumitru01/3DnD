@@ -535,14 +535,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4272604249989091045}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e008f002077dc5341a41494adb8c8976, type: 3}
+  m_Script: {fileID: 11500000, guid: ce86a8c2767edc242a3d3d0803ef86cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Guerrero
-  lifes: 5
-  damage: 3
+  cardName: 
+  lifes: 0
+  damage: 0
   manaCost: 0
-  offset: {x: 0, y: 0.1, z: 0}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &4272604250473040359
 GameObject:
   m_ObjectHideFlags: 0

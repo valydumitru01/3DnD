@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class GenerateAround : MonoBehaviour
 {
-    private Dictionary<string, float[]> characters = new Dictionary<string, float[]>() { { "Guerrero", new[] {5, 3,0.1f, 10} },
-                                                                                        { "Mago", new[] {3, 4, 0.1f, 8} },
-                                                                                        { "Hada", new[] {2, 2, 5f, 5} } };
+    private Dictionary<string, float[]> characters = new Dictionary<string, float[]>() { { "Guerrero", new[] {5, 3,0.1f, 10, 2, 1, 2} },
+                                                                                        { "Mago", new[] {3, 4, 0.1f, 8, 2, 2, 3} },
+                                                                                        { "Hada", new[] {2, 2, 5f, 5, 3, 1, 1} } };
     public float radius = 3.94f;
     public float range = 4.93f;
     public float distance = -4.53f;
@@ -44,13 +44,17 @@ public class GenerateAround : MonoBehaviour
         newCard.SetActive(false);
         // finalPosition.x -= 1.5f;
 
-        var characterData = newCard.GetComponent<Character>();
+        var characterData = newCard.GetComponent<CardCharacter>();
         characterData.name = $"{character.Key}Card";
         characterData.cardName = character.Key;
         characterData.lifes = (int)character.Value[0];
         characterData.damage = (int)character.Value[1];
         characterData.offset.y = character.Value[2];
         characterData.manaCost = (int)character.Value[3];
+
+        characterData.MaxMovementDistance = (int)character.Value[4];
+        characterData.MinAttackDistance = (int)character.Value[5];
+        characterData.MaxAttackDistance = (int)character.Value[6];
 
         cards.Add(newCard);
     }

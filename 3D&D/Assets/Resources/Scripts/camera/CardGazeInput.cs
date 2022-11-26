@@ -10,7 +10,7 @@ using UnityEngine;
 public class CardGazeInput : MonoBehaviour
 {
     private Vector3 initialPosition;
-    private Character character;
+    private CardCharacter character;
     //TIMER
     public float timerDuration = 3f;
     private float lookTimer = 0f;
@@ -25,7 +25,7 @@ public class CardGazeInput : MonoBehaviour
         // Disable screen dimming
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         // InitialPosition = transform.localPosition;
-        character = GetComponent<Character>();
+        character = GetComponent<CardCharacter>();
     }
 
     void Update()
@@ -61,13 +61,15 @@ public class CardGazeInput : MonoBehaviour
         {
             if (IsSelected)
             {
-                StartCoroutine(Move(InitialPosition));
+                // StartCoroutine(Move(InitialPosition));
+                Move(InitialPosition);
                 IsSelected = false;
             }
             else
             {
                 var endPosition = transform.localPosition + new Vector3(0, 1.7f, 1.5f);
-                StartCoroutine(Move(endPosition));
+                // StartCoroutine(Move(endPosition));
+                Move(endPosition);
                 IsSelected = true;
             }
         }
@@ -80,25 +82,28 @@ public class CardGazeInput : MonoBehaviour
             if (isLooked)
             {
                 var endPosition = transform.localPosition + new Vector3(0, 0.25f, 0);
-                StartCoroutine(Move(endPosition));
+                // StartCoroutine(Move(endPosition));
+                Move(endPosition);
             }
             else
             {
-                StartCoroutine(Move(InitialPosition));
+                // StartCoroutine(Move(InitialPosition));
+                Move(InitialPosition);
             }
         }
     }
-    public void InvocateMinion(Transform transform)
+
+    public void InvocateMinion(Tile tile)
     {
-        character.InvocateMinion(transform);
+        character.InvocateMinion(tile);
     }
 
-    private IEnumerator Move(Vector3 endPosition)
+    private void /*IEnumerator*/ Move(Vector3 endPosition)
     {
         while (transform.localPosition != endPosition)
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, endPosition, 5 * Time.deltaTime);
-            yield return null;
+            // yield return null;
         }
     }
 }

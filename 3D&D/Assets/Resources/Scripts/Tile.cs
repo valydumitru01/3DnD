@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using System.Linq;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -11,30 +12,47 @@ public class Tile : MonoBehaviour
     public int Col { get; set; }
 
     private new ParticleSystem particleSystem;
-    private GameObject unit;
 
-    private GameController gameController;
+    private IEnumerable<CardGazeInput> cardsInput;
+    public GameController gameController;
+    private ManaManager mana;
 
     private bool isLooked;
+    public float timerDuration = 3f;
+    private float lookTimer = 0f;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         particleSystem = gameObject.GetComponent<ParticleSystem>();
         particleSystem.Stop();
+        cardsInput = GameObject.FindGameObjectsWithTag("Card")
+                           .Select(card => card.GetComponent<CardGazeInput>());
+
+        mana = GameObject.FindWithTag("Mana").GetComponent<ManaManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isLooked)
-        {
-            particleSystem.Play();
-        }
-        else
-        {
-            particleSystem.Stop();
-        }
+        if (IsSelectable)
+            if (isLooked)
+            {
+                particleSystem.Play();
+
+                lookTimer += Time.deltaTime;
+
+                if (lookTimer > timerDuration)
+                {
+                    lookTimer = 0f;
+                    OnPointerClick();
+                }
+            }
+            else
+            {
+                particleSystem.Stop();
+                lookTimer = 0f;
+            }
     }
 
     public void SetGameController(GameController gameController)
@@ -48,30 +66,42 @@ public class Tile : MonoBehaviour
             isLooked = value;
     }
 
-    // TODO Esto es para testing, en el gameplay se arrastara la carta de ataque o movimiento a la casilla
     public void OnPointerClick()
     {
-        // Si la casilla tiene una unidad y esta es aliada
-        // TODO Check if unit is ally
-        // if (unit != null)
         if (IsSelectable)
         {
-            if (gameController.IsMoving)
+            IEnumerable<CardGazeInput> selectedCard = cardsInput.Where(card => card.IsSelected && card.gameObject.activeSelf);
+            if (selectedCard.Count() > 0)
             {
-                gameController.PerformMove(this);
-                Debug.Log(string.Format("Ended moving/attacking in tile {0},{1}", Row, Col));
-            }
-            else if (gameController.IsAttacking)
-            {
-                gameController.PerformAttack(this);
+                var row = char.GetNumericValue(gameObject.name[5]);
+                if (transform.childCount < 1 && row < 3 && mana.CanUpdate(selectedCard.First().GetComponent<CardCharacter>().manaCost))
+                {
+                    StartCoroutine(UseCard(selectedCard.First(), 0.5f));
+                }
             }
             else
             {
-                // TODO CAMBIAR START ATTACK /MOVE PARA TESTING
-                gameController.StartAttack(this);
-                isLooked = true;
-                Debug.Log(string.Format("Started moving/attacking from tile {0},{1}", Row, Col));
+                if (gameController.IsMoving)
+                {
+                    gameController.PerformMove(this);
+                }
             }
         }
+    }
+
+    IEnumerator UseCard(CardGazeInput selectedCard, float time)
+    {
+        selectedCard.CanBeFocused = false;
+        var objective = transform.position;
+        objective.y += 0.01f;
+        while (selectedCard.transform.position != objective)
+        {
+            selectedCard.transform.position = Vector3.MoveTowards(selectedCard.transform.position, objective, 3 * Time.deltaTime);
+            selectedCard.transform.rotation = Quaternion.Lerp(selectedCard.transform.rotation, Quaternion.Euler(-90, 0, 0), 10 * Time.deltaTime);
+            yield return null;
+        }
+        yield return new WaitForSeconds(time);
+        selectedCard.gameObject.SetActive(false);
+        selectedCard.InvocateMinion(this);
     }
 }

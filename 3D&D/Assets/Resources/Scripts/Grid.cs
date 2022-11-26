@@ -66,30 +66,6 @@ public class Grid : MonoBehaviour
                 tile.GetComponent<Tile>().Col = col;
                 tile.GetComponent<Tile>().SetGameController(gameController);
 
-                // Cards
-                tile.AddComponent<PositionCard>();
-                PositionCard pc = tile.GetComponent<PositionCard>();
-                tile.AddComponent<GvrPointerGraphicRaycaster>();
-
-                tile.AddComponent<EventTrigger>();
-                EventTrigger eventTrigger = tile.GetComponent<EventTrigger>();
-
-                EventTrigger.Entry entry = new EventTrigger.Entry();
-                // Click en casilla
-                entry.eventID = EventTriggerType.PointerClick;
-                entry.callback.AddListener((data) => pc.OnPointerClick());
-                eventTrigger.triggers.Add(entry);
-
-                // Mirar casilla
-                entry.eventID = EventTriggerType.PointerEnter;
-                entry.callback.AddListener((data) => pc.setIsLooked(true));
-                eventTrigger.triggers.Add(entry);
-
-                // Quitar mirada casilla
-                entry.eventID = EventTriggerType.PointerExit;
-                entry.callback.AddListener((data) => pc.setIsLooked(false));
-                eventTrigger.triggers.Add(entry);
-
                 Tiles[row, col] = tile;
             }
         }

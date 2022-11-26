@@ -4989,3 +4989,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc507aad32a2f249b77e36e4bb7b212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsSelectable: 1
+  timerDuration: 3
