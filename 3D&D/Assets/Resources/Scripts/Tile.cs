@@ -2,50 +2,106 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using System.Linq;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    // This should not be used on production it is only to test the behaviour in the editor
-    // public bool testIsSelected = false;
-    private bool isSelected = false;
-    private ParticleSystem particleSystem;
+    public bool IsSelectable = true;
+    public int Row { get; set; }
+    public int Col { get; set; }
 
+    private new ParticleSystem particleSystem;
+
+    private IEnumerable<CardGazeInput> cardsInput;
+    public GameController gameController;
+    private ManaManager mana;
+
+    private bool isLooked;
+    public float timerDuration = 3f;
+    private float lookTimer = 0f;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         particleSystem = gameObject.GetComponent<ParticleSystem>();
         particleSystem.Stop();
+        cardsInput = GameObject.FindGameObjectsWithTag("Card")
+                           .Select(card => card.GetComponent<CardGazeInput>());
+
+        mana = GameObject.FindWithTag("Mana").GetComponent<ManaManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (IsSelectable)
+            if (isLooked)
+            {
+                particleSystem.Play();
 
+                lookTimer += Time.deltaTime;
+
+                if (lookTimer > timerDuration)
+                {
+                    lookTimer = 0f;
+                    OnPointerClick();
+                }
+            }
+            else
+            {
+                particleSystem.Stop();
+                lookTimer = 0f;
+            }
     }
 
-    public void Select()
+    public void SetGameController(GameController gameController)
     {
-        isSelected = true;
-        particleSystem.Play();
+        this.gameController = gameController;
     }
 
-    public void Deselect()
+    public void SetIsLooked(bool value)
     {
-        isSelected = false;
-        particleSystem.Stop();
+        if (IsSelectable)
+            isLooked = value;
     }
 
-    public void MoveHere(GameObject gameObject)
+    public void OnPointerClick()
     {
-        gameObject.transform.position = this.gameObject.transform.position;
+        if (IsSelectable)
+        {
+            IEnumerable<CardGazeInput> selectedCard = cardsInput.Where(card => card.IsSelected && card.gameObject.activeSelf);
+            if (selectedCard.Count() > 0)
+            {
+                var row = char.GetNumericValue(gameObject.name[5]);
+                if (transform.childCount < 1 && row < 3 && mana.CanUpdate(selectedCard.First().GetComponent<CardCharacter>().manaCost))
+                {
+                    StartCoroutine(UseCard(selectedCard.First(), 0.5f));
+                }
+            }
+            else
+            {
+                if (gameController.IsMoving)
+                {
+                    gameController.PerformMove(this);
+                }
+            }
+        }
     }
 
-    // Attack
-    // Check the gameObject 
-    // get Character/NPC component
-    // get if attack ranged or melee
-    // get attack distance
+    IEnumerator UseCard(CardGazeInput selectedCard, float time)
+    {
+        selectedCard.CanBeFocused = false;
+        var objective = transform.position;
+        objective.y += 0.01f;
+        while (selectedCard.transform.position != objective)
+        {
+            selectedCard.transform.position = Vector3.MoveTowards(selectedCard.transform.position, objective, 3 * Time.deltaTime);
+            selectedCard.transform.rotation = Quaternion.Lerp(selectedCard.transform.rotation, Quaternion.Euler(-90, 0, 0), 10 * Time.deltaTime);
+            yield return null;
+        }
+        yield return new WaitForSeconds(time);
+        selectedCard.gameObject.SetActive(false);
+        selectedCard.InvocateMinion(this);
+    }
 }
-

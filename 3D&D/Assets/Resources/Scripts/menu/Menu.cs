@@ -33,9 +33,9 @@ public class Menu : MonoBehaviour
     //IMPORTANT: for this to work the options need to be in the same order from right to left as the children
     //of UI object from up to down
     void selectOption(int i){
-        Debug.Log(i);
+        // Debug.Log(i);
         Transform menuTransform=transform.GetChild(i);
-        Debug.Log(menuTransform);
+        // Debug.Log(menuTransform);
         menuTransform.gameObject.GetComponent<MenuOption>().Execute();
     }
     
