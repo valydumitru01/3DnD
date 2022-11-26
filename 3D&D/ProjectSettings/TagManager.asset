@@ -9,6 +9,10 @@ TagManager:
   - Mago
   - Hada
   - Guerrero
+  - CardsHand
+  - Mana
+  - UI
+  - Orbit
   layers:
   - Default
   - TransparentFX
