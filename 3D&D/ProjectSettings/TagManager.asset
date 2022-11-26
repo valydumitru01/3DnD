@@ -9,6 +9,8 @@ TagManager:
   - Mago
   - Hada
   - Guerrero
+  - UI
+  - Orbit
   layers:
   - Default
   - TransparentFX

@@ -18,7 +18,10 @@ public class GenerateAround : MonoBehaviour
         playerTransform = this.GetComponentInParent<Transform>();
         for (int i = 0; i < amount; i++)
         {
-            GameObject newObj = Instantiate(generated, Vector3.zero, Quaternion.identity);
+            GameObject newObj = Instantiate(generated, 
+            Vector3.zero, 
+            Quaternion.identity, 
+            this.transform);
             cards.Add(newObj);
         }
 
@@ -27,14 +30,14 @@ public class GenerateAround : MonoBehaviour
     {
         Vector3 position;
         float angle = 180.0f / amount;
-        for (int i=0;i<amount;i++)
+        for (int i = 0; i < amount; i++)
         {
             float x;
             float z;
             float y;
             //Coordinates
-            x = radius * Mathf.Cos(angle * i);
-            z = radius * Mathf.Abs(Mathf.Sin(angle * i));
+            x = playerTransform.position.x + radius * Mathf.Cos(angle * i);
+            z = playerTransform.position.z + radius * Mathf.Abs(Mathf.Sin(angle * i));
             y = playerTransform.position.y;
 
             //Offsets
@@ -48,7 +51,7 @@ public class GenerateAround : MonoBehaviour
             cards[i].transform.LookAt(playerTransform);
 
             //Set the position generated
-            cards[i].transform.position=position;
+            cards[i].transform.position = position;
         }
     }
 

@@ -14,8 +14,14 @@ public class AutoRotate : MonoBehaviour
     public bool activated = true;
     private bool once = true;
     private GameObject sitPosition;
+    public GameObject lookAt;
+    public GameObject UI;
+    
+        
     void Start()
     {
+       
+        UI = GameObject.FindGameObjectWithTag("UI");
         vcam = GetComponent<CinemachineVirtualCamera>();
         if (vcam != null)
         {
@@ -30,7 +36,7 @@ public class AutoRotate : MonoBehaviour
     }
     void LateUpdate()
     {
-
+        this.transform.LookAt(lookAt.transform);
         if (activated)
         {
             m_orbital.m_XAxis.Value += Time.deltaTime * speed;
@@ -68,18 +74,30 @@ public class AutoRotate : MonoBehaviour
     }
     private void goSitDown()
     {
+        //Not normalized, the further the faster
         Vector3 dir = (goTowards.transform.position - transform.position);
         if (Vector3.Distance(goTowards.transform.position, transform.position) > 0.05)
         {
             transform.Translate(dir * speed * 0.5f * Time.deltaTime);
-            vcam.m_LookAt=sitPosition.transform;
+            if(sitPosition!=null)
+                vcam.m_LookAt=sitPosition.transform;
         }
-        else
-            ChangeScene();
+        else ChangeCameraState();
+        
     }
-    private void ChangeScene()
+    
+    //Enable control over the view
+    private void ChangeCameraState()
     {
-        SceneManager.LoadScene("3DnD Playable");
+        CinemachineBrain cinemachineBrain=this.GetComponentInChildren<CinemachineBrain>();
+        CinemachineVirtualCamera cinemachineVirtualCamera=this.GetComponent<CinemachineVirtualCamera>();
+        
+        cinemachineVirtualCamera.enabled=false;
+        cinemachineBrain.enabled=false;
+        transform.position=goTowards.transform.position;
+        this.gameObject.GetComponent<Transform>().rotation=Quaternion.identity;
+        UI.SetActive(false);
+        this.enabled=false;
     }
 
     public void deactivate(){
