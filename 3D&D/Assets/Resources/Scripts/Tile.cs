@@ -10,6 +10,8 @@ public class Tile : MonoBehaviour
     public bool IsSelectable = true;
     public int Row { get; set; }
     public int Col { get; set; }
+    public int Player = 1;
+    public int TableSeparation { get; set; }
 
     private new ParticleSystem particleSystem;
 
@@ -20,6 +22,7 @@ public class Tile : MonoBehaviour
     private bool isLooked;
     public float timerDuration = 3f;
     private float lookTimer = 0f;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -73,8 +76,8 @@ public class Tile : MonoBehaviour
             IEnumerable<CardGazeInput> selectedCard = cardsInput.Where(card => card.IsSelected && card.gameObject.activeSelf);
             if (selectedCard.Count() > 0)
             {
-                var row = char.GetNumericValue(gameObject.name[5]);
-                if (transform.childCount < 1 && row < 3 && mana.CanUpdate(selectedCard.First().GetComponent<CardCharacter>().manaCost))
+
+                if (ThereIsAPieceAlready() && IsYourSideOfTable() && ThereIsEnoughMana(selectedCard))
                 {
                     StartCoroutine(UseCard(selectedCard.First(), 0.5f));
                 }
@@ -88,9 +91,26 @@ public class Tile : MonoBehaviour
             }
         }
     }
-
+    private bool ThereIsEnoughMana(IEnumerable<CardGazeInput> selectedCard)
+    {
+        return mana.CanUpdate(selectedCard.First().GetComponent<CardCharacter>().manaCost);
+    }
+    
+    private bool IsYourSideOfTable()
+    {
+        if(Player==1)
+            return Row >= TableSeparation;
+        else
+            return Row < TableSeparation;
+    }
+    private bool ThereIsAPieceAlready()
+    {
+        return transform.childCount < 1;
+    }
     IEnumerator UseCard(CardGazeInput selectedCard, float time)
     {
+        GameObject cardGenerator = GameObject.FindGameObjectWithTag("CardGenerator");
+        
         selectedCard.CanBeFocused = false;
         var objective = transform.position;
         objective.y += 0.01f;
@@ -102,6 +122,9 @@ public class Tile : MonoBehaviour
         }
         yield return new WaitForSeconds(time);
         selectedCard.gameObject.SetActive(false);
-        selectedCard.InvocateMinion(this);
+        selectedCard.InvocateMinion(this, Player);
+        cardGenerator.GetComponent<GenerateAround>().CardInHands--;
+        if (cardGenerator.GetComponent<GenerateAround>().CardInHands == 0)
+            cardGenerator.GetComponent<GenerateAround>().RefillHand = true;
     }
 }

@@ -42,13 +42,16 @@ public class CardCharacter : MonoBehaviour
         character = Resources.Load<GameObject>(prefabPath);
     }
 
-    public void InvocateMinion(Tile tile)
+    public void InvocateMinion(Tile tile, int Player)
     {
         if (character != null && tile.transform.childCount < 1)
         {
             character.tag = cardName;
             character.transform.localPosition = offset;
-            character.transform.rotation = Quaternion.Euler(0, 180, 0);
+            if(Player==1)
+                character.transform.rotation = Quaternion.Euler(0, 0, 0);
+            else
+                character.transform.rotation = Quaternion.Euler(0, 180, 0);
             character.transform.localScale = new Vector3(3f, 3f, 3f);
             
             MinionCharacter minionCharacter = character.GetComponent<MinionCharacter>();

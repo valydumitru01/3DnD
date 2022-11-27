@@ -2,10 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-///--------------------------------
-///   Author: Victor Alvarez, Ph.D.
-///   University of Oviedo, Spain
-///--------------------------------
+
 
 public class CardGazeInput : MonoBehaviour
 {
@@ -42,12 +39,16 @@ public class CardGazeInput : MonoBehaviour
         }
         else
         {
+            GameObject loading = GameObject.FindGameObjectWithTag("LoadingSelectingCircle");
+            loading.GetComponent<SelectLoading>().stopLoading();
             lookTimer = 0f;
         }
     }
 
     public void SetIsLooked(bool looked)
     {
+        GameObject loading = GameObject.FindGameObjectWithTag("LoadingSelectingCircle");
+        loading.GetComponent<SelectLoading>().startLoading(timerDuration);
         if (CanBeFocused)
         {
             IsLooked = looked;
@@ -93,15 +94,16 @@ public class CardGazeInput : MonoBehaviour
         }
     }
 
-    public void InvocateMinion(Tile tile)
+    public void InvocateMinion(Tile tile, int Player)
     {
-        character.InvocateMinion(tile);
+        character.InvocateMinion(tile,Player);
     }
 
     private void /*IEnumerator*/ Move(Vector3 endPosition)
     {
         while (transform.localPosition != endPosition)
         {
+            Console.WriteLine(endPosition);
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, endPosition, 5 * Time.deltaTime);
             // yield return null;
         }

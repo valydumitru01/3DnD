@@ -58,7 +58,8 @@ public class GenerateAround : MonoBehaviour
 
         cards.Add(newCard);
     }
-
+    public int CardInHands=0;
+    public bool RefillHand=false;
     private void PositionCards()
     {
         // Vector3 position;
@@ -86,6 +87,9 @@ public class GenerateAround : MonoBehaviour
         //     //Set the position generated
         //     cards[i].transform.position = position;
         // }
+
+        CardInHands += cards.Count;
+
         foreach (var card in cards)
         {
             card.SetActive(true);
@@ -93,15 +97,29 @@ public class GenerateAround : MonoBehaviour
             finalPosition.x -= 1.5f;
         }
     }
+ 
 
+    private void Update()
+    {
+        
+        if (RefillHand == true) {
+            finalPosition= new Vector3(-1f, -.6f, 1.6f);
+            PositionCards();
+            RefillHand = false;
+        }
+    }
+    
     private IEnumerator Move(GameObject card, Vector3 endPosition)
     {
         card.GetComponent<CardGazeInput>().InitialPosition = endPosition;
+        card.transform.localPosition = initialPosition;
+        card.transform.localRotation = initialRotation;
         while (card.transform.localPosition != endPosition)
         {
             card.transform.localPosition = Vector3.MoveTowards(card.transform.localPosition, endPosition, 2.5f * Time.deltaTime);
             card.transform.localRotation = Quaternion.Lerp(card.transform.localRotation, finalRotation, 5 * Time.deltaTime);
             yield return null;
         }
+          
     }
 }
