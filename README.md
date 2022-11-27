@@ -154,4 +154,31 @@ For the rest of the characters, we will download them from the asset store. The 
 For the management of the hand of cards we made some scripts that let the player select cards and cycle through the hand. The player can also place the cards on the board.
 
 ![Manejo mano](./images/card_jump.png)
-![Seleccionar carta](./images/card_selected.png)
+
+## Sprint 3
+
+We added a game menu.
+![Menu de juego](./images/menu.png)
+
+We have completed the board and his funcionalities.
+![Tablero de juego completado](./images/tablero_completado.png)
+
+### Characters
+
+We have added most of the characters into the game with its corresponding animations.
+
+We have added sound effects to the different characters of the game.
+
+![Criaturas](./images/criaturas.png)
+
+### Gameplay
+
+The player can summon the different creatures using the cards of his hand.
+
+![Criaturas](./images/criaturas.png)
+
+We have added a mana system that will be used for the summoning of the creatures.
+
+![Mana](./images/managame.png)
+
+The player can move the creatures and attack with them.
