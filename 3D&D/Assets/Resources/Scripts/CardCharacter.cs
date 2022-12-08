@@ -44,16 +44,17 @@ public class CardCharacter : MonoBehaviour
 
     public void InvocateMinion(Tile tile, int Player)
     {
-        if (character != null && tile.transform.childCount < 1)
+        // El Tile tiene siempre 2 hijos que son los controladores de particulas
+        if (character != null && tile.transform.childCount < 3)
         {
             character.tag = cardName;
             character.transform.localPosition = offset;
-            if(Player==1)
+            if (Player == 1)
                 character.transform.rotation = Quaternion.Euler(0, 0, 0);
             else
                 character.transform.rotation = Quaternion.Euler(0, 180, 0);
             character.transform.localScale = new Vector3(3f, 3f, 3f);
-            
+
             MinionCharacter minionCharacter = character.GetComponent<MinionCharacter>();
             minionCharacter.cardName = cardName;
             minionCharacter.lifes = lifes;
