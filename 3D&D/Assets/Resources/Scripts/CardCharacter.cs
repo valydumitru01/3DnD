@@ -48,10 +48,16 @@ public class CardCharacter : MonoBehaviour
         {
             character.tag = cardName;
             character.transform.localPosition = offset;
-            if(Player==1)
+            Outline outline = character.GetComponent<Outline>();
+            if(Player==1){
                 character.transform.rotation = Quaternion.Euler(0, 0, 0);
-            else
+                outline.OutlineColor = Color.blue;
+            }
+            else{
                 character.transform.rotation = Quaternion.Euler(0, 180, 0);
+                 outline.OutlineColor = Color.red;
+            }
+                
             character.transform.localScale = new Vector3(3f, 3f, 3f);
             
             MinionCharacter minionCharacter = character.GetComponent<MinionCharacter>();
@@ -63,10 +69,6 @@ public class CardCharacter : MonoBehaviour
             minionCharacter.MinAttackDistance = MinAttackDistance;
             minionCharacter.MaxAttackDistance = MaxAttackDistance;
             minionCharacter.tile = tile;
-
-            Outline outline = character.GetComponent<Outline>();
-            // outline.OutlineColor = Color.blue;
-            outline.OutlineColor = Color.red;
 
             Instantiate(character, tile.transform);
         }
