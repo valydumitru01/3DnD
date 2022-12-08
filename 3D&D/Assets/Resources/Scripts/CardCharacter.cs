@@ -61,6 +61,10 @@ public class CardCharacter : MonoBehaviour
             minionCharacter.MaxAttackDistance = MaxAttackDistance;
             minionCharacter.tile = tile;
 
+            Outline outline = character.GetComponent<Outline>();
+            // outline.OutlineColor = Color.blue;
+            outline.OutlineColor = Color.red;
+
             Instantiate(character, tile.transform);
         }
     }

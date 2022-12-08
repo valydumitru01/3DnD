@@ -26,12 +26,6 @@ public class GameController : MonoBehaviour
         Grid.GenerateGrid();
     }
 
-    public void SpawnCard(Tile tile)
-    {
-
-    }
-
-
     // Block controls for all tiles except area to be selected
     // Block particles for all tiles except area to be selected
     // Change click interaction to move interaction
