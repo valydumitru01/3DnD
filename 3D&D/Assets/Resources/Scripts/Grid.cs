@@ -52,7 +52,7 @@ public class Grid : MonoBehaviour
                 // Set tile parent (the Grid)
                 tile.transform.SetParent(gameObject.transform);
                 tile.transform.localScale = tileScale;
-
+                
                 tile.name = string.Format("Tile_{0},{1}", row, col);
 
                 // Position inside Parent
@@ -64,6 +64,7 @@ public class Grid : MonoBehaviour
                 // Send data to the tile
                 tile.GetComponent<Tile>().Row = row;
                 tile.GetComponent<Tile>().Col = col;
+                tile.GetComponent<Tile>().TableSeparation = ROWS/2;
                 tile.GetComponent<Tile>().SetGameController(gameController);
 
                 Tiles[row, col] = tile;
@@ -74,3 +75,4 @@ public class Grid : MonoBehaviour
         Destroy(templateWhiteTile);
     }
 }
+

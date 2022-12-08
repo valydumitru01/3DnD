@@ -9,25 +9,25 @@ public class Menu : MonoBehaviour
     
     void Start()
     {
-        menuItemCount=transform.childCount-1;
+        menuItemCount=transform.childCount;
     }
     [System.Obsolete]
     void Update()
     {
         float axis=Input.GetAxis("Horizontal");
-
         if (axis>0) index++;
-        else index--;
+        else if(axis < 0) index--;
         int selectedItem=index%menuItemCount;
+        Debug.Log(selectedItem);
         transform.GetChild(selectedItem).gameObject.GetComponent<ParticleSystem>().enableEmission=true;
-        for (int i = 0; i < menuItemCount+1; i++)
+        for (int i = 0; i < menuItemCount; i++)
         {  
             if(i!=selectedItem)
                 transform.GetChild(i).gameObject.GetComponent<ParticleSystem>().enableEmission=false;
         }
         if(Input.GetAxis("Fire1")!=0){
 
-            selectOption(selectedItem);
+            selectOption(Mathf.Abs(selectedItem));
         }
     }
     //IMPORTANT: for this to work the options need to be in the same order from right to left as the children

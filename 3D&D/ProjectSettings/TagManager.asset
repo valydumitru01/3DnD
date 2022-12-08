@@ -13,6 +13,10 @@ TagManager:
   - Mana
   - UI
   - Orbit
+  - CardGenerator
+  - LoadingSelectingCircle
+  - MusicPlayer
+  - MusicPlayerGame
   layers:
   - Default
   - TransparentFX
