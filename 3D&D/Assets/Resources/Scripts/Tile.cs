@@ -41,6 +41,10 @@ public class Tile : MonoBehaviour
         if (IsSelectable)
             if (isLooked)
             {
+                if(Player == 1)
+                    particleSystem.startColor = Color.blue;
+                else
+                    particleSystem.startColor = Color.red;
                 particleSystem.Play();
 
                 lookTimer += Time.deltaTime;
