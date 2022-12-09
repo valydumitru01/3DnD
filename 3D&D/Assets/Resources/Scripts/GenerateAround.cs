@@ -47,7 +47,7 @@ public class GenerateAround : MonoBehaviour
         var characterData = newCard.GetComponent<CardCharacter>();
         characterData.name = $"{character.Key}Card";
         characterData.cardName = character.Key;
-        characterData.lifes = (int)character.Value[0];
+        characterData.health = (int)character.Value[0];
         characterData.damage = (int)character.Value[1];
         characterData.offset.y = character.Value[2];
         characterData.manaCost = (int)character.Value[3];
@@ -58,8 +58,8 @@ public class GenerateAround : MonoBehaviour
 
         cards.Add(newCard);
     }
-    public int CardInHands=0;
-    public bool RefillHand=false;
+    public int CardInHands = 0;
+    public bool RefillHand = false;
     private void PositionCards()
     {
         // Vector3 position;
@@ -97,18 +97,19 @@ public class GenerateAround : MonoBehaviour
             finalPosition.x -= 1.5f;
         }
     }
- 
+
 
     private void Update()
     {
-        
-        if (RefillHand == true) {
-            finalPosition= new Vector3(-1f, -.6f, 1.6f);
+
+        if (RefillHand == true)
+        {
+            finalPosition = new Vector3(-1f, -.6f, 1.6f);
             PositionCards();
             RefillHand = false;
         }
     }
-    
+
     private IEnumerator Move(GameObject card, Vector3 endPosition)
     {
         card.GetComponent<CardGazeInput>().InitialPosition = endPosition;
@@ -120,6 +121,6 @@ public class GenerateAround : MonoBehaviour
             card.transform.localRotation = Quaternion.Lerp(card.transform.localRotation, finalRotation, 5 * Time.deltaTime);
             yield return null;
         }
-          
+
     }
 }

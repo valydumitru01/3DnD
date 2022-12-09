@@ -156,7 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardName: Hada
-  lifes: 2
+  currentHealth: 0
+  maxHealth: 2
   damage: 2
   manaCost: 5
   tile: {fileID: 0}
@@ -165,6 +166,7 @@ MonoBehaviour:
   MaxMovementDistance: 3
   MinAttackDistance: 1
   MaxAttackDistance: 1
+  healthBar: {fileID: 0}
 --- !u!114 &310391825522281751
 MonoBehaviour:
   m_ObjectHideFlags: 0

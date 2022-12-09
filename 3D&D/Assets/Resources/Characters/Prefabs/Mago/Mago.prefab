@@ -766,7 +766,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardName: Mago
-  lifes: 3
+  currentHealth: 0
+  maxHealth: 3
   damage: 4
   manaCost: 8
   tile: {fileID: 0}
@@ -775,6 +776,7 @@ MonoBehaviour:
   MaxMovementDistance: 2
   MinAttackDistance: 2
   MaxAttackDistance: 3
+  healthBar: {fileID: 0}
 --- !u!114 &807331411564126800
 MonoBehaviour:
   m_ObjectHideFlags: 0

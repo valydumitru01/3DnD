@@ -3,7 +3,7 @@ using UnityEngine;
 public class CardCharacter : MonoBehaviour
 {
     public string cardName;
-    public int lifes;
+    public int health;
     public int damage;
     public int manaCost;
     private GameObject character;
@@ -25,7 +25,7 @@ public class CardCharacter : MonoBehaviour
     {
         var texts = gameObject.GetComponentsInChildren<TextMesh>();
         texts[0].text = cardName;
-        texts[1].text = lifes.ToString();
+        texts[1].text = health.ToString();
         texts[2].text = damage.ToString();
     }
 
@@ -48,15 +48,15 @@ public class CardCharacter : MonoBehaviour
         {
             character.tag = cardName;
             character.transform.localPosition = offset;
-            if(Player==1)
+            if (Player == 1)
                 character.transform.rotation = Quaternion.Euler(0, 0, 0);
             else
                 character.transform.rotation = Quaternion.Euler(0, 180, 0);
             character.transform.localScale = new Vector3(3f, 3f, 3f);
-            
+
             MinionCharacter minionCharacter = character.GetComponent<MinionCharacter>();
             minionCharacter.cardName = cardName;
-            minionCharacter.lifes = lifes;
+            minionCharacter.maxHealth = health;
             minionCharacter.damage = damage;
             minionCharacter.manaCost = manaCost;
             minionCharacter.MaxMovementDistance = MaxMovementDistance;
