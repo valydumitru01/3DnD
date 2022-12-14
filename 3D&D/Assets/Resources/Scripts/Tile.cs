@@ -13,8 +13,8 @@ public class Tile : MonoBehaviour
     public int Player = 1;
     public int TableSeparation { get; set; }
 
-    private new ParticleSystem cursorParticleSystem;
-    private new ParticleSystem areaParticleSystem;
+    private ParticleSystem cursorParticleSystem;
+    private ParticleSystem areaParticleSystem;
 
     private IEnumerable<CardGazeInput> cardsInput;
     public GameController gameController;
@@ -46,6 +46,11 @@ public class Tile : MonoBehaviour
             areaParticleSystem.Play();
             if (isLooked)
             {
+                if(Player == 1)
+                    cursorParticleSystem.startColor = Color.blue;
+                else
+                    cursorParticleSystem.startColor = Color.red;
+
                 cursorParticleSystem.Play();
 
                 lookTimer += Time.deltaTime;
