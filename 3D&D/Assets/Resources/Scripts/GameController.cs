@@ -64,7 +64,6 @@ public class GameController : MonoBehaviour
         // TODO ARREGLAR, AHORA LA CASILLA TIENE MAS DE 1 HIJO
         GameObject minion = start.transform.GetChild(2).gameObject;
         Vector3 position = minion.transform.localPosition;
-        start.transform.DetachChildren();
         minion.transform.SetParent(end.transform);
         minion.transform.localPosition = position;
         minion.GetComponent<MinionCharacter>().tile = end;
