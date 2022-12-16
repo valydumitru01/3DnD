@@ -17,6 +17,9 @@ TagManager:
   - LoadingSelectingCircle
   - MusicPlayer
   - MusicPlayerGame
+  - Troll
+  - Esqueleto
+  - Perro
   layers:
   - Default
   - TransparentFX

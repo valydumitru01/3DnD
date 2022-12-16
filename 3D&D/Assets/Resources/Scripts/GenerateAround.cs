@@ -7,7 +7,10 @@ public class GenerateAround : MonoBehaviour
 {
     private Dictionary<string, float[]> characters = new Dictionary<string, float[]>() { { "Guerrero", new[] {5, 3,0.1f, 10, 2, 1, 2} },
                                                                                         { "Mago", new[] {3, 4, 0.1f, 8, 2, 2, 3} },
-                                                                                        { "Hada", new[] {2, 2, 5f, 5, 3, 1, 1} } };
+                                                                                        { "Hada", new[] {2, 2, 5f, 5, 3, 1, 1} },
+                                                                                        { "Troll", new[] {15, 4, 0.1f, 5, 2, 1, 3} },
+                                                                                        { "Esqueleto", new[] {5, 2, 0.1f, 2, 2, 1, 2} },
+                                                                                        { "Perro", new[] {10, 5, 0.1f, 5, 3, 2, 3} } };
     public float radius = 3.94f;
     public float range = 4.93f;
     public float distance = -4.53f;
