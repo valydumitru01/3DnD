@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 2439977652946323855}
   - component: {fileID: 5174035084630185516}
   - component: {fileID: 310391825522281751}
+  - component: {fileID: 3356060800942680555}
   m_Layer: 0
   m_Name: Hada
   m_TagString: Hada
@@ -377,6 +378,18 @@ MonoBehaviour:
   healthBar: {fileID: 6154717048347120386}
   healthBarImage: {fileID: 1343810473784003665}
   character: {fileID: 5174035084630185516}
+  m_GameObject: {fileID: 3509250616930223806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8214956878483887772
 GameObject:
   m_ObjectHideFlags: 0

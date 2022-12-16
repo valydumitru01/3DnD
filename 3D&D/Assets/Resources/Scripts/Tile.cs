@@ -13,7 +13,8 @@ public class Tile : MonoBehaviour
     public int Player = 1;
     public int TableSeparation { get; set; }
 
-    private new ParticleSystem particleSystem;
+    private ParticleSystem cursorParticleSystem;
+    private ParticleSystem areaParticleSystem;
 
     private IEnumerable<CardGazeInput> cardsInput;
     public GameController gameController;
@@ -22,13 +23,15 @@ public class Tile : MonoBehaviour
     private bool isLooked;
     public float timerDuration = 3f;
     private float lookTimer = 0f;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        particleSystem = gameObject.GetComponent<ParticleSystem>();
-        particleSystem.Stop();
+        cursorParticleSystem = gameObject.transform.Find("CursorParticle").GetComponent<ParticleSystem>();
+        cursorParticleSystem.Stop();
+        areaParticleSystem = gameObject.transform.Find("AreaParticle").GetComponent<ParticleSystem>();
+        areaParticleSystem.Stop();
         cardsInput = GameObject.FindGameObjectsWithTag("Card")
                            .Select(card => card.GetComponent<CardGazeInput>());
 
@@ -39,9 +42,16 @@ public class Tile : MonoBehaviour
     void Update()
     {
         if (IsSelectable)
+        {
+            areaParticleSystem.Play();
             if (isLooked)
             {
-                particleSystem.Play();
+                if(Player == 1)
+                    cursorParticleSystem.startColor = Color.blue;
+                else
+                    cursorParticleSystem.startColor = Color.red;
+
+                cursorParticleSystem.Play();
 
                 lookTimer += Time.deltaTime;
 
@@ -53,9 +63,14 @@ public class Tile : MonoBehaviour
             }
             else
             {
-                particleSystem.Stop();
+                cursorParticleSystem.Stop();
                 lookTimer = 0f;
             }
+        }
+        else
+        {
+            areaParticleSystem.Stop();
+        }
     }
 
     public void SetGameController(GameController gameController)
@@ -77,7 +92,7 @@ public class Tile : MonoBehaviour
             if (selectedCard.Count() > 0)
             {
 
-                if (ThereIsAPieceAlready() && IsYourSideOfTable() && ThereIsEnoughMana(selectedCard))
+                if (!ThereIsAPieceAlready() && IsYourSideOfTable() && ThereIsEnoughMana(selectedCard))
                 {
                     StartCoroutine(UseCard(selectedCard.First(), 0.5f));
                 }
@@ -91,26 +106,30 @@ public class Tile : MonoBehaviour
             }
         }
     }
+
     private bool ThereIsEnoughMana(IEnumerable<CardGazeInput> selectedCard)
     {
         return mana.CanUpdate(selectedCard.First().GetComponent<CardCharacter>().manaCost);
     }
-    
+
     private bool IsYourSideOfTable()
     {
-        if(Player==1)
+        if (Player == 1)
             return Row >= TableSeparation;
         else
             return Row < TableSeparation;
     }
+
     private bool ThereIsAPieceAlready()
     {
-        return transform.childCount < 1;
+        // El Tile tiene siempre 2 hijos que son los controladores de particulas
+        return transform.childCount >= 3;
     }
+
     IEnumerator UseCard(CardGazeInput selectedCard, float time)
     {
         GameObject cardGenerator = GameObject.FindGameObjectWithTag("CardGenerator");
-        
+
         selectedCard.CanBeFocused = false;
         var objective = transform.position;
         objective.y += 0.01f;

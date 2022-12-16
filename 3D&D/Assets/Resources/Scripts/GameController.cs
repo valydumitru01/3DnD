@@ -26,12 +26,6 @@ public class GameController : MonoBehaviour
         Grid.GenerateGrid();
     }
 
-    public void SpawnCard(Tile tile)
-    {
-
-    }
-
-
     // Block controls for all tiles except area to be selected
     // Block particles for all tiles except area to be selected
     // Change click interaction to move interaction
@@ -42,10 +36,10 @@ public class GameController : MonoBehaviour
 
         foreach (GameObject eachTile in tilesAtDistance)
         {
-            if (eachTile.transform.childCount == 0)
+            // El Tile tiene siempre 2 hijos que son los controladores de particulas
+            if (eachTile.transform.childCount == 2)
             {
                 eachTile.GetComponent<Tile>().IsSelectable = true;
-                // TODO Particulas alrededor del area de movimiento
             }
             else
             {
@@ -67,9 +61,9 @@ public class GameController : MonoBehaviour
         Tile start = activatedTile;
 
         // Mover minion de una casilla a otra
-        GameObject minion = start.transform.GetChild(0).gameObject;
+        // TODO ARREGLAR, AHORA LA CASILLA TIENE MAS DE 1 HIJO
+        GameObject minion = start.transform.GetChild(2).gameObject;
         Vector3 position = minion.transform.localPosition;
-        start.transform.DetachChildren();
         minion.transform.SetParent(end.transform);
         minion.transform.localPosition = position;
         minion.GetComponent<MinionCharacter>().tile = end;
@@ -86,11 +80,11 @@ public class GameController : MonoBehaviour
 
         (tilesAtDistance, tilesOutsideDistance) = GetTilesAtDistance(tile, character.MinAttackDistance, character.MaxAttackDistance, DistanceType.EUCLIDEAN);
 
-        // TODO QUE ESTEN VACIAS LAS TILES
         foreach (GameObject eachTile in tilesAtDistance)
         {
             //TODO check is enemy the minion on the tile to attack
-            if (eachTile.transform.childCount > 0 /*and is enemy*/)
+            // El Tile tiene siempre 2 hijos que son los controladores de particulas
+            if (eachTile.transform.childCount > 3 /*and is enemy*/)
             {
                 eachTile.GetComponent<Tile>().IsSelectable = true;
             }
@@ -157,7 +151,6 @@ public class GameController : MonoBehaviour
         {
             eachTile.GetComponent<Tile>().IsSelectable = true;
             eachTile.GetComponent<Tile>().SetIsLooked(false);
-            // TODO Quitar particulas alrededor del area de movimiento
         }
         activatedTile = null;
         IsMoving = false;
