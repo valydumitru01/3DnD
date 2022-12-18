@@ -42,7 +42,7 @@ public class CardCharacter : MonoBehaviour
         character = Resources.Load<GameObject>(prefabPath);
     }
 
-    public void InvocateMinion(Tile tile, int Player)
+    public bool InvocateMinion(Tile tile, int Player)
     {
         // El Tile tiene siempre 2 hijos que son los controladores de particulas
         if (character != null && tile.transform.childCount < 3)
@@ -51,15 +51,17 @@ public class CardCharacter : MonoBehaviour
             character.transform.localPosition = offset;
 
             Outline outline = character.GetComponent<Outline>();
-            if (Player == 1){
+            if (Player == 1)
+            {
                 character.transform.rotation = Quaternion.Euler(0, 0, 0);
                 outline.OutlineColor = Color.blue;
             }
-            else{
+            else
+            {
                 character.transform.rotation = Quaternion.Euler(0, 180, 0);
                 outline.OutlineColor = Color.red;
             }
-                
+
             character.transform.localScale = new Vector3(3f, 3f, 3f);
 
             MinionCharacter minionCharacter = character.GetComponent<MinionCharacter>();
@@ -73,6 +75,9 @@ public class CardCharacter : MonoBehaviour
             minionCharacter.tile = tile;
 
             Instantiate(character, tile.transform);
+
+            return true;
         }
+        return false;
     }
 }

@@ -92,6 +92,10 @@ public class MinionCharacter : MonoBehaviour
     public void DamageMinion(int damage)
     {
         currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject, 1f);
+        }
         healthBar.UpdateHealthBar();
     }
 }

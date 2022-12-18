@@ -46,7 +46,7 @@ public class Tile : MonoBehaviour
             areaParticleSystem.Play();
             if (isLooked)
             {
-                if(Player == 1)
+                if (Player == 1)
                     cursorParticleSystem.startColor = Color.blue;
                 else
                     cursorParticleSystem.startColor = Color.red;
@@ -71,6 +71,8 @@ public class Tile : MonoBehaviour
         {
             areaParticleSystem.Stop();
         }
+        cardsInput = GameObject.FindGameObjectsWithTag("Card")
+                           .Select(card => card.GetComponent<CardGazeInput>());
     }
 
     public void SetGameController(GameController gameController)
@@ -142,8 +144,5 @@ public class Tile : MonoBehaviour
         yield return new WaitForSeconds(time);
         selectedCard.gameObject.SetActive(false);
         selectedCard.InvocateMinion(this, Player);
-        cardGenerator.GetComponent<GenerateAround>().CardInHands--;
-        if (cardGenerator.GetComponent<GenerateAround>().CardInHands == 0)
-            cardGenerator.GetComponent<GenerateAround>().RefillHand = true;
     }
 }

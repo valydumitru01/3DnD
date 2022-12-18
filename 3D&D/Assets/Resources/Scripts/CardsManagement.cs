@@ -34,5 +34,17 @@ public class CardsManagement : MonoBehaviour
                 card.CanBeFocused = true;
             }
         }
+        DestroyDisabled();
+    }
+
+    void DestroyDisabled()
+    {
+        IEnumerable<CardGazeInput> disabledCards = cardsInput.Where(card => !card.gameObject.activeInHierarchy);
+        foreach (var disable in disabledCards)
+        {
+            Destroy(disable.gameObject, 1f);
+        }
+        cardsInput = GameObject.FindGameObjectsWithTag("Card")
+                               .Select(card => card.GetComponent<CardGazeInput>());
     }
 }
