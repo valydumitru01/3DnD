@@ -17,6 +17,7 @@ TagManager:
   - LoadingSelectingCircle
   - MusicPlayer
   - MusicPlayerGame
+  - ArenaPanel
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - overlay
   - 
   - 
   - 

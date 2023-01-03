@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface MenuOption
+public interface SelectableMenuOption
 {
     public void Execute();
-} 
+}
 
