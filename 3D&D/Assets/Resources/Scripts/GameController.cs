@@ -72,7 +72,7 @@ public class GameController : MonoBehaviour
         minion.GetComponent<MinionCharacter>().isSelected = false;
         ResetTiles();
 
-        ParticleSystem teleportParticleSystem = activatedTile.GetParticleSystem("teleport");
+        ParticleSystem teleportParticleSystem = end.GetParticleSystem("teleport");
         teleportParticleSystem.Play();
     }
 
