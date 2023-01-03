@@ -44,8 +44,8 @@ public class CardCharacter : MonoBehaviour
 
     public bool InvocateMinion(Tile tile, int Player)
     {
-        // El Tile tiene siempre 2 hijos que son los controladores de particulas
-        if (character != null && tile.transform.childCount < 3)
+        // El Tile tiene siempre 3 hijos que son los controladores de particulas
+        if (character != null && tile.transform.childCount < 4)
         {
             character.tag = cardName;
             character.transform.localPosition = offset;

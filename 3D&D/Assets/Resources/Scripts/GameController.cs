@@ -36,8 +36,8 @@ public class GameController : MonoBehaviour
 
         foreach (GameObject eachTile in tilesAtDistance)
         {
-            // El Tile tiene siempre 2 hijos que son los controladores de particulas
-            if (eachTile.transform.childCount == 2)
+            // El Tile tiene siempre 3 hijos que son los controladores de particulas
+            if (eachTile.transform.childCount == 3)
             {
                 eachTile.GetComponent<Tile>().IsSelectable = true;
             }
@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour
 
         // Mover minion de una casilla a otra
         // TODO ARREGLAR, AHORA LA CASILLA TIENE MAS DE 1 HIJO
-        GameObject minion = start.transform.GetChild(2).gameObject;
+        GameObject minion = start.transform.GetChild(3).gameObject;
         Vector3 position = minion.transform.localPosition;
         minion.transform.SetParent(end.transform);
         minion.transform.localPosition = position;
@@ -71,6 +71,9 @@ public class GameController : MonoBehaviour
         // TP GameObject
         minion.GetComponent<MinionCharacter>().isSelected = false;
         ResetTiles();
+
+        ParticleSystem teleportParticleSystem = activatedTile.GetParticleSystem("teleport");
+        teleportParticleSystem.Play();
     }
 
     public void StartAttack(Tile tile, MinionCharacter minionCharacter)
@@ -83,8 +86,8 @@ public class GameController : MonoBehaviour
         foreach (GameObject eachTile in tilesAtDistance)
         {
             //TODO check is enemy the minion on the tile to attack
-            // El Tile tiene siempre 2 hijos que son los controladores de particulas
-            if (eachTile.transform.childCount > 3 /*and is enemy*/)
+            // El Tile tiene siempre 3 hijos que son los controladores de particulas
+            if (eachTile.transform.childCount > 4 /*and is enemy*/)
             {
                 eachTile.GetComponent<Tile>().IsSelectable = true;
             }

@@ -15,6 +15,7 @@ public class Tile : MonoBehaviour
 
     private ParticleSystem cursorParticleSystem;
     private ParticleSystem areaParticleSystem;
+    private ParticleSystem teleportParticleSystem;
 
     private IEnumerable<CardGazeInput> cardsInput;
     public GameController gameController;
@@ -32,6 +33,8 @@ public class Tile : MonoBehaviour
         cursorParticleSystem.Stop();
         areaParticleSystem = gameObject.transform.Find("AreaParticle").GetComponent<ParticleSystem>();
         areaParticleSystem.Stop();
+        teleportParticleSystem = gameObject.transform.Find("TeleportParticle").GetComponent<ParticleSystem>();
+        teleportParticleSystem.Stop();
         cardsInput = GameObject.FindGameObjectsWithTag("Card")
                            .Select(card => card.GetComponent<CardGazeInput>());
 
@@ -124,8 +127,8 @@ public class Tile : MonoBehaviour
 
     private bool ThereIsAPieceAlready()
     {
-        // El Tile tiene siempre 2 hijos que son los controladores de particulas
-        return transform.childCount >= 3;
+        // El Tile tiene siempre 3 hijos que son los controladores de particulas
+        return transform.childCount >= 4;
     }
 
     IEnumerator UseCard(CardGazeInput selectedCard, float time)
@@ -144,5 +147,15 @@ public class Tile : MonoBehaviour
         yield return new WaitForSeconds(time);
         selectedCard.gameObject.SetActive(false);
         selectedCard.InvocateMinion(this, Player);
+    }
+
+    public ParticleSystem GetParticleSystem(String msg){
+        if(msg == "cursor")
+            return cursorParticleSystem;
+        else if(msg == "area")
+            return areaParticleSystem;
+        else if(msg == "teleport")
+            return teleportParticleSystem;
+        return null;
     }
 }
