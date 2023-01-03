@@ -98,4 +98,8 @@ public class MinionCharacter : MonoBehaviour
         }
         healthBar.UpdateHealthBar();
     }
+
+    public Tile GetTile(){
+        return tile;
+    }
 }

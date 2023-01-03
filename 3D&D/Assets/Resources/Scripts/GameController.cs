@@ -74,6 +74,12 @@ public class GameController : MonoBehaviour
 
         ParticleSystem teleportParticleSystem = end.GetParticleSystem("teleport");
         teleportParticleSystem.Play();
+
+        Animator animator = minion.GetComponent<Animator>();
+        if(animator != null){
+            animator.SetBool("isWalking", true);
+            StartCoroutine(ReturnToIdle(minion));
+        }
     }
 
     public void StartAttack(Tile tile, MinionCharacter minionCharacter)
@@ -109,6 +115,14 @@ public class GameController : MonoBehaviour
     public void PerformAttack(MinionCharacter minionCharacter)
     {
         // Ejecutar animación en el gameObject
+        Tile tileHit = minionCharacter.GetTile();
+        GameObject minion = Grid.Tiles[tileHit.Row, tileHit.Col].transform.GetChild(3).gameObject;
+        Animator animator = minion.GetComponent<Animator>();
+        if(animator != null){
+            animator.SetBool("isGettingHit", true);
+            StartCoroutine(ReturnToIdle(minion));
+        }
+
         // Bajar vida al enemigo
         Debug.Log(selectedMinion + " atacando a: " + minionCharacter.cardName);
         ResetTiles();
@@ -158,6 +172,17 @@ public class GameController : MonoBehaviour
         activatedTile = null;
         IsMoving = false;
         IsAttacking = false;
+    }
+
+    private IEnumerator ReturnToIdle(GameObject minion){
+        yield return new WaitForSeconds(5);
+        Animator animator = minion.GetComponent<Animator>();
+            if(animator != null){
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isFighting", false);
+                animator.SetBool("isGettingHit", false);
+                animator.SetBool("isDieing", false);
+            }
     }
 }
 
