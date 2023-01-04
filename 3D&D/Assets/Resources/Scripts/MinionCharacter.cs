@@ -1,4 +1,5 @@
-using System.ComponentModel;
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class MinionCharacter : MonoBehaviour
@@ -22,11 +23,20 @@ public class MinionCharacter : MonoBehaviour
     public int MaxAttackDistance;
 
     public HealthBar healthBar;
+    public GameObject cardsHand;
+    public GameObject actionCards;
+    private Vector3 handInitialPosition;
+    private Vector3 actionInitialPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        cardsHand = GameObject.FindWithTag("CardsHand");
+        handInitialPosition = cardsHand.transform.position;
+        actionCards = GameObject.FindWithTag("ActionCards");
+        actionInitialPosition = actionCards.transform.position;
+        actionCards.GetComponentsInChildren<CardGazeInput>().ToList().ForEach(card => card.InitialPosition = card.transform.localPosition);
     }
 
     void Update()
@@ -49,8 +59,16 @@ public class MinionCharacter : MonoBehaviour
         }
     }
 
+    public void SetIsLooked(bool looked)
+    {
+        IsLooked = looked;
+    }
+
     public void OnPointerClick()
     {
+        //isSelected = !isSelected;
+        //StartCoroutine(MoveCards());
+        
         // TODO quitar, es para pruebas, solo puede haber 1 activo en pruebas
         //tile.gameController.IsAttacking = true;
         tile.gameController.IsMoving = true;
@@ -87,6 +105,30 @@ public class MinionCharacter : MonoBehaviour
         {
             isSelected = false;
             tile.gameController.ResetTiles();
+        }
+    }
+
+    private IEnumerator MoveCards()
+    {
+        Vector3 handEndPosition;
+        Vector3 actionEndPosition;
+
+        if (isSelected)
+        {
+            handEndPosition = handInitialPosition - new Vector3(3, 0, 0);
+            actionEndPosition = actionInitialPosition + new Vector3(0, 0, 3);
+            actionCards.GetComponentsInChildren<ActionCard>().ToList().ForEach(card => card.minion = gameObject);
+        }
+        else
+        {
+            handEndPosition = handInitialPosition;
+            actionEndPosition = actionInitialPosition;
+        }
+        while (cardsHand.transform.localPosition != handEndPosition)
+        {
+            cardsHand.transform.localPosition = Vector3.MoveTowards(cardsHand.transform.localPosition, handEndPosition, 2.5f * Time.deltaTime);
+            actionCards.transform.localPosition = Vector3.MoveTowards(actionCards.transform.localPosition, actionEndPosition, 2.5f * Time.deltaTime);
+            yield return null;
         }
     }
 

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class CardsManagement : MonoBehaviour
 {
+    public string cardTag;
     private IEnumerable<CardGazeInput> cardsInput;
     private IEnumerable<CardGazeInput> notSelectedCards;
 
     // Start is called before the first frame update
     void Start()
     {
-        cardsInput = GameObject.FindGameObjectsWithTag("Card")
+        cardsInput = GameObject.FindGameObjectsWithTag(cardTag)
                                .Select(card => card.GetComponent<CardGazeInput>());
     }
 
@@ -44,7 +45,7 @@ public class CardsManagement : MonoBehaviour
         {
             Destroy(disable.gameObject, 1f);
         }
-        cardsInput = GameObject.FindGameObjectsWithTag("Card")
+        cardsInput = GameObject.FindGameObjectsWithTag(cardTag)
                                .Select(card => card.GetComponent<CardGazeInput>());
     }
 }

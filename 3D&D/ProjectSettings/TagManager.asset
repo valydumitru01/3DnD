@@ -17,9 +17,13 @@ TagManager:
   - LoadingSelectingCircle
   - MusicPlayer
   - MusicPlayerGame
+  - ArenaPanel
+  - InitialMenu
   - Troll
   - Esqueleto
   - Perro
+  - ActionCards
+  - ActionCard
   layers:
   - Default
   - TransparentFX
@@ -36,7 +40,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - overlay
   - 
   - 
   - 
