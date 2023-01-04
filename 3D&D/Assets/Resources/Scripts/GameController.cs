@@ -78,7 +78,7 @@ public class GameController : MonoBehaviour
         Animator animator = minion.GetComponent<Animator>();
         if(animator != null){
             animator.SetBool("isWalking", true);
-            StartCoroutine(ReturnToIdle(minion));
+            StartCoroutine(minion.GetComponent<MinionCharacter>().ReturnToIdle());
         }
     }
 
@@ -120,15 +120,7 @@ public class GameController : MonoBehaviour
         Animator animator = selectedMinion.GetComponent<Animator>();
         if(animator != null){
             animator.SetBool("isFighting", true);
-            StartCoroutine(ReturnToIdle(minion));
-        }
-
-        Tile tileHit = minionCharacter.GetTile();
-        minion = Grid.Tiles[tileHit.Row, tileHit.Col].transform.GetChild(3).gameObject;
-        animator = minion.GetComponent<Animator>();
-        if(animator != null){
-            animator.SetBool("isGettingHit", true);
-            StartCoroutine(ReturnToIdle(minion));
+            StartCoroutine(minionCharacter.ReturnToIdle());
         }
 
         // Bajar vida al enemigo
@@ -180,17 +172,6 @@ public class GameController : MonoBehaviour
         activatedTile = null;
         IsMoving = false;
         IsAttacking = false;
-    }
-
-    private IEnumerator ReturnToIdle(GameObject minion){
-        yield return new WaitForSeconds(5);
-        Animator animator = minion.GetComponent<Animator>();
-            if(animator != null){
-                animator.SetBool("isWalking", false);
-                animator.SetBool("isFighting", false);
-                animator.SetBool("isGettingHit", false);
-                animator.SetBool("isDieing", false);
-            }
     }
 }
 

@@ -70,8 +70,8 @@ public class MinionCharacter : MonoBehaviour
         //StartCoroutine(MoveCards());
         
         // TODO quitar, es para pruebas, solo puede haber 1 activo en pruebas
-        //tile.gameController.IsAttacking = true;
-        tile.gameController.IsMoving = true;
+        tile.gameController.IsAttacking = true;
+        //tile.gameController.IsMoving = true;
         // end todo
         if (!isSelected)
         {
@@ -135,11 +135,39 @@ public class MinionCharacter : MonoBehaviour
     public void DamageMinion(int damage)
     {
         currentHealth -= damage;
+
+        GameObject minion = this.gameObject;
+        Animator animator = minion.GetComponent<Animator>();
         if (currentHealth <= 0)
         {
-            Destroy(gameObject, 1f);
+            if(animator != null){
+                animator.SetBool("isDieing", true);
+            }
+            StartCoroutine(DestroyMinion());
+        }else{
+            if(animator != null){
+                animator.SetBool("isGettingHit", true);
+                StartCoroutine(ReturnToIdle());
+            }
         }
         healthBar.UpdateHealthBar();
+    }
+
+    private IEnumerator DestroyMinion(){
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject, 1f);
+    }
+
+    public IEnumerator ReturnToIdle(){
+        yield return new WaitForSeconds(5);
+        GameObject minion = this.gameObject;
+        Animator animator = minion.GetComponent<Animator>();
+        if(animator != null){
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isFighting", false);
+            animator.SetBool("isGettingHit", false);
+            animator.SetBool("isDieing", false);
+        }
     }
 
     public Tile GetTile(){
