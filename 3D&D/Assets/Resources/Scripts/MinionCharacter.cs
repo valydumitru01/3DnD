@@ -52,12 +52,13 @@ public class MinionCharacter : MonoBehaviour
     public void OnPointerClick()
     {
         // TODO quitar, es para pruebas, solo puede haber 1 activo en pruebas
-        // tile.gameController.IsAttacking = true;
+        //tile.gameController.IsAttacking = true;
         tile.gameController.IsMoving = true;
         // end todo
         if (!isSelected)
         {
-            if (tile.gameController.selectedMinion.Equals(cardName) || tile.gameController.selectedMinion.Equals(""))
+            Debug.Log(tile.gameController.selectedMinion);
+            if (tile.gameController.selectedMinion == null || tile.gameController.selectedMinion == this)
             {
                 if (tile.gameController.IsMoving)
                 {

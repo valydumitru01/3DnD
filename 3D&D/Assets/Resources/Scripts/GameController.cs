@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     public Grid Grid;
     private GameObject[] tilesAtDistance, tilesOutsideDistance;
     private Tile activatedTile;
-    public String selectedMinion = "";
+    public MinionCharacter selectedMinion;
 
     public bool IsMoving = false;
     public bool IsAttacking = false;
@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
     // Change click interaction to move interaction
     public void StartMove(Tile tile, MinionCharacter minionCharacter)
     {
-        selectedMinion = minionCharacter.cardName;
+        selectedMinion = minionCharacter;
         (tilesAtDistance, tilesOutsideDistance) = GetTilesAtDistance(tile, 0, minionCharacter.MaxMovementDistance, DistanceType.MANHATTAN);
 
         foreach (GameObject eachTile in tilesAtDistance)
@@ -84,7 +84,7 @@ public class GameController : MonoBehaviour
 
     public void StartAttack(Tile tile, MinionCharacter minionCharacter)
     {
-        selectedMinion = minionCharacter.cardName;
+        selectedMinion = minionCharacter;
         MinionCharacter character = tile.GetComponentInChildren<MinionCharacter>();
 
         (tilesAtDistance, tilesOutsideDistance) = GetTilesAtDistance(tile, character.MinAttackDistance, character.MaxAttackDistance, DistanceType.EUCLIDEAN);
@@ -115,16 +115,24 @@ public class GameController : MonoBehaviour
     public void PerformAttack(MinionCharacter minionCharacter)
     {
         // Ejecutar animación en el gameObject
+        Tile tileAttack = selectedMinion.GetTile();
+        GameObject minion = Grid.Tiles[tileAttack.Row, tileAttack.Col].transform.GetChild(3).gameObject;
+        Animator animator = selectedMinion.GetComponent<Animator>();
+        if(animator != null){
+            animator.SetBool("isFighting", true);
+            StartCoroutine(ReturnToIdle(minion));
+        }
+
         Tile tileHit = minionCharacter.GetTile();
-        GameObject minion = Grid.Tiles[tileHit.Row, tileHit.Col].transform.GetChild(3).gameObject;
-        Animator animator = minion.GetComponent<Animator>();
+        minion = Grid.Tiles[tileHit.Row, tileHit.Col].transform.GetChild(3).gameObject;
+        animator = minion.GetComponent<Animator>();
         if(animator != null){
             animator.SetBool("isGettingHit", true);
             StartCoroutine(ReturnToIdle(minion));
         }
 
         // Bajar vida al enemigo
-        Debug.Log(selectedMinion + " atacando a: " + minionCharacter.cardName);
+        Debug.Log(selectedMinion.cardName + " atacando a: " + minionCharacter.cardName);
         ResetTiles();
     }
     /**
@@ -163,7 +171,7 @@ public class GameController : MonoBehaviour
 
     public void ResetTiles()
     {
-        selectedMinion = "";
+        selectedMinion = null;
         foreach (GameObject eachTile in Grid.Tiles)
         {
             eachTile.GetComponent<Tile>().IsSelectable = true;
