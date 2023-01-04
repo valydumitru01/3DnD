@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MenuOptionGoBack : MenuOption
 {
-    GameObject ArenaPanel;
-    GameObject InitialMenu;
+    private GameObject ArenaPanel;
+    private GameObject InitialMenu;
     private void Start()
     {
         ArenaPanel = GameObject.FindGameObjectWithTag("ArenaPanel");
