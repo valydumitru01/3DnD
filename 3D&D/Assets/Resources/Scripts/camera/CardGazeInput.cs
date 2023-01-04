@@ -8,13 +8,14 @@ public class CardGazeInput : MonoBehaviour
     private Vector3 initialPosition;
     private CardCharacter character;
     //TIMER
-    public float timerDuration = 3f;
+    public float timerDuration = 1f;
     private float lookTimer = 0f;
 
     public bool IsSelected { get; set; }
     public bool IsLooked { get; set; }
     public bool CanBeFocused { get; set; }
     public Vector3 InitialPosition { get => initialPosition; set => initialPosition = value; }
+    private GameObject loadingCircle;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class CardGazeInput : MonoBehaviour
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         // InitialPosition = transform.localPosition;
         character = GetComponent<CardCharacter>();
+        loadingCircle = GameObject.FindGameObjectWithTag("LoadingSelectingCircle");
     }
 
     void Update()
@@ -38,22 +40,43 @@ public class CardGazeInput : MonoBehaviour
         }
         else
         {
-            GameObject loading = GameObject.FindGameObjectWithTag("LoadingSelectingCircle");
-            loading.GetComponent<SelectLoading>().stopLoading();
+            StopLoading();
             lookTimer = 0f;
         }
     }
 
     public void SetIsLooked(bool looked)
     {
-        GameObject loading = GameObject.FindGameObjectWithTag("LoadingSelectingCircle");
-        loading.GetComponent<SelectLoading>().startLoading(timerDuration);
+        if(lookTimer <= timerDuration)
+            StartLoading();
         if (CanBeFocused)
         {
             IsLooked = looked;
             JumpCard(IsLooked);
         }
     }
+
+
+    void StartLoading()
+    {
+        loadingCircle.GetComponent<SelectLoading>().StartLoading(timerDuration);
+    }
+    void StopLoading()
+    {
+        loadingCircle.GetComponent<SelectLoading>().stopLoading();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void OnPointerClick()
     {

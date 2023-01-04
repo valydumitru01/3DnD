@@ -5,40 +5,88 @@ using UnityEngine;
 public class Menu : MonoBehaviour
 {
     int menuItemCount;
-    int index = 0;
 
+    int indexCounter=0;
+    int index=0;
+    float menuChangeInput;
+
+    bool waitChangeSelectedEnded=true;
+    float timeBetweenChanges = 0.0f;
+
+    bool waitExecuteEnded = true;
+
+    int selected=0;
+    int lastSelected=0;
+    MenuOption[] selectableOptions;
+
+    [System.Obsolete]
     void Start()
     {
-        menuItemCount = transform.childCount;
+        selectableOptions=GetComponentsInChildren<MenuOption>();
+        menuItemCount =selectableOptions.Length;
+        ClearSelected();
     }
     [System.Obsolete]
     void Update()
     {
-        float axis = Input.GetAxis("Horizontal");
-        if (axis > 0) index++;
-        else if (axis < 0) index--;
-        int selectedItem = index % menuItemCount;
-        // Debug.Log(selectedItem);
-        transform.GetChild(selectedItem).gameObject.GetComponent<ParticleSystem>().enableEmission = true;
-        for (int i = 0; i < menuItemCount; i++)
-        {
-            if (i != selectedItem)
-                transform.GetChild(i).gameObject.GetComponent<ParticleSystem>().enableEmission = false;
-        }
-        if (Input.GetAxis("Fire1") != 0)
-        {
 
-            selectOption(Mathf.Abs(selectedItem));
+        menuChangeInput = Input.GetAxis("Horizontal");
+        if(menuChangeInput != 0 && waitChangeSelectedEnded) {
+            waitChangeSelectedEnded = false;
+            Invoke(nameof(ChangeSelected), timeBetweenChanges);
         }
+        else
+        {
+            timeBetweenChanges=0f;
+        }
+        lastSelected = selected;
+        selected = index%menuItemCount;
+        if (selected != lastSelected)
+        {
+            selectableOptions[selected].Select();
+            selectableOptions[lastSelected].Unselect();
+        }
+
+        if (Input.GetAxis("Fire1")!=0 && waitExecuteEnded)
+        {
+            waitExecuteEnded = false;
+            Invoke(nameof(WaitExecute), 0.3f);
+            Execute();
+        }
+
     }
-    //IMPORTANT: for this to work the options need to be in the same order from right to left as the children
-    //of UI object from up to down
-    void selectOption(int i)
+    [System.Obsolete]
+    private void ClearSelected()
     {
-        // Debug.Log(i);
-        Transform menuTransform = transform.GetChild(i);
-        // Debug.Log(menuTransform);
-        menuTransform.gameObject.GetComponent<MenuOption>().Execute();
+        //Clear selected to all selectable
+        foreach (var option in selectableOptions)
+        {
+            option.Unselect();
+        }
+        //Select first
+        selectableOptions[0].Select();
+    }
+    private void ChangeSelected()
+    {
+        if (menuChangeInput > 0) indexCounter++;
+        else if (menuChangeInput < 0) indexCounter--;
+        index=Mathf.Abs(indexCounter);
+        timeBetweenChanges = 0.3f;
+        waitChangeSelectedEnded = true;
+    }
+    [System.Obsolete]
+    void Execute()
+    {
+        selectableOptions[selected].Execute();
+        selectableOptions = GetComponentsInChildren<MenuOption>();
+        menuItemCount = selectableOptions.Length;
+        selected = 0;
+        lastSelected = 0;
+        ClearSelected();
+    }
+    void WaitExecute()
+    {
+        waitExecuteEnded = true;
     }
 
 }

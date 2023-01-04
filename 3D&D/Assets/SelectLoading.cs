@@ -15,7 +15,7 @@ public class SelectLoading : MonoBehaviour
         GetComponent<Image>().fillAmount = progress;
     }
     private bool once=false;
-    public void startLoading(float timer)
+    public void StartLoading(float timer)
     {
         if (once == false) { 
             progress = 1f;
