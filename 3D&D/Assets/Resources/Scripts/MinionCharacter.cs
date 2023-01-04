@@ -28,6 +28,13 @@ public class MinionCharacter : MonoBehaviour
     private Vector3 handInitialPosition;
     private Vector3 actionInitialPosition;
 
+    //Sonido
+    private AudioSource playerEffects;
+    private AudioClip attackClip;
+    private AudioClip hitClip;
+    private AudioClip summonClip;
+    private AudioClip deathClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -142,6 +149,7 @@ public class MinionCharacter : MonoBehaviour
         {
             if(animator != null){
                 animator.SetBool("isDieing", true);
+                StartCoroutine(PlayDeathSound());
             }
             StartCoroutine(DestroyMinion());
         }else{
@@ -154,8 +162,13 @@ public class MinionCharacter : MonoBehaviour
     }
 
     private IEnumerator DestroyMinion(){
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         Destroy(gameObject, 1f);
+    }
+
+    public IEnumerator PlayDeathSound(){
+        yield return new WaitForSeconds(2);
+        PlayDeath();
     }
 
     public IEnumerator ReturnToIdle(){
@@ -168,6 +181,37 @@ public class MinionCharacter : MonoBehaviour
             animator.SetBool("isGettingHit", false);
             animator.SetBool("isDieing", false);
         }
+    }
+
+    public void LoadSoundEffects(){
+        playerEffects = gameObject.AddComponent<AudioSource>();
+        playerEffects.enabled = true;
+        playerEffects.playOnAwake = false;
+
+        attackClip = Resources.Load<AudioClip>("Characters/Sounds/" + cardName + "/Attack");
+        hitClip = Resources.Load<AudioClip>("Characters/Sounds/" + cardName + "/GettingHit");
+        summonClip = Resources.Load<AudioClip>("Characters/Sounds/" + cardName + "/Summoning");
+        deathClip = Resources.Load<AudioClip>("Characters/Sounds/" + cardName + "/Death");
+    }
+
+    public void PlayAttack(){
+        playerEffects.clip = attackClip;
+        playerEffects.Play();
+    }
+
+    public void PlayHit(){
+        playerEffects.clip = hitClip;
+        playerEffects.Play();
+    }
+
+    public void PlaySummon(){
+        playerEffects.clip = summonClip;
+        playerEffects.Play();
+    }
+
+    public void PlayDeath(){
+        playerEffects.clip = deathClip;
+        playerEffects.Play();
     }
 
     public Tile GetTile(){

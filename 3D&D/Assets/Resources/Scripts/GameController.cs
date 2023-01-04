@@ -122,6 +122,8 @@ public class GameController : MonoBehaviour
             animator.SetBool("isFighting", true);
             StartCoroutine(minionCharacter.ReturnToIdle());
         }
+        selectedMinion.PlayAttack();
+        StartCoroutine(PlayHitSound(minionCharacter));
 
         // Bajar vida al enemigo
         Debug.Log(selectedMinion.cardName + " atacando a: " + minionCharacter.cardName);
@@ -172,6 +174,11 @@ public class GameController : MonoBehaviour
         activatedTile = null;
         IsMoving = false;
         IsAttacking = false;
+    }
+
+    private IEnumerator PlayHitSound(MinionCharacter character){
+        yield return new WaitForSeconds(2);
+        character.PlayHit();
     }
 }
 
