@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OptionMatchFound : MonoBehaviour, SelectableMenuOption
+public class OptionMatchFound : MenuOption
 {
-    public void Execute()
-    {
-        startPlaying();
-    }
-    private void startPlaying(){
+    private void StartPlaying(){
         ChangeMusic();
-        goToChair();
+        GoToChair();
     }
-    private void goToChair()
+    private void GoToChair()
     {
         GameObject orb = GameObject.FindGameObjectWithTag("Orbit");
         orb.GetComponent<AutoRotate>().deactivate();
@@ -27,5 +23,9 @@ public class OptionMatchFound : MonoBehaviour, SelectableMenuOption
         music = GameObject.FindGameObjectWithTag("MusicPlayerGame");
         music.GetComponent<AudioSource>().Play();
 
+    }
+    public override void Execute()
+    {
+        StartPlaying();
     }
 }

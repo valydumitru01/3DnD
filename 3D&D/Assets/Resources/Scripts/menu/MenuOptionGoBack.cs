@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuOptionPlay : MenuOption
+public class MenuOptionGoBack : MenuOption
 {
     GameObject ArenaPanel;
     GameObject InitialMenu;
@@ -10,11 +10,11 @@ public class MenuOptionPlay : MenuOption
     {
         ArenaPanel = GameObject.FindGameObjectWithTag("ArenaPanel");
         InitialMenu = GameObject.FindGameObjectWithTag("InitialMenu");
-        ArenaPanel.SetActive(false);
+        ArenaPanel.SetActive(true);
     }
     public override void Execute()
     {
-        ArenaPanel.SetActive(true);
-        InitialMenu.SetActive(false);
+        ArenaPanel.SetActive(false);
+        InitialMenu.SetActive(true);
     }
 }

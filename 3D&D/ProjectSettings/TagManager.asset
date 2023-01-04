@@ -18,6 +18,7 @@ TagManager:
   - MusicPlayer
   - MusicPlayerGame
   - ArenaPanel
+  - InitialMenu
   layers:
   - Default
   - TransparentFX

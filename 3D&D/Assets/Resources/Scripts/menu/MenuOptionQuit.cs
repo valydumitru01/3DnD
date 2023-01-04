@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuOptionQuit : MonoBehaviour, SelectableMenuOption
+public class MenuOptionQuit :MenuOption
 {
-    public void Execute()
+    public override void Execute()
     {
         Application.Quit();
     }

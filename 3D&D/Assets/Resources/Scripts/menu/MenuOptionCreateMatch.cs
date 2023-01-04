@@ -2,25 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuOptionCreateMatch : MonoBehaviour, SelectableMenuOption
+public class MenuOptionCreateMatch : MenuOption
 {
-    public void Execute()
-    {
-        waitForPlayer();
-        startPlaying();
-    }
-    private void waitForPlayer()
+    private void WaitForPlayer()
     {
 
     }
-
-    
-    private void startPlaying(){
+    private void StartPlaying(){
         ChangeMusic();
-        goToChair();
+        GoToChair();
     }
     
-    private void goToChair()
+    private void GoToChair()
     {
         GameObject orb = GameObject.FindGameObjectWithTag("Orbit");
         orb.GetComponent<AutoRotate>().deactivate();
@@ -35,5 +28,11 @@ public class MenuOptionCreateMatch : MonoBehaviour, SelectableMenuOption
         music = GameObject.FindGameObjectWithTag("MusicPlayerGame");
         music.GetComponent<AudioSource>().Play();
 
+    }
+
+    public override void Execute()
+    {
+        WaitForPlayer();
+        StartPlaying();
     }
 }
