@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ManaManager : MonoBehaviour
@@ -26,7 +24,7 @@ public class ManaManager : MonoBehaviour
     {
         if (currentMana < maxMana)
         {
-            currentMana = Mathf.Min(currentMana + manaRecoveryPerTurn, maxMana);
+            currentMana = maxMana;
         }
     }
     public void useCard(int manaCost)

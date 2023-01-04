@@ -4,7 +4,8 @@ using UnityEngine;
 public class MinionCharacter : MonoBehaviour
 {
     public string cardName;
-    public int lifes;
+    public int currentHealth;
+    public int maxHealth;
     public int damage;
     public int manaCost;
     public Tile tile;
@@ -20,14 +21,18 @@ public class MinionCharacter : MonoBehaviour
     public int MinAttackDistance;
     public int MaxAttackDistance;
 
+    public HealthBar healthBar;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        currentHealth = maxHealth;
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+            DamageMinion(1);
         if (IsLooked)
         {
             lookTimer += Time.deltaTime;
@@ -82,5 +87,15 @@ public class MinionCharacter : MonoBehaviour
             isSelected = false;
             tile.gameController.ResetTiles();
         }
+    }
+
+    public void DamageMinion(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject, 1f);
+        }
+        healthBar.UpdateHealthBar();
     }
 }

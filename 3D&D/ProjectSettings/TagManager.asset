@@ -19,6 +19,9 @@ TagManager:
   - MusicPlayerGame
   - ArenaPanel
   - InitialMenu
+  - Troll
+  - Esqueleto
+  - Perro
   layers:
   - Default
   - TransparentFX

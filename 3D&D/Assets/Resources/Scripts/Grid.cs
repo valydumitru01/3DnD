@@ -52,7 +52,7 @@ public class Grid : MonoBehaviour
                 // Set tile parent (the Grid)
                 tile.transform.SetParent(gameObject.transform);
                 tile.transform.localScale = tileScale;
-                
+
                 tile.name = string.Format("Tile_{0},{1}", row, col);
 
                 // Position inside Parent
@@ -61,10 +61,16 @@ public class Grid : MonoBehaviour
                 float zPosition = row * tile.transform.localScale.z * tileSize;
                 tile.transform.localPosition = new Vector3(xPosition, yPosition, zPosition);
 
+                // Particles scale
+                ParticleSystem cursorParticleSystem = tile.transform.Find("CursorParticle").GetComponent<ParticleSystem>();
+                cursorParticleSystem.scalingMode = ParticleSystemScalingMode.Hierarchy;
+                ParticleSystem areaParticleSystem = tile.transform.Find("AreaParticle").GetComponent<ParticleSystem>();
+                areaParticleSystem.scalingMode = ParticleSystemScalingMode.Hierarchy;
+
                 // Send data to the tile
                 tile.GetComponent<Tile>().Row = row;
                 tile.GetComponent<Tile>().Col = col;
-                tile.GetComponent<Tile>().TableSeparation = ROWS/2;
+                tile.GetComponent<Tile>().TableSeparation = ROWS / 2;
                 tile.GetComponent<Tile>().SetGameController(gameController);
 
                 Tiles[row, col] = tile;

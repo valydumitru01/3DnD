@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 
@@ -117,9 +116,20 @@ public class CardGazeInput : MonoBehaviour
         }
     }
 
-    public void InvocateMinion(Tile tile, int Player)
+    public bool InvocateMinion(Tile tile, int Player)
     {
-        character.InvocateMinion(tile,Player);
+        if (character.InvocateMinion(tile, Player))
+        {
+            IsSelected = false;
+
+            GenerateAround cardGenerator = GameObject.FindGameObjectWithTag("CardGenerator").GetComponent<GenerateAround>();
+            cardGenerator.hand.Remove(character.cardName);
+            cardGenerator.cards.Remove(gameObject);
+            if (cardGenerator.hand.Count == 0)
+                cardGenerator.SetRefill(true);
+            return true;
+        }
+        return false;
     }
 
     private void /*IEnumerator*/ Move(Vector3 endPosition)
