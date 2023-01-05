@@ -7,20 +7,32 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CinemachineVirtualCamera))]
 public class AutoRotate : MonoBehaviour
 {
-    public float speed = 10f;
     public GameObject goTowards;
+    public GameObject lookAt;
+    public float speed = 10f;
+    private float rotationWhenSit=0;
+    public bool activated = true;
+
+    private GameObject UI;
     private CinemachineOrbitalTransposer m_orbital;
     private CinemachineVirtualCamera vcam;
-    public bool activated = true;
-    private bool once = true;
     private GameObject sitPosition;
-    public GameObject lookAt;
-    public GameObject UI;
-    
-        
+
+
     void Start()
     {
-       
+        SitDownPosition[] positions = GameObject.FindObjectsOfType<SitDownPosition>();
+        //Si no existe jugador
+        if (positions[1].getSitCharacter() == 0) { 
+            sitPosition= positions[1].gameObject;
+            rotationWhenSit = 180f;
+        }
+        else { 
+            sitPosition = positions[0].gameObject;
+        }
+
+        goTowards = sitPosition;
+        lookAt = sitPosition;
         UI = GameObject.FindGameObjectWithTag("UI");
         vcam = GetComponent<CinemachineVirtualCamera>();
         if (vcam != null)
@@ -79,8 +91,6 @@ public class AutoRotate : MonoBehaviour
         if (Vector3.Distance(goTowards.transform.position, transform.position) > 0.05)
         {
             transform.Translate(dir * speed * 0.5f * Time.deltaTime);
-            if(sitPosition!=null)
-                vcam.m_LookAt=sitPosition.transform;
         }
         else ChangeCameraState();
         
@@ -95,7 +105,7 @@ public class AutoRotate : MonoBehaviour
         cinemachineVirtualCamera.enabled=false;
         cinemachineBrain.enabled=false;
         transform.position=goTowards.transform.position;
-        this.gameObject.GetComponent<Transform>().rotation=Quaternion.identity;
+        this.gameObject.GetComponent<Transform>().rotation=new Quaternion(Quaternion.identity.x,Quaternion.identity.y + rotationWhenSit, Quaternion.identity.z, Quaternion.identity.w);
         UI.SetActive(false);
         this.enabled=false;
     }

@@ -12,6 +12,8 @@ public class OptionMatchFound : MenuOption
     {
         GameObject orb = GameObject.FindGameObjectWithTag("Orbit");
         orb.GetComponent<AutoRotate>().deactivate();
+
+        GameObject.FindGameObjectWithTag("GvrReticle").gameObject.GetComponent<MeshRenderer>().enabled = true;
     }
     private IEnumerator ChangeMusic()
     {
