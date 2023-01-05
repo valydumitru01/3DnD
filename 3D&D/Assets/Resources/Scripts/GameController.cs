@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 /**
@@ -17,6 +15,9 @@ public class GameController : MonoBehaviour
 
     public bool IsMoving = false;
     public bool IsAttacking = false;
+
+    public int manaMovement = 10;
+    public int manaAttack = 20;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +68,8 @@ public class GameController : MonoBehaviour
         minion.transform.localPosition = position;
         minion.GetComponent<MinionCharacter>().tile = end;
 
+        GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaMovement);
+
         // TP GameObject
         minion.GetComponent<MinionCharacter>().isSelected = false;
         ResetTiles();
@@ -75,7 +78,8 @@ public class GameController : MonoBehaviour
         teleportParticleSystem.Play();
 
         Animator animator = minion.GetComponent<Animator>();
-        if(animator != null){
+        if (animator != null)
+        {
             animator.SetBool("isWalking", true);
             StartCoroutine(minion.GetComponent<MinionCharacter>().ReturnToIdle());
         }
@@ -83,6 +87,7 @@ public class GameController : MonoBehaviour
 
     public void StartAttack(Tile tile, MinionCharacter minionCharacter)
     {
+        Debug.Log("Start attack");
         selectedMinion = minionCharacter;
         MinionCharacter character = tile.GetComponentInChildren<MinionCharacter>();
 
@@ -116,16 +121,17 @@ public class GameController : MonoBehaviour
         if (minionCharacter.Equals(selectedMinion))
             return;
         // Ejecutar animación en el gameObject
-        Tile tileAttack = selectedMinion.GetTile();
-        GameObject minion = Grid.Tiles[tileAttack.Row, tileAttack.Col].transform.GetChild(3).gameObject;
         Animator animator = selectedMinion.GetComponent<Animator>();
-        if(animator != null){
+        if (animator != null)
+        {
             animator.SetBool("isFighting", true);
             StartCoroutine(minionCharacter.ReturnToIdle());
         }
         selectedMinion.PlayAttack();
         StartCoroutine(PlayHitSound(minionCharacter));
 
+        minionCharacter.DamageMinion(selectedMinion.damage);
+        GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaAttack);
         // Bajar vida al enemigo
         Debug.Log(selectedMinion.cardName + " atacando a: " + minionCharacter.cardName);
         ResetTiles();
@@ -177,7 +183,8 @@ public class GameController : MonoBehaviour
         IsAttacking = false;
     }
 
-    private IEnumerator PlayHitSound(MinionCharacter character){
+    private IEnumerator PlayHitSound(MinionCharacter character)
+    {
         yield return new WaitForSeconds(2);
         character.PlayHit();
     }

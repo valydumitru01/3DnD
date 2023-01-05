@@ -107,6 +107,14 @@ public class Tile : MonoBehaviour
                 if (gameController.IsMoving)
                 {
                     gameController.PerformMove(this);
+                    var actionCards = GameObject.FindWithTag("ActionCards");
+                    actionCards.GetComponentsInChildren<ActionCard>().ToList().ForEach(card =>
+                    {
+                        if (card.IsSelected)
+                        {
+                            card.OnPointerClick();
+                        }
+                    });
                 }
             }
         }
@@ -149,12 +157,13 @@ public class Tile : MonoBehaviour
         selectedCard.InvocateMinion(this, Player);
     }
 
-    public ParticleSystem GetParticleSystem(String msg){
-        if(msg == "cursor")
+    public ParticleSystem GetParticleSystem(String msg)
+    {
+        if (msg == "cursor")
             return cursorParticleSystem;
-        else if(msg == "area")
+        else if (msg == "area")
             return areaParticleSystem;
-        else if(msg == "teleport")
+        else if (msg == "teleport")
             return teleportParticleSystem;
         return null;
     }

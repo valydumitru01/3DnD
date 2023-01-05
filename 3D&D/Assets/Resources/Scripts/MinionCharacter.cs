@@ -18,6 +18,7 @@ public class MinionCharacter : MonoBehaviour
 
     public bool isSelected;
     public bool moveCards = true;
+    private bool cardsInPlace = false;
 
     public int MaxMovementDistance;
     public int MinAttackDistance;
@@ -78,6 +79,8 @@ public class MinionCharacter : MonoBehaviour
     public void OnPointerClick()
     {
         StartCoroutine(MoveCards());
+        if (cardsInPlace && tile.gameController.IsAttacking)
+            PerformAction();
     }
 
     public void PerformAction()
@@ -106,6 +109,13 @@ public class MinionCharacter : MonoBehaviour
                 {
                     //recibir daño
                     tile.gameController.PerformAttack(this);
+                    actionCards.GetComponentsInChildren<ActionCard>().ToList().ForEach(card =>
+                    {
+                        if (card.IsSelected)
+                        {
+                            card.OnPointerClick();
+                        }
+                    });
                 }
             }
 
@@ -129,12 +139,13 @@ public class MinionCharacter : MonoBehaviour
         {
             handEndPosition = handInitialPosition - new Vector3(3, 0, 0);
             actionEndPosition = actionInitialPosition + new Vector3(0, 0, 3);
-            actionCards.GetComponentsInChildren<ActionCard>().ToList().ForEach(card => card.minion = gameObject);
+            actionCards.GetComponentsInChildren<ActionCard>().ToList().ForEach(card => { if (card.minion == null) card.minion = gameObject; });
             if (!tile.gameController.IsAttacking && !tile.gameController.IsMoving)
                 moveCards = false;
 
             cardsHand.GetComponent<CardsManagement>().CantInteract();
             actionCards.GetComponent<CardsManagement>().CanInteract();
+            cardsInPlace = true;
         }
         else
         {
@@ -144,6 +155,8 @@ public class MinionCharacter : MonoBehaviour
 
             cardsHand.GetComponent<CardsManagement>().CanInteract();
             actionCards.GetComponent<CardsManagement>().CantInteract();
+            actionCards.GetComponentsInChildren<ActionCard>().ToList().ForEach(card => card.minion = null);
+            cardsInPlace = false;
         }
         while (cardsHand.transform.localPosition != handEndPosition)
         {
@@ -157,17 +170,21 @@ public class MinionCharacter : MonoBehaviour
     {
         currentHealth -= damage;
 
-        GameObject minion = this.gameObject;
+        GameObject minion = gameObject;
         Animator animator = minion.GetComponent<Animator>();
         if (currentHealth <= 0)
         {
-            if(animator != null){
+            if (animator != null)
+            {
                 animator.SetBool("isDieing", true);
                 StartCoroutine(PlayDeathSound());
             }
             StartCoroutine(DestroyMinion());
-        }else{
-            if(animator != null){
+        }
+        else
+        {
+            if (animator != null)
+            {
                 animator.SetBool("isGettingHit", true);
                 StartCoroutine(ReturnToIdle());
             }
@@ -175,21 +192,25 @@ public class MinionCharacter : MonoBehaviour
         healthBar.UpdateHealthBar();
     }
 
-    private IEnumerator DestroyMinion(){
+    private IEnumerator DestroyMinion()
+    {
         yield return new WaitForSeconds(3);
         Destroy(gameObject, 1f);
     }
 
-    public IEnumerator PlayDeathSound(){
+    public IEnumerator PlayDeathSound()
+    {
         yield return new WaitForSeconds(2);
         PlayDeath();
     }
 
-    public IEnumerator ReturnToIdle(){
+    public IEnumerator ReturnToIdle()
+    {
         yield return new WaitForSeconds(5);
-        GameObject minion = this.gameObject;
+        GameObject minion = gameObject;
         Animator animator = minion.GetComponent<Animator>();
-        if(animator != null){
+        if (animator != null)
+        {
             animator.SetBool("isWalking", false);
             animator.SetBool("isFighting", false);
             animator.SetBool("isGettingHit", false);
@@ -197,7 +218,8 @@ public class MinionCharacter : MonoBehaviour
         }
     }
 
-    public void InitAudioSource(){
+    public void InitAudioSource()
+    {
         var playerEffects = gameObject.AddComponent<AudioSource>();
         playerEffects.enabled = true;
         playerEffects.playOnAwake = false;
@@ -208,27 +230,27 @@ public class MinionCharacter : MonoBehaviour
         deathClip = Resources.Load<AudioClip>("Characters/Sounds/" + cardName + "/Death");
     }
 
-    public void PlayAttack(){
+    public void PlayAttack()
+    {
         var playerEffects = gameObject.GetComponent<AudioSource>();
         playerEffects.PlayOneShot(attackClip);
     }
 
-    public void PlayHit(){
+    public void PlayHit()
+    {
         var playerEffects = gameObject.GetComponent<AudioSource>();
         playerEffects.PlayOneShot(hitClip);
     }
 
-    public void PlaySummon(){
+    public void PlaySummon()
+    {
         var playerEffects = gameObject.GetComponent<AudioSource>();
         playerEffects.PlayOneShot(summonClip);
     }
 
-    public void PlayDeath(){
+    public void PlayDeath()
+    {
         var playerEffects = gameObject.GetComponent<AudioSource>();
         playerEffects.PlayOneShot(deathClip);
-    }
-
-    public Tile GetTile(){
-        return tile;
     }
 }
