@@ -93,7 +93,7 @@ public class GameController : MonoBehaviour
         {
             //TODO check is enemy the minion on the tile to attack
             // El Tile tiene siempre 3 hijos que son los controladores de particulas
-            if (eachTile.transform.childCount > 4 /*and is enemy*/)
+            if (eachTile.transform.childCount > 3 /*and is enemy*/)
             {
                 eachTile.GetComponent<Tile>().IsSelectable = true;
             }

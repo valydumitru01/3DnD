@@ -29,7 +29,6 @@ public class MinionCharacter : MonoBehaviour
     private Vector3 actionInitialPosition;
 
     //Sonido
-    private AudioSource playerEffects;
     private AudioClip attackClip;
     private AudioClip hitClip;
     private AudioClip summonClip;
@@ -44,6 +43,8 @@ public class MinionCharacter : MonoBehaviour
         actionCards = GameObject.FindWithTag("ActionCards");
         actionInitialPosition = actionCards.transform.position;
         actionCards.GetComponentsInChildren<CardGazeInput>().ToList().ForEach(card => card.InitialPosition = card.transform.localPosition);
+        InitAudioSource();
+        PlaySummon();
     }
 
     void Update()
@@ -183,8 +184,8 @@ public class MinionCharacter : MonoBehaviour
         }
     }
 
-    public void LoadSoundEffects(){
-        playerEffects = gameObject.AddComponent<AudioSource>();
+    public void InitAudioSource(){
+        var playerEffects = gameObject.AddComponent<AudioSource>();
         playerEffects.enabled = true;
         playerEffects.playOnAwake = false;
 
@@ -195,23 +196,23 @@ public class MinionCharacter : MonoBehaviour
     }
 
     public void PlayAttack(){
-        playerEffects.clip = attackClip;
-        playerEffects.Play();
+        var playerEffects = gameObject.GetComponent<AudioSource>();
+        playerEffects.PlayOneShot(attackClip);
     }
 
     public void PlayHit(){
-        playerEffects.clip = hitClip;
-        playerEffects.Play();
+        var playerEffects = gameObject.GetComponent<AudioSource>();
+        playerEffects.PlayOneShot(hitClip);
     }
 
     public void PlaySummon(){
-        playerEffects.clip = summonClip;
-        playerEffects.Play();
+        var playerEffects = gameObject.GetComponent<AudioSource>();
+        playerEffects.PlayOneShot(summonClip);
     }
 
     public void PlayDeath(){
-        playerEffects.clip = deathClip;
-        playerEffects.Play();
+        var playerEffects = gameObject.GetComponent<AudioSource>();
+        playerEffects.PlayOneShot(deathClip);
     }
 
     public Tile GetTile(){
