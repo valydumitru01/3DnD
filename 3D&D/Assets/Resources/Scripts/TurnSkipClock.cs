@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TurnSkipClock : MonoBehaviour
 {
+    public GameObject generator;
+    public bool isLooked = false; 
     // Start is called before the first frame update
     void Start()
     {
@@ -13,13 +15,15 @@ public class TurnSkipClock : MonoBehaviour
 
     public void EnableAnimation()
     {
+        isLooked = true;
         SetEnabledAnimation(true);
         GetComponentInChildren<ParticleSystem>().enableEmission = true;
-
+        
 
     }
     public void DisableAnimation()
     {
+        isLooked = false;
         SetEnabledAnimation(false);
         GetComponentInChildren<ParticleSystem>().enableEmission = false;
     }
@@ -28,6 +32,13 @@ public class TurnSkipClock : MonoBehaviour
         foreach(Animator anim in GetComponentsInChildren<Animator>())
         {
             anim.enabled = value;
+        }
+    }
+    private void Update()
+    {
+        if (isLooked && Input.GetAxis("Fire1") > 0)
+        {
+            generator.GetComponent<GenerateAround>().SetRefill(true);
         }
     }
 }

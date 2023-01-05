@@ -51,16 +51,16 @@ public class CardCharacter : MonoBehaviour
             character.tag = cardName;
             character.transform.localPosition = offset;
 
-            Outline outline = character.GetComponent<Outline>();
+            Light light = character.GetComponentInChildren<Light>();
             if (Player == 1)
             {
                 character.transform.rotation = Quaternion.Euler(0, 0, 0);
-                outline.OutlineColor = Color.blue;
+                light.color = Color.blue;
             }
             else
             {
                 character.transform.rotation = Quaternion.Euler(0, 180, 0);
-                outline.OutlineColor = Color.red;
+                light.color = Color.red;
             }
 
             character.transform.localScale = new Vector3(3f, 3f, 3f);

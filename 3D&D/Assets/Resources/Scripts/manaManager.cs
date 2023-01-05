@@ -29,7 +29,7 @@ public class ManaManager : MonoBehaviour
     }
     public void useCard(int manaCost)
     {
-        if (currentMana <= manaCost)
+        if (currentMana < manaCost)
             Debug.LogError("Shouldn't be using more mana than you have");
         else
             currentMana -= manaCost;
