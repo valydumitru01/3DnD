@@ -195,7 +195,7 @@ public class MinionCharacter : MonoBehaviour
     private IEnumerator DestroyMinion()
     {
         yield return new WaitForSeconds(3);
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 3f);
     }
 
     public IEnumerator PlayDeathSound()
