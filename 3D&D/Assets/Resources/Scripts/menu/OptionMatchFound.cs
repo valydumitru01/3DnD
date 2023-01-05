@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class OptionMatchFound : MenuOption
 {
-    private void StartPlaying(){
+    private void StartPlaying()
+    {
         ChangeMusic();
         GoToChair();
     }
+
     private void GoToChair()
     {
         GameObject orb = GameObject.FindGameObjectWithTag("Orbit");
@@ -15,6 +17,7 @@ public class OptionMatchFound : MenuOption
 
         GameObject.FindGameObjectWithTag("GvrReticle").gameObject.GetComponent<MeshRenderer>().enabled = true;
     }
+
     private IEnumerator ChangeMusic()
     {
 
@@ -26,6 +29,7 @@ public class OptionMatchFound : MenuOption
         music.GetComponent<AudioSource>().Play();
 
     }
+
     public override void Execute()
     {
         StartPlaying();

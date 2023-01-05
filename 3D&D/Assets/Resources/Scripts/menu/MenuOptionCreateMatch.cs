@@ -8,17 +8,20 @@ public class MenuOptionCreateMatch : MenuOption
     {
 
     }
-    private void StartPlaying(){
+
+    private void StartPlaying()
+    {
         ChangeMusic();
         GoToChair();
     }
-    
+
     private void GoToChair()
     {
         GameObject orb = GameObject.FindGameObjectWithTag("Orbit");
         orb.GetComponent<AutoRotate>().deactivate();
         GameObject.FindGameObjectWithTag("GvrReticle").gameObject.GetComponent<MeshRenderer>().enabled = true;
     }
+    
     private IEnumerator ChangeMusic()
     {
 
