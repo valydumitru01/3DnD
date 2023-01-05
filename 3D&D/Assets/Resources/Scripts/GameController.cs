@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem.iOS;
 
 /**
 * Clase que controla todos los eventos y el gameplay
