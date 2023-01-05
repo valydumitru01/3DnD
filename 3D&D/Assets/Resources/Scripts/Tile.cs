@@ -58,6 +58,8 @@ public class Tile : MonoBehaviour
 
                 lookTimer += Time.deltaTime;
 
+                if(Input.GetAxis("Fire1")>0)
+                    OnPointerClick();
                 if (lookTimer > timerDuration)
                 {
                     lookTimer = 0f;

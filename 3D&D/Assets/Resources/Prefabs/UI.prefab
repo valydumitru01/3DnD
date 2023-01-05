@@ -1102,7 +1102,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10000
+      scalar: 1000
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5105,7 +5105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3108308878788927844
 Transform:
   m_ObjectHideFlags: 0
@@ -10128,6 +10128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5590e5ec71f2e444b9699ab400931546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ArenaPanel: {fileID: 3554262029248442553}
+  InitialMenu: {fileID: 3011912025288529582}
 --- !u!1 &3897523844319635553
 GameObject:
   m_ObjectHideFlags: 0
@@ -15943,7 +15945,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10000
+      scalar: 1000
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -20833,7 +20835,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10000
+      scalar: 1000
       minScalar: 10
       maxCurve:
         serializedVersion: 2

@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class MenuOptionPlay : MenuOption
 {
-    GameObject ArenaPanel;
-    GameObject InitialMenu;
+    public GameObject ArenaPanel;
+    public GameObject InitialMenu;
     private void Start()
     {
-        ArenaPanel = GameObject.FindGameObjectWithTag("ArenaPanel");
-        InitialMenu = GameObject.FindGameObjectWithTag("InitialMenu");
         ArenaPanel.SetActive(false);
     }
     public override void Execute()
