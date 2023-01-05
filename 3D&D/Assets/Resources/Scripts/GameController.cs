@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem.iOS;
 
 /**
 * Clase que controla todos los eventos y el gameplay
@@ -18,6 +15,9 @@ public class GameController : MonoBehaviour
 
     public bool IsMoving = false;
     public bool IsAttacking = false;
+
+    public int manaMovement = 10;
+    public int manaAttack = 20;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +67,8 @@ public class GameController : MonoBehaviour
         minion.transform.SetParent(end.transform);
         minion.transform.localPosition = position;
         minion.GetComponent<MinionCharacter>().tile = end;
+
+        GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaMovement);
 
         // TP GameObject
         minion.GetComponent<MinionCharacter>().isSelected = false;
@@ -129,6 +131,7 @@ public class GameController : MonoBehaviour
         StartCoroutine(PlayHitSound(minionCharacter));
 
         minionCharacter.DamageMinion(selectedMinion.damage);
+        GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaAttack);
         // Bajar vida al enemigo
         Debug.Log(selectedMinion.cardName + " atacando a: " + minionCharacter.cardName);
         ResetTiles();
