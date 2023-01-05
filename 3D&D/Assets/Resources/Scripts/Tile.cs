@@ -24,6 +24,7 @@ public class Tile : MonoBehaviour
     private bool isLooked;
     public float timerDuration = 3f;
     private float lookTimer = 0f;
+    private bool once=true;
 
 
     // Start is called before the first frame update
@@ -58,8 +59,11 @@ public class Tile : MonoBehaviour
 
                 lookTimer += Time.deltaTime;
 
-                if(Input.GetAxis("Fire1")>0)
+                if(Input.GetAxis("Fire1")>0 && once) {
+                    once = false;
                     OnPointerClick();
+                    Invoke(nameof(ResetTimer), 0.5f);
+                }
                 if (lookTimer > timerDuration)
                 {
                     lookTimer = 0f;
@@ -79,7 +83,10 @@ public class Tile : MonoBehaviour
         cardsInput = GameObject.FindGameObjectsWithTag("Card")
                            .Select(card => card.GetComponent<CardGazeInput>());
     }
-
+    private void ResetTimer()
+    {
+        once = true;
+    }
     public void SetGameController(GameController gameController)
     {
         this.gameController = gameController;
