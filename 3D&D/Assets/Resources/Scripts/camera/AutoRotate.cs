@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CinemachineVirtualCamera))]
 public class AutoRotate : MonoBehaviour
 {
-    public GameObject goTowards;
-    public GameObject lookAt;
+    private GameObject goTowards;
+    private GameObject lookAt;
     public float speed = 10f;
     private float rotationWhenSit=0;
     public bool activated = true;
@@ -22,13 +22,25 @@ public class AutoRotate : MonoBehaviour
     void Start()
     {
         SitDownPosition[] positions = GameObject.FindObjectsOfType<SitDownPosition>();
+        SitDownPosition posMage=null;
+        SitDownPosition posKnight=null;
+        for (int i = 0; i < positions.Length; i++)
+        {
+            if(positions[i].sitPlayer==SitDownPosition.PLAYER.MAGE)
+                posMage = positions[i];
+            else if(positions[i].sitPlayer==SitDownPosition.PLAYER.KNIGHT)
+                posKnight = positions[i];
+        }
         //Si no existe jugador
-        if (positions[1].getSitCharacter() == 0) { 
-            sitPosition= positions[1].gameObject;
+        if (!posMage.isOccupied) {
+            posMage.isOccupied = true;
+            sitPosition = posMage.gameObject;
             rotationWhenSit = 180f;
         }
-        else { 
-            sitPosition = positions[0].gameObject;
+        else
+        {
+            posKnight.isOccupied = true;
+            sitPosition = posKnight.gameObject;
         }
 
         goTowards = sitPosition;
