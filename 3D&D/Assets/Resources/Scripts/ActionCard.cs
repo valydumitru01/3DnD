@@ -75,6 +75,7 @@ public class ActionCard : CardGazeInput
         {
             minion.GetComponent<MinionCharacter>().tile.gameController.IsMoving = false;
             minion.GetComponent<MinionCharacter>().tile.gameController.IsAttacking = false;
+            minion.GetComponent<MinionCharacter>().tile.gameController.ResetTiles();
         }
         else if (name.Equals("Ataque"))
         {
