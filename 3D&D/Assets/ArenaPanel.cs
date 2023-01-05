@@ -12,10 +12,6 @@ public class ArenaPanel : MonoBehaviour
     {
         matchFound = GetComponentInChildren<OptionMatchFound>();
         option = matchFound.gameObject;
-        foreach (Component comp in option.GetComponents<Component>())
-        {
-            Debug.Log(comp.name);
-        }
 
         GenerateFoundMatches();
 
@@ -33,8 +29,6 @@ public class ArenaPanel : MonoBehaviour
 
             copy.GetComponent<ParticleSystem>().enableEmission = false;
             copy.GetComponentInChildren<TMPro.TextMeshPro>().text = "ID: "+ (uint)Random.Range(0, 100);
-
-            Debug.Log(copy.GetComponent<RectTransform>().localScale);
 
         }
         option.active = false;

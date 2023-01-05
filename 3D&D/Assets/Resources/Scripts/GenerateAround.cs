@@ -16,7 +16,7 @@ public class GenerateAround : MonoBehaviour
         { "Hada", new[] {3, 1, 5f, 5, 30, 1, 1} },
         { "Troll", new[] {15, 2, 0.1f, 60, 2, 1, 3} },
         { "Esqueleto", new[] {2, 2, 0.1f, 30, 2, 1, 2} },
-        { "Perro", new[] {10, 6, 0.1f, 5, 100, 2, 3} }
+        { "Perro", new[] {10, 6, 0.1f, 100, 3, 2, 3} }
     };
 
     public List<GameObject> cards = new List<GameObject>();
