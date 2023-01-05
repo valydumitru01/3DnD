@@ -17,6 +17,7 @@ public class MinionCharacter : MonoBehaviour
     private float lookTimer = 0f;
 
     public bool isSelected;
+    public bool moveCards = true;
 
     public int MaxMovementDistance;
     public int MinAttackDistance;
@@ -40,6 +41,8 @@ public class MinionCharacter : MonoBehaviour
         currentHealth = maxHealth;
         cardsHand = GameObject.FindWithTag("CardsHand");
         handInitialPosition = cardsHand.transform.position;
+        // cardsHand.GetComponent<CardsManagement>().CanInteract();
+
         actionCards = GameObject.FindWithTag("ActionCards");
         actionInitialPosition = actionCards.transform.position;
         actionCards.GetComponentsInChildren<CardGazeInput>().ToList().ForEach(card => card.InitialPosition = card.transform.localPosition);
@@ -74,13 +77,11 @@ public class MinionCharacter : MonoBehaviour
 
     public void OnPointerClick()
     {
-        //isSelected = !isSelected;
-        //StartCoroutine(MoveCards());
-        
-        // TODO quitar, es para pruebas, solo puede haber 1 activo en pruebas
-        tile.gameController.IsAttacking = true;
-        //tile.gameController.IsMoving = true;
-        // end todo
+        StartCoroutine(MoveCards());
+    }
+
+    public void PerformAction()
+    {
         if (!isSelected)
         {
             Debug.Log(tile.gameController.selectedMinion);
@@ -121,16 +122,28 @@ public class MinionCharacter : MonoBehaviour
         Vector3 handEndPosition;
         Vector3 actionEndPosition;
 
-        if (isSelected)
+        if (cardsHand.GetComponent<CardsManagement>().CardSelected())
+            moveCards = false;
+
+        if (moveCards)
         {
             handEndPosition = handInitialPosition - new Vector3(3, 0, 0);
             actionEndPosition = actionInitialPosition + new Vector3(0, 0, 3);
             actionCards.GetComponentsInChildren<ActionCard>().ToList().ForEach(card => card.minion = gameObject);
+            if (!tile.gameController.IsAttacking && !tile.gameController.IsMoving)
+                moveCards = false;
+
+            cardsHand.GetComponent<CardsManagement>().CantInteract();
+            actionCards.GetComponent<CardsManagement>().CanInteract();
         }
         else
         {
             handEndPosition = handInitialPosition;
             actionEndPosition = actionInitialPosition;
+            moveCards = true;
+
+            cardsHand.GetComponent<CardsManagement>().CanInteract();
+            actionCards.GetComponent<CardsManagement>().CantInteract();
         }
         while (cardsHand.transform.localPosition != handEndPosition)
         {

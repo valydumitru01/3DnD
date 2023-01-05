@@ -23,10 +23,11 @@ public class CardCharacter : MonoBehaviour
 
     private void SetTexts()
     {
-        var texts = gameObject.GetComponentsInChildren<TextMesh>();
+        var texts = gameObject.GetComponentsInChildren<TMPro.TextMeshPro>();
         texts[0].text = cardName;
         texts[1].text = health.ToString();
         texts[2].text = damage.ToString();
+        texts[3].text = manaCost.ToString();
     }
 
     private void SetSprite()

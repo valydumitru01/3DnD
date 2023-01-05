@@ -38,6 +38,7 @@ public class Grid : MonoBehaviour
         GameObject templateBlackTile = (GameObject)Instantiate(Resources.Load("Prefabs/BlackTile"));
         GameObject templateWhiteTile = (GameObject)Instantiate(Resources.Load("Prefabs/WhiteTile"));
 
+
         for (int row = 0; row < ROWS; row++)
         {
             for (int col = 0; col < COLS; col++)
@@ -72,6 +73,21 @@ public class Grid : MonoBehaviour
                 tile.GetComponent<Tile>().Col = col;
                 tile.GetComponent<Tile>().TableSeparation = ROWS / 2;
                 tile.GetComponent<Tile>().SetGameController(gameController);
+
+                // r 5 c 2 KnightWarrior
+                if (row == 5 && col == 2)
+                {
+                    var knight = Resources.Load<GameObject>("Characters/Prefabs/KnightWarrior/KnightWarrior");
+                    knight.GetComponent<MinionCharacter>().tile = tile.GetComponent<Tile>();
+                    Instantiate(knight, tile.transform);
+                }
+                // r 0 c 3 DemonicMage
+                if (row == 0 && col == 3)
+                {
+                    var demonicMage = Resources.Load<GameObject>("Characters/Prefabs/DemonicMage/DemonicMage");
+                    demonicMage.GetComponent<MinionCharacter>().tile = tile.GetComponent<Tile>();
+                    Instantiate(demonicMage, tile.transform);
+                }
 
                 Tiles[row, col] = tile;
             }

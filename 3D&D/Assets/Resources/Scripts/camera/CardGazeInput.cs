@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 
@@ -8,25 +7,26 @@ public class CardGazeInput : MonoBehaviour
     private Vector3 initialPosition;
     private CardCharacter character;
     //TIMER
-    public float timerDuration = 1f;
-    private float lookTimer = 0f;
+    public float timerDuration = 3f;
+    public float lookTimer = 0f;
 
     public bool IsSelected { get; set; }
     public bool IsLooked { get; set; }
     public bool CanBeFocused { get; set; }
     public Vector3 InitialPosition { get => initialPosition; set => initialPosition = value; }
-    private GameObject loadingCircle;
+    public GameObject loadingCircle;
 
-    void Start()
+    public virtual void Start()
     {
         // Disable screen dimming
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         // InitialPosition = transform.localPosition;
         character = GetComponent<CardCharacter>();
         loadingCircle = GameObject.FindGameObjectWithTag("LoadingSelectingCircle");
+        gameObject.GetComponentInParent<CardsManagement>().CanInteract();
     }
 
-    void Update()
+    public virtual void Update()
     {
         if (IsLooked)
         {
@@ -47,7 +47,7 @@ public class CardGazeInput : MonoBehaviour
 
     public void SetIsLooked(bool looked)
     {
-        if(lookTimer <= timerDuration)
+        if (lookTimer <= timerDuration)
             StartLoading();
         if (CanBeFocused)
         {
@@ -57,11 +57,11 @@ public class CardGazeInput : MonoBehaviour
     }
 
 
-    void StartLoading()
+    public void StartLoading()
     {
         loadingCircle.GetComponent<SelectLoading>().StartLoading(timerDuration);
     }
-    void StopLoading()
+    public void StopLoading()
     {
         loadingCircle.GetComponent<SelectLoading>().stopLoading();
     }
@@ -78,7 +78,7 @@ public class CardGazeInput : MonoBehaviour
 
 
 
-    public void OnPointerClick()
+    public virtual void OnPointerClick()
     {
         if (CanBeFocused)
         {
@@ -98,7 +98,7 @@ public class CardGazeInput : MonoBehaviour
         }
     }
 
-    private void JumpCard(bool isLooked)
+    public void JumpCard(bool isLooked)
     {
         if (!IsSelected)
         {
@@ -132,11 +132,11 @@ public class CardGazeInput : MonoBehaviour
         return false;
     }
 
-    private void /*IEnumerator*/ Move(Vector3 endPosition)
+    public void /*IEnumerator*/ Move(Vector3 endPosition)
     {
         while (transform.localPosition != endPosition)
         {
-            Console.WriteLine(endPosition);
+            // Debug.Log(endPosition);
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, endPosition, 5 * Time.deltaTime);
             // yield return null;
         }

@@ -22,9 +22,14 @@ public class Menu : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
-        selectableOptions=GetComponentsInChildren<MenuOption>();
-        menuItemCount =selectableOptions.Length;
+        GameObject.FindGameObjectWithTag("GvrReticle").gameObject.GetComponent<MeshRenderer>().enabled = false;
+        UpdateSelectables();
         ClearSelected();
+    }
+    public void UpdateSelectables()
+    {
+        selectableOptions = GetComponentsInChildren<MenuOption>();
+        menuItemCount = selectableOptions.Length;
     }
     [System.Obsolete]
     void Update()

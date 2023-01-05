@@ -114,6 +114,8 @@ public class GameController : MonoBehaviour
     // TODO quitar vida, mana, animacinoes
     public void PerformAttack(MinionCharacter minionCharacter)
     {
+        if (minionCharacter.Equals(selectedMinion))
+            return;
         // Ejecutar animación en el gameObject
         Tile tileAttack = selectedMinion.GetTile();
         GameObject minion = Grid.Tiles[tileAttack.Row, tileAttack.Col].transform.GetChild(3).gameObject;

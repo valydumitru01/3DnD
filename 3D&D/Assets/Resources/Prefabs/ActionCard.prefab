@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 682261506009193416}
   - component: {fileID: 868282673875485670}
   - component: {fileID: 6931465249810080038}
-  - component: {fileID: 3541265882093907924}
   - component: {fileID: 7633829956299243684}
   m_Layer: 0
   m_Name: ActionCard
@@ -121,8 +120,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3541265882093907924}
-          m_TargetAssemblyTypeName: CardGazeInput, Assembly-CSharp
+        - m_Target: {fileID: 7633829956299243684}
+          m_TargetAssemblyTypeName: ActionCard, Assembly-CSharp
           m_MethodName: OnPointerClick
           m_Mode: 1
           m_Arguments:
@@ -137,7 +136,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3541265882093907924}
+        - m_Target: {fileID: 7633829956299243684}
           m_TargetAssemblyTypeName: CardGazeInput, Assembly-CSharp
           m_MethodName: SetIsLooked
           m_Mode: 6
@@ -153,7 +152,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3541265882093907924}
+        - m_Target: {fileID: 7633829956299243684}
           m_TargetAssemblyTypeName: CardGazeInput, Assembly-CSharp
           m_MethodName: SetIsLooked
           m_Mode: 6
@@ -165,19 +164,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &3541265882093907924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 326073650887806075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9245d20bc1a9cd42ad384a0779bc490, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerDuration: 3
 --- !u!114 &7633829956299243684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be1cc8b5ff4f4240aa448165986b33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerDuration: 3
+  lookTimer: 0
+  loadingCircle: {fileID: 0}
+  minion: {fileID: 0}
 --- !u!1 &1162820648151977616
 GameObject:
   m_ObjectHideFlags: 0

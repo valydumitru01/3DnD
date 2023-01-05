@@ -5,14 +5,18 @@ using UnityEngine;
 
 public class GenerateAround : MonoBehaviour
 {
+    /*
+     * Valores de los arrays en orden
+     * {health, damage, offset.y, manaCost, MaxMovementDistance, MinAttackDistance, MaxAttackDistance}
+     * */
     private Dictionary<string, float[]> characters = new Dictionary<string, float[]>()
     {
-        { "Guerrero", new[] {5, 3, 0.1f, 10, 2, 1, 2} },
-        { "Mago", new[] {3, 4, 0.1f, 8, 2, 2, 3} },
-        { "Hada", new[] {2, 2, 5f, 5, 3, 1, 1} },
-        { "Troll", new[] {15, 4, 0.1f, 5, 2, 1, 3} },
-        { "Esqueleto", new[] {5, 2, 0.1f, 2, 2, 1, 2} },
-        { "Perro", new[] {10, 5, 0.1f, 5, 3, 2, 3} }
+        { "Guerrero", new[] {5, 3, 0.1f, 40, 2, 1, 2} },
+        { "Mago", new[] {3, 4, 0.1f, 40, 2, 2, 3} },
+        { "Hada", new[] {3, 1, 5f, 5, 30, 1, 1} },
+        { "Troll", new[] {15, 2, 0.1f, 60, 2, 1, 3} },
+        { "Esqueleto", new[] {2, 2, 0.1f, 30, 2, 1, 2} },
+        { "Perro", new[] {10, 6, 0.1f, 100, 3, 2, 3} }
     };
 
     public List<GameObject> cards = new List<GameObject>();
