@@ -1,4 +1,5 @@
 # 3D&D
+
 ## Description
 ### __Genre:__
 Card PvP RPG
@@ -182,3 +183,168 @@ We have added a mana system that will be used for the summoning of the creatures
 ![Mana](./images/managame.png)
 
 The player can move the creatures and attack with them.
+
+# Alpha Release
+
+We have finally arrived to Alpha release, but sadly we haven´t been able to create the multiplayer experience we hoped for, mainly because Unity´s multiplayer support is very limited, but the game is still playable and we have achieved most of the funcionalities we wanted in our game.
+
+## Walk-through
+
+The first screen you will see when you start the game will be something like this:
+
+![Menu](./images/alpha_menu.png)
+
+This is the main menu, from here you will be able to start a game or quit and do something else.
+
+If you are brave enough and decided to click play, then you will be able to see the select game screen:
+
+![Menu Select](./images/alpha_menu_select.png)
+
+From this screen you will be able to select a game that is already created and join it, or create your own. (As we have discussed before, online funcionalities are not working, so no matter which one of the options you choose, you will join the same match.)
+
+When you join the match you will see something like this:
+
+![First Hand](./images/alpha_hand.png)
+
+This is your first hand, as you can see it consists of 3 cards, in this case you have 2 dogs and 1 skeleton, your objective is using this cards to destroy the main commander unit, the one that starts already on the field.
+
+You also have a commander unit in the side of your field, and your objective should be to protect him at all costs, but he can also attack and defend.
+
+Lets summon a unit and see how everything works:
+
+![First Summon](./images/alpha_first_summon.png)
+
+You have summoned the dog, good choice, he is a very strong card and because of that power he is very expensive to summon, as you can see your whole mana bar has been depleted:
+
+![First Mana Use](./images/alpha_0mana.png)
+
+But dont worry, this is the end of your turn, so if you look at the hourglass to your left your turn will end and your mana will be replenished!
+
+![HourGlass](./images/alpha_hourglass.png)
+
+If you had enough mana, you could move or attack, move is 10 mana while attack is 20 mana, to do either of those you had to select their respective cards:
+
+![Attack and Move cards](./images/alpha_move_attack.png)
+
+Now is your oponents turn, and he decided to summon a troll, he is a very dangerous unit:
+
+![Troll summon](./images/alpha_troll.png)
+
+You can use your dog to move in close and attack:
+
+![Dog attack](./images/alpha_attackdog.png)
+
+be careful though, the troll is hitting you back!:
+
+![Troll attack](./images/alpha_troll_attack.png)
+
+devise a strategy to defeat the enemy´s commander and win the game!:
+
+![Fight](./images/alpha_fight.png)
+
+
+## Card Showcase
+
+### __Guerrero__
+![Guerrero](./images/carta_front_guerrero.png)
+
+- Hit Points: 5
+- Attack Damage: 3
+- Mana Cost: 40
+- Movement Range: 2 
+- Minimum Attack Range: 1  
+- Maximum Attack Range: 2
+### __Perro__
+![Perro](./images/carta_front_perro.png)
+- Hit Points: 10
+- Attack Damage: 6
+- Mana Cost: 100
+- Movement Range: 3
+- Minimum Attack Range: 2
+- Maximum Attack Range: 3
+### __Mago__
+![Mago](./images/carta_front_mago.png)
+- Hit Points: 3
+- Attack Damage: 4
+- Mana Cost: 40
+- Movement Range: 2
+- Minimum Attack Range: 2
+- Maximum Attack Range: 3
+### __Hada__
+![Hada](./images/carta_front_hada.png)
+- Hit Points: 3
+- Attack Damage: 1
+- Mana Cost: 5
+- Movement Range: 30
+- Minimum Attack Range: 1
+- Maximum Attack Range: 1
+### __Esqueleto__
+![Esqueleto](./images/carta_front_esqueleto.png)
+- Hit Points: 2
+- Attack Damage: 2
+- Mana Cost: 30
+- Movement Range: 2
+- Minimum Attack Range: 1
+- Maximum Attack Range: 2
+
+
+### __Troll__
+![Troll](./images/carta_front_troll.png)
+- Hit Points: 15
+- Attack Damage: 2
+- Mana Cost: 60
+- Movement Range: 2
+- Minimum Attack Range: 1
+- Maximum Attack Range: 3
+
+
+
+# Game credits
+
+## Team members
+
+### __Pablo Alonso Alonso UO277931__
+
+- Scripting.
+- Card game logic.
+- Funcionality logic.
+- Character lighting.
+- Documentation.
+
+### __Valentin Dumitru UO277867__
+
+- Team leader.
+- Scripting.
+- Card Design.
+- Animations.
+- Enviroment Design.
+- Art.
+
+### __Guillermo de Leiva Martínez UO246355__
+
+- Sound Design.
+- Animations.
+- Initial Game Concept Idea.
+- Documentation.
+- Sounds and effects.
+
+### __Álvaro García Peña UO275778__
+
+- Scripting.
+- Enviroment Design.
+- Animations.
+- Sounds and effects.
+- Online research.
+
+  
+### __Damir Abdrafikov UO277306__
+
+- Scripting.
+- Funcionality logic.
+- Character logic.
+- Online research.
+- Board logic.
+
+## Video
+
+[Videos](https://unioviedo-my.sharepoint.com/personal/uo277931_uniovi_es/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fuo277931_uniovi_es%2FDocuments%2F4%2FRAA%2FTrabajo%20grupal&ct=1672951928917&or=Teams-HL&ga=1)
