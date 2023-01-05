@@ -570,7 +570,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190538786}
-  m_LocalRotation: {x: -0.023833454, y: 0.9637801, z: -0.2225677, w: 0.14499483}
+  m_LocalRotation: {x: -0.02383346, y: 0.96378016, z: -0.2225677, w: 0.14499485}
   m_LocalPosition: {x: -2.3080883, y: 3.6274009, z: 14.853068}
   m_LocalScale: {x: 0.20379104, y: 0.6137982, z: 0.353001}
   m_Children:
@@ -1681,6 +1681,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetIsLooked
       objectReference: {fileID: 0}
+    - target: {fileID: 7633829956299243684, guid: 05b87495be9c63b429194ad407115888, type: 3}
+      propertyPath: manaCost
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3541265882093907924, guid: 05b87495be9c63b429194ad407115888, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 05b87495be9c63b429194ad407115888, type: 3}
@@ -2606,6 +2610,8 @@ MonoBehaviour:
   selectedMinion: {fileID: 0}
   IsMoving: 0
   IsAttacking: 0
+  manaMovement: 10
+  manaAttack: 20
 --- !u!4 &724842844
 Transform:
   m_ObjectHideFlags: 0
@@ -11803,6 +11809,10 @@ PrefabInstance:
     - target: {fileID: 6931465249810080038, guid: 05b87495be9c63b429194ad407115888, type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: ActionCard, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633829956299243684, guid: 05b87495be9c63b429194ad407115888, type: 3}
+      propertyPath: manaCost
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7633829956299243684, guid: 05b87495be9c63b429194ad407115888, type: 3}
       propertyPath: timerDuration

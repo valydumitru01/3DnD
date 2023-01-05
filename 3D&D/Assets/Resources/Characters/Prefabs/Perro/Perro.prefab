@@ -1349,6 +1349,7 @@ MonoBehaviour:
   tile: {fileID: 0}
   timerDuration: 3
   isSelected: 0
+  moveCards: 1
   MaxMovementDistance: 3
   MinAttackDistance: 2
   MaxAttackDistance: 3
@@ -1430,7 +1431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 0, b: 1, a: 1}
-  outlineWidth: 2
+  outlineWidth: 0.2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
