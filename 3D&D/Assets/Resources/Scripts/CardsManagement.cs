@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class CardsManagement : MonoBehaviour
 {
@@ -19,8 +20,8 @@ public class CardsManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (canInteract)
-        // {
+        if (canInteract)
+        {
             IEnumerable<CardGazeInput> selectedCard = cardsInput.Where(card => card.IsSelected && card.gameObject.activeInHierarchy);
             if (selectedCard.Count() > 0)
             {
@@ -38,8 +39,8 @@ public class CardsManagement : MonoBehaviour
                     card.CanBeFocused = true;
                 }
             }
-            DestroyDisabled();
-        // }
+        }
+        DestroyDisabled();
     }
 
     void DestroyDisabled()
@@ -53,28 +54,30 @@ public class CardsManagement : MonoBehaviour
                                .Select(card => card.GetComponent<CardGazeInput>());
     }
 
+    public bool CardSelected()
+    {
+        return cardsInput.Any(card => card.IsSelected && card.gameObject.activeInHierarchy);
+    }
+
     public void CanInteract()
     {
-        if (canInteract)
+        canInteract = true;
+        cardsInput = GameObject.FindGameObjectsWithTag(cardTag)
+                            .Select(card => card.GetComponent<CardGazeInput>());
+        foreach (var card in cardsInput)
         {
-            canInteract = !canInteract;
-            cardsInput = GameObject.FindGameObjectsWithTag(cardTag)
-                                .Select(card => card.GetComponent<CardGazeInput>());
-            foreach (var card in cardsInput)
-            {
-                card.CanBeFocused = true;
-            }
+            card.CanBeFocused = true;
         }
-        else
+    }
+
+    public void CantInteract()
+    {
+        canInteract = false;
+        cardsInput = GameObject.FindGameObjectsWithTag(cardTag)
+                            .Select(card => card.GetComponent<CardGazeInput>());
+        foreach (var card in cardsInput)
         {
-            canInteract = !canInteract;
-            cardsInput = GameObject.FindGameObjectsWithTag(cardTag)
-                                .Select(card => card.GetComponent<CardGazeInput>());
-            foreach (var card in cardsInput)
-            {
-                card.CanBeFocused = false;
-            }
+            card.CanBeFocused = false;
         }
-        Debug.Log(cardTag + " Interact " + canInteract);
     }
 }

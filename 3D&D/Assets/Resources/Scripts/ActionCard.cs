@@ -12,6 +12,7 @@ public class ActionCard : CardGazeInput
         // Disable screen dimming
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         loadingCircle = GameObject.FindGameObjectWithTag("LoadingSelectingCircle");
+        gameObject.GetComponentInParent<CardsManagement>().CantInteract();
 
         if (name.Equals("Ataque"))
         {
@@ -55,6 +56,7 @@ public class ActionCard : CardGazeInput
             {
                 Move(InitialPosition);
                 PerformAction();
+                minion.GetComponent<MinionCharacter>().moveCards = false;
                 IsSelected = false;
             }
             else
@@ -69,7 +71,6 @@ public class ActionCard : CardGazeInput
 
     private void PerformAction()
     {
-        Debug.Log("Performing action: " + name + "  " + IsSelected);
         if (IsSelected)
         {
             minion.GetComponent<MinionCharacter>().tile.gameController.IsMoving = false;
@@ -79,12 +80,14 @@ public class ActionCard : CardGazeInput
         {
             minion.GetComponent<MinionCharacter>().tile.gameController.IsMoving = false;
             minion.GetComponent<MinionCharacter>().tile.gameController.IsAttacking = true;
+            minion.GetComponent<MinionCharacter>().moveCards = true;
             minion.GetComponent<MinionCharacter>().PerformAction();
         }
         else if (name.Equals("Moverse"))
         {
             minion.GetComponent<MinionCharacter>().tile.gameController.IsMoving = true;
             minion.GetComponent<MinionCharacter>().tile.gameController.IsAttacking = false;
+            minion.GetComponent<MinionCharacter>().moveCards = true;
             minion.GetComponent<MinionCharacter>().PerformAction();
         }
     }

@@ -17,6 +17,7 @@ public class MinionCharacter : MonoBehaviour
     private float lookTimer = 0f;
 
     public bool isSelected;
+    public bool moveCards = true;
 
     public int MaxMovementDistance;
     public int MinAttackDistance;
@@ -68,11 +69,7 @@ public class MinionCharacter : MonoBehaviour
 
     public void OnPointerClick()
     {
-        // isSelected = !isSelected;
         StartCoroutine(MoveCards());
-
-        // tile.gameController.IsAttacking = true;
-        // tile.gameController.IsMoving = true;
     }
 
     public void PerformAction()
@@ -117,24 +114,28 @@ public class MinionCharacter : MonoBehaviour
         Vector3 handEndPosition;
         Vector3 actionEndPosition;
 
-        Debug.Log("Moviedo cartas: " + isSelected);
+        if (cardsHand.GetComponent<CardsManagement>().CardSelected())
+            moveCards = false;
 
-        if (!isSelected)
+        if (moveCards)
         {
             handEndPosition = handInitialPosition - new Vector3(3, 0, 0);
             actionEndPosition = actionInitialPosition + new Vector3(0, 0, 3);
             actionCards.GetComponentsInChildren<ActionCard>().ToList().ForEach(card => card.minion = gameObject);
+            if (!tile.gameController.IsAttacking && !tile.gameController.IsMoving)
+                moveCards = false;
 
-            // cardsHand.GetComponent<CardsManagement>().CanInteract();
-            // actionCards.GetComponent<CardsManagement>().CanInteract();
+            cardsHand.GetComponent<CardsManagement>().CantInteract();
+            actionCards.GetComponent<CardsManagement>().CanInteract();
         }
         else
         {
             handEndPosition = handInitialPosition;
             actionEndPosition = actionInitialPosition;
+            moveCards = true;
 
-            // cardsHand.GetComponent<CardsManagement>().CanInteract();
-            // actionCards.GetComponent<CardsManagement>().CanInteract();
+            cardsHand.GetComponent<CardsManagement>().CanInteract();
+            actionCards.GetComponent<CardsManagement>().CantInteract();
         }
         while (cardsHand.transform.localPosition != handEndPosition)
         {

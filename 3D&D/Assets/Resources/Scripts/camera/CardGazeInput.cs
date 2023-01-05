@@ -23,6 +23,7 @@ public class CardGazeInput : MonoBehaviour
         // InitialPosition = transform.localPosition;
         character = GetComponent<CardCharacter>();
         loadingCircle = GameObject.FindGameObjectWithTag("LoadingSelectingCircle");
+        gameObject.GetComponentInParent<CardsManagement>().CanInteract();
     }
 
     public virtual void Update()
