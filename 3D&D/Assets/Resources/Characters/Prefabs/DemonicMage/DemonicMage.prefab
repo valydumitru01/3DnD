@@ -1877,6 +1877,7 @@ GameObject:
   - component: {fileID: 6507041026669468737}
   - component: {fileID: 8529610326365979575}
   - component: {fileID: 6219276382476749854}
+  - component: {fileID: -4351393185189018988}
   m_Layer: 0
   m_Name: DemonicMage
   m_TagString: Untagged
@@ -2003,8 +2004,10 @@ MonoBehaviour:
   damage: 15
   manaCost: 0
   tile: {fileID: 0}
+  player: 0
   timerDuration: 3
   isSelected: 0
+  moveCards: 1
   MaxMovementDistance: 5
   MinAttackDistance: 5
   MaxAttackDistance: 5
@@ -2072,6 +2075,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &-4351393185189018988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6926087746316207319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433549f97bf63fd44b944d6d05e56b0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7195064826345613196
 GameObject:
   m_ObjectHideFlags: 0

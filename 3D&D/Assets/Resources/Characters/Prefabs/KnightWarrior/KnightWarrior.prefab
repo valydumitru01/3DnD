@@ -965,6 +965,7 @@ GameObject:
   - component: {fileID: 4342235348992883082}
   - component: {fileID: 3015287333791719843}
   - component: {fileID: 6253922073048900908}
+  - component: {fileID: 5169066878482643906}
   m_Layer: 0
   m_Name: KnightWarrior
   m_TagString: Untagged
@@ -1083,8 +1084,10 @@ MonoBehaviour:
   damage: 20
   manaCost: 0
   tile: {fileID: 0}
+  player: 0
   timerDuration: 3
   isSelected: 0
+  moveCards: 1
   MaxMovementDistance: 3
   MinAttackDistance: 3
   MaxAttackDistance: 3
@@ -1152,6 +1155,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &5169066878482643906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163932056372596709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433549f97bf63fd44b944d6d05e56b0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4173103156496826078
 GameObject:
   m_ObjectHideFlags: 0
