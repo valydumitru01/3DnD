@@ -570,7 +570,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190538786}
-  m_LocalRotation: {x: -0.023833454, y: 0.9637801, z: -0.2225677, w: 0.14499483}
+  m_LocalRotation: {x: -0.02383346, y: 0.96378016, z: -0.2225677, w: 0.14499485}
   m_LocalPosition: {x: -2.3080883, y: 3.6274009, z: 14.853068}
   m_LocalScale: {x: 0.20379104, y: 0.6137982, z: 0.353001}
   m_Children:
@@ -2606,6 +2606,8 @@ MonoBehaviour:
   selectedMinion: {fileID: 0}
   IsMoving: 0
   IsAttacking: 0
+  manaMovement: 10
+  manaAttack: 20
 --- !u!4 &724842844
 Transform:
   m_ObjectHideFlags: 0
@@ -8646,9 +8648,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1009985234}
+  - component: {fileID: 1009985235}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: PlayerManager
+  m_TagString: PlayerManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8667,6 +8670,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1009985235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009985233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4aa8440c8ee844486024a4674aafe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activePlayer: 1
 --- !u!1001 &1027536537
 PrefabInstance:
   m_ObjectHideFlags: 0

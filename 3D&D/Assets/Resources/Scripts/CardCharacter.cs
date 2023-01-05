@@ -74,6 +74,7 @@ public class CardCharacter : MonoBehaviour
             minionCharacter.MinAttackDistance = MinAttackDistance;
             minionCharacter.MaxAttackDistance = MaxAttackDistance;
             minionCharacter.tile = tile;
+            minionCharacter.player = Player;
 
             Instantiate(character, tile.transform);
 

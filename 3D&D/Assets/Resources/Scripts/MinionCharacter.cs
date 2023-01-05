@@ -10,6 +10,7 @@ public class MinionCharacter : MonoBehaviour
     public int damage;
     public int manaCost;
     public Tile tile;
+    public int player;
 
     public bool IsLooked { get; set; }
     //TIMER
@@ -78,9 +79,11 @@ public class MinionCharacter : MonoBehaviour
 
     public void OnPointerClick()
     {
-        StartCoroutine(MoveCards());
-        if (cardsInPlace && tile.gameController.IsAttacking)
-            PerformAction();
+        if(true){ //Comprobar jugador
+            StartCoroutine(MoveCards());
+            if (cardsInPlace && tile.gameController.IsAttacking)
+                PerformAction();
+        }
     }
 
     public void PerformAction()

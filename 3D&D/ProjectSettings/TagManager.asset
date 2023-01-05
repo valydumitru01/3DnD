@@ -25,6 +25,7 @@ TagManager:
   - ActionCards
   - ActionCard
   - GvrReticle
+  - PlayerManager
   layers:
   - Default
   - TransparentFX
