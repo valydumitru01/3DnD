@@ -127,5 +127,6 @@ public class GenerateAround : MonoBehaviour
     public void SetRefill(bool refill)
     {
         refillHand = refill;
+        GameObject.FindWithTag("PlayerManager").GetComponent<PlayerManagement>().ChangePlayer();
     }
 }

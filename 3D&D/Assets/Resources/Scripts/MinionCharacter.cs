@@ -79,11 +79,9 @@ public class MinionCharacter : MonoBehaviour
 
     public void OnPointerClick()
     {
-        if(true){ //Comprobar jugador
-            StartCoroutine(MoveCards());
-            if (cardsInPlace && tile.gameController.IsAttacking)
-                PerformAction();
-        }
+        StartCoroutine(MoveCards());
+        if (cardsInPlace && tile.gameController.IsAttacking)
+            PerformAction();
     }
 
     public void PerformAction()

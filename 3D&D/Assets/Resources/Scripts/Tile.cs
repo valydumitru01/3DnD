@@ -50,7 +50,7 @@ public class Tile : MonoBehaviour
             areaParticleSystem.Play();
             if (isLooked)
             {
-                if (Player == 1)
+                if (GameObject.FindWithTag("PlayerManager").GetComponent<PlayerManagement>().activePlayer == 1)
                     cursorParticleSystem.startColor = Color.blue;
                 else
                     cursorParticleSystem.startColor = Color.red;
@@ -136,7 +136,7 @@ public class Tile : MonoBehaviour
 
     private bool IsYourSideOfTable()
     {
-        if (Player == 1)
+        if (GameObject.FindWithTag("PlayerManager").GetComponent<PlayerManagement>().activePlayer == 1)
             return Row >= TableSeparation;
         else
             return Row < TableSeparation;
@@ -163,7 +163,9 @@ public class Tile : MonoBehaviour
         }
         yield return new WaitForSeconds(time);
         selectedCard.gameObject.SetActive(false);
-        selectedCard.InvocateMinion(this, Player);
+
+        var playerManager = GameObject.FindWithTag("PlayerManager");
+        selectedCard.InvocateMinion(this, playerManager.GetComponent<PlayerManagement>().activePlayer);
     }
 
     public ParticleSystem GetParticleSystem(String msg)

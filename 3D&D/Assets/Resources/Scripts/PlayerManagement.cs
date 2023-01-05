@@ -24,11 +24,4 @@ public class PlayerManagement : MonoBehaviour
             activePlayer = 1;
         }
     }
-
-    public enum PLAYER
-    {
-        NONE,
-        MAGE,
-        KNIGHT
-    }
 }
