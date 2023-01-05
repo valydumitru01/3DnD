@@ -5053,6 +5053,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a1240de8c0a904e8df0a552202a471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ArenaPanel: {fileID: 3554262029248442553}
+  InitialMenu: {fileID: 3011912025288529582}
 --- !u!1 &3011912025288529582
 GameObject:
   m_ObjectHideFlags: 0

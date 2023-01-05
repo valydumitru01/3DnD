@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class MenuOptionGoBack : MenuOption
 {
-    private GameObject ArenaPanel;
-    private GameObject InitialMenu;
+    public GameObject ArenaPanel;
+    public GameObject InitialMenu;
     private void Start()
     {
+        /*
         ArenaPanel = GameObject.FindGameObjectWithTag("ArenaPanel");
         InitialMenu = GameObject.FindGameObjectWithTag("InitialMenu");
+        */
         ArenaPanel.SetActive(true);
+        Debug.Log(ArenaPanel.name);
+        Debug.Log(InitialMenu.name);
     }
     public override void Execute()
     {
