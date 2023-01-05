@@ -1316,7 +1316,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5285830506339454122}
   - component: {fileID: 9551244}
-  - component: {fileID: 14310864}
   - component: {fileID: 13072891386528534}
   - component: {fileID: 2762020053732527846}
   - component: {fileID: 3462742136756484375}
@@ -1372,24 +1371,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!143 &14310864
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156312}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Height: 1.82
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.001
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!223 &13072891386528534
 Canvas:
   m_ObjectHideFlags: 0

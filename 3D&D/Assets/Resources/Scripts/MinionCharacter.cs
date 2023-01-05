@@ -34,6 +34,8 @@ public class MinionCharacter : MonoBehaviour
         currentHealth = maxHealth;
         cardsHand = GameObject.FindWithTag("CardsHand");
         handInitialPosition = cardsHand.transform.position;
+        // cardsHand.GetComponent<CardsManagement>().CanInteract();
+
         actionCards = GameObject.FindWithTag("ActionCards");
         actionInitialPosition = actionCards.transform.position;
         actionCards.GetComponentsInChildren<CardGazeInput>().ToList().ForEach(card => card.InitialPosition = card.transform.localPosition);
@@ -66,13 +68,15 @@ public class MinionCharacter : MonoBehaviour
 
     public void OnPointerClick()
     {
-        //isSelected = !isSelected;
-        //StartCoroutine(MoveCards());
-        
-        // TODO quitar, es para pruebas, solo puede haber 1 activo en pruebas
-        //tile.gameController.IsAttacking = true;
-        tile.gameController.IsMoving = true;
-        // end todo
+        // isSelected = !isSelected;
+        StartCoroutine(MoveCards());
+
+        // tile.gameController.IsAttacking = true;
+        // tile.gameController.IsMoving = true;
+    }
+
+    public void PerformAction()
+    {
         if (!isSelected)
         {
             Debug.Log(tile.gameController.selectedMinion);
@@ -113,16 +117,24 @@ public class MinionCharacter : MonoBehaviour
         Vector3 handEndPosition;
         Vector3 actionEndPosition;
 
-        if (isSelected)
+        Debug.Log("Moviedo cartas: " + isSelected);
+
+        if (!isSelected)
         {
             handEndPosition = handInitialPosition - new Vector3(3, 0, 0);
             actionEndPosition = actionInitialPosition + new Vector3(0, 0, 3);
             actionCards.GetComponentsInChildren<ActionCard>().ToList().ForEach(card => card.minion = gameObject);
+
+            // cardsHand.GetComponent<CardsManagement>().CanInteract();
+            // actionCards.GetComponent<CardsManagement>().CanInteract();
         }
         else
         {
             handEndPosition = handInitialPosition;
             actionEndPosition = actionInitialPosition;
+
+            // cardsHand.GetComponent<CardsManagement>().CanInteract();
+            // actionCards.GetComponent<CardsManagement>().CanInteract();
         }
         while (cardsHand.transform.localPosition != handEndPosition)
         {
@@ -142,7 +154,8 @@ public class MinionCharacter : MonoBehaviour
         healthBar.UpdateHealthBar();
     }
 
-    public Tile GetTile(){
+    public Tile GetTile()
+    {
         return tile;
     }
 }
