@@ -24,6 +24,7 @@ TagManager:
   - Perro
   - ActionCards
   - ActionCard
+  - GvrReticle
   layers:
   - Default
   - TransparentFX
