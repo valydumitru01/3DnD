@@ -2,29 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuOptionPlay : MonoBehaviour,MenuOption
+public class MenuOptionPlay : MenuOption
 {
-    public void Execute()
+    public GameObject ArenaPanel;
+    public GameObject InitialMenu;
+    private void Start()
     {
-        GameObject orb=GameObject.FindGameObjectWithTag("Orbit");
-        orb.GetComponent<AutoRotate>().deactivate();
-        
-
-        StartCoroutine(BattleRecursive());
+        ArenaPanel.SetActive(false);
     }
-
-    // every 2 seconds perform the print()
-   
-
-    public IEnumerator BattleRecursive()
+    public override void Execute()
     {
-
-        yield return new WaitForSeconds(0.1f);
-
-        GameObject music = GameObject.FindGameObjectWithTag("MusicPlayer");
-        music.GetComponent<AudioSource>().Stop();
-        music = GameObject.FindGameObjectWithTag("MusicPlayerGame");
-        music.GetComponent<AudioSource>().Play();
-
+        ArenaPanel.SetActive(true);
+        InitialMenu.SetActive(false);
     }
 }

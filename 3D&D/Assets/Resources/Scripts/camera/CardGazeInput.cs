@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 
@@ -9,24 +7,32 @@ public class CardGazeInput : MonoBehaviour
     private Vector3 initialPosition;
     private CardCharacter character;
     //TIMER
-    public float timerDuration = 3f;
-    private float lookTimer = 0f;
+    public float timerDuration = 1f;
+    public float lookTimer = 0f;
 
     public bool IsSelected { get; set; }
     public bool IsLooked { get; set; }
     public bool CanBeFocused { get; set; }
     public Vector3 InitialPosition { get => initialPosition; set => initialPosition = value; }
+    public GameObject loadingCircle;
 
-    void Start()
+    public virtual void Start()
     {
         // Disable screen dimming
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         // InitialPosition = transform.localPosition;
         character = GetComponent<CardCharacter>();
+        loadingCircle = GameObject.FindGameObjectWithTag("LoadingSelectingCircle");
+        gameObject.GetComponentInParent<CardsManagement>().CanInteract();
     }
 
-    void Update()
+    public virtual void Update()
     {
+        Debug.Log(Input.GetAxis("Fire1"));
+        if (Input.GetAxis("Fire1") > 0 && IsLooked)
+        {
+            OnPointerClick();
+        }
         if (IsLooked)
         {
             lookTimer += Time.deltaTime;
@@ -39,16 +45,15 @@ public class CardGazeInput : MonoBehaviour
         }
         else
         {
-            GameObject loading = GameObject.FindGameObjectWithTag("LoadingSelectingCircle");
-            loading.GetComponent<SelectLoading>().stopLoading();
+            StopLoading();
             lookTimer = 0f;
         }
     }
 
     public void SetIsLooked(bool looked)
     {
-        GameObject loading = GameObject.FindGameObjectWithTag("LoadingSelectingCircle");
-        loading.GetComponent<SelectLoading>().startLoading(timerDuration);
+        if (lookTimer <= timerDuration)
+            StartLoading();
         if (CanBeFocused)
         {
             IsLooked = looked;
@@ -56,7 +61,29 @@ public class CardGazeInput : MonoBehaviour
         }
     }
 
-    public void OnPointerClick()
+
+    public void StartLoading()
+    {
+        loadingCircle.GetComponent<SelectLoading>().StartLoading(timerDuration);
+    }
+    public void StopLoading()
+    {
+        loadingCircle.GetComponent<SelectLoading>().stopLoading();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public virtual void OnPointerClick()
     {
         if (CanBeFocused)
         {
@@ -76,7 +103,7 @@ public class CardGazeInput : MonoBehaviour
         }
     }
 
-    private void JumpCard(bool isLooked)
+    public void JumpCard(bool isLooked)
     {
         if (!IsSelected)
         {
@@ -94,16 +121,27 @@ public class CardGazeInput : MonoBehaviour
         }
     }
 
-    public void InvocateMinion(Tile tile, int Player)
+    public bool InvocateMinion(Tile tile, int Player)
     {
-        character.InvocateMinion(tile,Player);
+        if (character.InvocateMinion(tile, Player))
+        {
+            IsSelected = false;
+
+            GenerateAround cardGenerator = GameObject.FindGameObjectWithTag("CardGenerator").GetComponent<GenerateAround>();
+            cardGenerator.hand.Remove(character.cardName);
+            cardGenerator.cards.Remove(gameObject);
+            if (cardGenerator.hand.Count == 0)
+                cardGenerator.SetRefill(true);
+            return true;
+        }
+        return false;
     }
 
-    private void /*IEnumerator*/ Move(Vector3 endPosition)
+    public void /*IEnumerator*/ Move(Vector3 endPosition)
     {
         while (transform.localPosition != endPosition)
         {
-            Console.WriteLine(endPosition);
+            // Debug.Log(endPosition);
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, endPosition, 5 * Time.deltaTime);
             // yield return null;
         }
