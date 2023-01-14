@@ -1879,7 +1879,7 @@ GameObject:
   - component: {fileID: 6219276382476749854}
   m_Layer: 0
   m_Name: DemonicMage
-  m_TagString: Untagged
+  m_TagString: Avatar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2003,8 +2003,10 @@ MonoBehaviour:
   damage: 15
   manaCost: 0
   tile: {fileID: 0}
+  player: 0
   timerDuration: 3
   isSelected: 0
+  moveCards: 1
   MaxMovementDistance: 5
   MinAttackDistance: 5
   MaxAttackDistance: 5

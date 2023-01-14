@@ -14,7 +14,12 @@ public class PlayerManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        var avatars = GameObject.FindGameObjectsWithTag("Avatar");
+        foreach(GameObject minion in avatars){
+            if(minion.GetComponent<MinionCharacter>().currentHealth <= 0){
+                StartCoroutine(FinishGame());
+            }
+        }
     }
 
     public void ChangePlayer(){
@@ -23,5 +28,10 @@ public class PlayerManagement : MonoBehaviour
         }else{
             activePlayer = 1;
         }
+    }
+
+    private IEnumerator FinishGame(){
+        yield return new WaitForSeconds(10);
+        Application.Quit();
     }
 }
