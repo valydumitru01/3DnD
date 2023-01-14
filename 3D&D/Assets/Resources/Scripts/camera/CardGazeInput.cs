@@ -28,7 +28,6 @@ public class CardGazeInput : MonoBehaviour
 
     public virtual void Update()
     {
-        Debug.Log(Input.GetAxis("Fire1"));
         if (Input.GetAxis("Fire1") > 0 && IsLooked)
         {
             OnPointerClick();
