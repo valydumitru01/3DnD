@@ -56,7 +56,8 @@ public class GameController : MonoBehaviour
 
     public void PerformMove(Tile end)
     {
-        if(GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaMovement)){
+        if (GameObject.FindWithTag("Mana").GetComponent<ManaManager>().UpdateMana(manaMovement))
+        {
             Tile start = activatedTile;
 
             // Mover minion de una casilla a otra
@@ -66,7 +67,7 @@ public class GameController : MonoBehaviour
             minion.transform.localPosition = position;
             minion.GetComponent<MinionCharacter>().tile = end;
 
-            GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaMovement);
+            GameObject.FindWithTag("Mana").GetComponent<ManaManager>().UpdateMana(manaMovement);
 
             // TP GameObject
             minion.GetComponent<MinionCharacter>().isSelected = false;
@@ -120,8 +121,13 @@ public class GameController : MonoBehaviour
     {
         if (minionCharacter.Equals(selectedMinion))
             return;
-        
-        if(GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaAttack)){
+
+        Debug.Log("Atacando jugador: " + selectedMinion.player);
+        Debug.Log("Defendiendo jugador: " + minionCharacter.player);
+
+        if (GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaAttack) && selectedMinion.player != minionCharacter.player)
+        {
+            GameObject.FindWithTag("Mana").GetComponent<ManaManager>().UpdateMana(manaAttack);
             // Ejecutar animación en el gameObject
             Animator animator = selectedMinion.GetComponent<Animator>();
             if (animator != null)

@@ -86,12 +86,9 @@ public class MinionCharacter : MonoBehaviour
 
     public void OnPointerClick()
     {
-        if (player == GameObject.FindWithTag("PlayerManager").GetComponent<PlayerManagement>().activePlayer)
-        {
-            StartCoroutine(MoveCards());
-            if (cardsInPlace && tile.gameController.IsAttacking)
-                PerformAction();
-        }
+        StartCoroutine(MoveCards());
+        if (cardsInPlace && tile.gameController.IsAttacking)
+            PerformAction();
     }
 
     public void PerformAction()

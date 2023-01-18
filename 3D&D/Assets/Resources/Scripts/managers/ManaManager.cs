@@ -35,7 +35,7 @@ public class ManaManager : MonoBehaviour
             currentMana -= manaCost;
 
     }
-    public bool CanUpdate(int cost)
+    public bool UpdateMana(int cost)
     {
         if (cost <= currentMana)
         {
@@ -48,6 +48,12 @@ public class ManaManager : MonoBehaviour
             return false;
         }
     }
+
+    public bool CanUpdate(int cost)
+    {
+        return cost <= currentMana;
+    }
+
     private void updateString()
     {
         text.text = currentMana + "/" + maxMana;
