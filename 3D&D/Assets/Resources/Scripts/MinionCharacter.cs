@@ -36,7 +36,7 @@ public class MinionCharacter : MonoBehaviour
     private AudioClip hitClip;
     private AudioClip summonClip;
     private AudioClip deathClip;
-    private bool once=true;
+    private bool once = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,7 +76,7 @@ public class MinionCharacter : MonoBehaviour
     }
     private void waitOnce()
     {
-        once= true;
+        once = true;
     }
 
     public void SetIsLooked(bool looked)
@@ -86,9 +86,12 @@ public class MinionCharacter : MonoBehaviour
 
     public void OnPointerClick()
     {
-        StartCoroutine(MoveCards());
-        if (cardsInPlace && tile.gameController.IsAttacking)
-            PerformAction();
+        if (player == GameObject.FindWithTag("PlayerManager").GetComponent<PlayerManagement>().activePlayer)
+        {
+            StartCoroutine(MoveCards());
+            if (cardsInPlace && tile.gameController.IsAttacking)
+                PerformAction();
+        }
     }
 
     public void PerformAction()
