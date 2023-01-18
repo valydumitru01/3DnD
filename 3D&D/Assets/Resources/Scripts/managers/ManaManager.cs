@@ -62,7 +62,7 @@ public class ManaManager : MonoBehaviour
     private void updateColor()
     {
 
-        if (maxMana > 0 && currentMana > 0)
+        if (maxMana > 0 && currentMana >= 0)
         {
             float r = 255 - 255 * currentMana / maxMana;
             float g = Color.cyan.g * currentMana / maxMana;
