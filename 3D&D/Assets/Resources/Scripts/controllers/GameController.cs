@@ -16,16 +16,41 @@ public class GameController : MonoBehaviour
     public bool IsMoving = false;
     public bool IsAttacking = false;
 
+    private PlayerEnum player = PlayerEnum.KNIGHT;
+
     public int manaMovement = 10;
     public int manaAttack = 20;
+
+    private GameObject currentMana;
+    private ManaManager manaManager;
 
     // Start is called before the first frame update
     void Start()
     {
         Grid.SetGameController(this);
         Grid.GenerateGrid();
+        updateManaCharacter();
     }
-
+    internal void changePlayer()
+    {
+        if(player == PlayerEnum.KNIGHT)
+            player = PlayerEnum.DEMON;
+        else
+            player = PlayerEnum.KNIGHT;
+    }
+    public void updateManaCharacter()
+    {
+        GameObject[] manas = GameObject.FindGameObjectsWithTag("Mana");
+        foreach (GameObject mana in manas) 
+        { 
+            if (mana.GetComponent<ManaManager>().Player == player) 
+            { 
+                currentMana = mana;
+                manaManager = mana.GetComponent<ManaManager>(); 
+                return;
+            }
+        }
+    }
     // Block controls for all tiles except area to be selected
     // Block particles for all tiles except area to be selected
     // Change click interaction to move interaction
@@ -54,9 +79,12 @@ public class GameController : MonoBehaviour
         activatedTile = tile;
     }
 
+    
+
     public void PerformMove(Tile end)
     {
-        if(GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaMovement)){
+        
+        if (currentMana.GetComponent<ManaManager>().CanUpdate(manaMovement)){
             Tile start = activatedTile;
 
             // Mover minion de una casilla a otra
@@ -66,7 +94,6 @@ public class GameController : MonoBehaviour
             minion.transform.localPosition = position;
             minion.GetComponent<MinionCharacter>().tile = end;
 
-            GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaMovement);
 
             // TP GameObject
             minion.GetComponent<MinionCharacter>().isSelected = false;
@@ -121,7 +148,7 @@ public class GameController : MonoBehaviour
         if (minionCharacter.Equals(selectedMinion))
             return;
         
-        if(GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaAttack)){
+        if(currentMana.GetComponent<ManaManager>().CanUpdate(manaAttack)){
             // Ejecutar animación en el gameObject
             Animator animator = selectedMinion.GetComponent<Animator>();
             if (animator != null)
@@ -138,9 +165,15 @@ public class GameController : MonoBehaviour
         }
         ResetTiles();
     }
+
+    internal ManaManager getMana()
+    {
+        return manaManager;
+    }
+
     /**
-    * min included, max excluded
-    */
+* min included, max excluded
+*/
     private (GameObject[], GameObject[]) GetTilesAtDistance(Tile tile, int minDistance, int maxDistance, DistanceType distanceType)
     {
         ArrayList tilesAtDistance = new ArrayList();

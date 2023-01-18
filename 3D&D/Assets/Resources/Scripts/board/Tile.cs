@@ -25,6 +25,7 @@ public class Tile : MonoBehaviour
     public float timerDuration = 1.5f;
     private float lookTimer = 0f;
     private bool once=true;
+    private GameObject currentMana;
 
 
     // Start is called before the first frame update
@@ -38,8 +39,6 @@ public class Tile : MonoBehaviour
         teleportParticleSystem.Stop();
         cardsInput = GameObject.FindGameObjectsWithTag("Card")
                            .Select(card => card.GetComponent<CardGazeInput>());
-
-        mana = GameObject.FindWithTag("Mana").GetComponent<ManaManager>();
     }
 
     // Update is called once per frame
@@ -131,7 +130,7 @@ public class Tile : MonoBehaviour
 
     private bool ThereIsEnoughMana(IEnumerable<CardGazeInput> selectedCard)
     {
-        return mana.CanUpdate(selectedCard.First().GetComponent<CardCharacter>().manaCost);
+        return gameController.getMana().CanUpdate(selectedCard.First().GetComponent<CardCharacter>().manaCost);
     }
 
     private bool IsYourSideOfTable()
