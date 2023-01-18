@@ -24,7 +24,7 @@ public class Tile : MonoBehaviour
     private bool isLooked;
     public float timerDuration = 1.5f;
     private float lookTimer = 0f;
-    private bool once=true;
+    private bool once = true;
 
 
     // Start is called before the first frame update
@@ -131,7 +131,7 @@ public class Tile : MonoBehaviour
 
     private bool ThereIsEnoughMana(IEnumerable<CardGazeInput> selectedCard)
     {
-        return mana.CanUpdate(selectedCard.First().GetComponent<CardCharacter>().manaCost);
+        return mana.UpdateMana(selectedCard.First().GetComponent<CardCharacter>().manaCost);
     }
 
     private bool IsYourSideOfTable()

@@ -2003,10 +2003,11 @@ MonoBehaviour:
   damage: 15
   manaCost: 0
   tile: {fileID: 0}
-  player: 0
+  player: 2
   timerDuration: 3
   isSelected: 0
   moveCards: 1
+  cardsInPlace: 0
   MaxMovementDistance: 5
   MinAttackDistance: 5
   MaxAttackDistance: 5
