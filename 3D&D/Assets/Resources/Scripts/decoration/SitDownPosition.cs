@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class SitDownPosition : MonoBehaviour
 {
-    public PLAYER sitPlayer = PLAYER.NONE;
-    public bool isOccupied = false;
-    public enum PLAYER
+    public bool occupied=false;
+    private GameObject cam;
+    public void setCamera(GameObject camera)
     {
-        NONE,
-        MAGE,
-        KNIGHT
+        this.cam = camera;
     }
-    public PLAYER getSitCharacter()
+    public GameObject getCamera()
     {
-        return sitPlayer;   
+        return cam;
     }
 }

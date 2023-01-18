@@ -9,6 +9,7 @@ public class ManaManager : MonoBehaviour
     [Range(0, 1000)]
     public int manaRecoveryPerTurn = 10;
     private TextMesh text;
+    public PlayerEnum Player=PlayerEnum.KNIGHT;
 
     private void Start()
     {

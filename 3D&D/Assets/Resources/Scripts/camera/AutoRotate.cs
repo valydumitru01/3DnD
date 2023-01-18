@@ -16,35 +16,22 @@ public class AutoRotate : MonoBehaviour
     private GameObject UI;
     private CinemachineOrbitalTransposer m_orbital;
     private CinemachineVirtualCamera vcam;
-    private GameObject sitPosition;
-
+    private GameObject sitPositionKnight;
+    private GameObject sitPositionDemon;
+    private SitDownPosition positionKnight;
+    private SitDownDemon positionDemon;
 
     void Start()
     {
-        SitDownPosition[] positions = GameObject.FindObjectsOfType<SitDownPosition>();
-        SitDownPosition posMage=null;
-        SitDownPosition posKnight=null;
-        for (int i = 0; i < positions.Length; i++)
-        {
-            if(positions[i].sitPlayer==SitDownPosition.PLAYER.MAGE)
-                posMage = positions[i];
-            else if(positions[i].sitPlayer==SitDownPosition.PLAYER.KNIGHT)
-                posKnight = positions[i];
-        }
-        //Si no existe jugador
-        if (!posMage.isOccupied) {
-            posMage.isOccupied = true;
-            sitPosition = posMage.gameObject;
-            rotationWhenSit = 180f;
-        }
-        else
-        {
-            posKnight.isOccupied = true;
-            sitPosition = posKnight.gameObject;
-        }
+        positionKnight = GameObject.FindObjectOfType<SitDownPosition>();
+        positionDemon= GameObject.FindObjectOfType<SitDownDemon>();
+        positionKnight.occupied = true;
+        positionKnight.setCamera(this.gameObject);
+        sitPositionDemon = positionDemon.gameObject;
+        sitPositionKnight = positionKnight.gameObject;
 
-        goTowards = sitPosition;
-        lookAt = sitPosition;
+        goTowards = sitPositionKnight;
+        lookAt = sitPositionKnight;
         UI = GameObject.FindGameObjectWithTag("UI");
         vcam = GetComponent<CinemachineVirtualCamera>();
         if (vcam != null)
@@ -70,6 +57,7 @@ public class AutoRotate : MonoBehaviour
             dectivateOrbitalTransposer();
             goSitDown();
         }
+
 
     }
 
@@ -108,6 +96,7 @@ public class AutoRotate : MonoBehaviour
         
     }
     
+    
     //Enable control over the view
     private void ChangeCameraState()
     {
@@ -117,7 +106,11 @@ public class AutoRotate : MonoBehaviour
         cinemachineVirtualCamera.enabled=false;
         cinemachineBrain.enabled=false;
         transform.position=goTowards.transform.position;
-        this.gameObject.GetComponent<Transform>().rotation=new Quaternion(Quaternion.identity.x,Quaternion.identity.y + rotationWhenSit, Quaternion.identity.z, Quaternion.identity.w);
+        this.gameObject.GetComponent<Transform>().rotation=new Quaternion(
+            Quaternion.identity.x,
+            Quaternion.identity.y + rotationWhenSit,
+            Quaternion.identity.z, Quaternion.identity.w
+            );
         UI.SetActive(false);
         this.enabled=false;
     }
