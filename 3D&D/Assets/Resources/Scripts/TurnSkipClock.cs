@@ -5,10 +5,12 @@ using UnityEngine;
 public class TurnSkipClock : MonoBehaviour
 {
     public GameObject generator;
+    private ChangePosition cam;
     public bool isLooked = false; 
     // Start is called before the first frame update
     void Start()
     {
+        this.cam = FindObjectOfType<ChangePosition>();
         SetEnabledAnimation(false);
         GetComponentInChildren<ParticleSystem>().enableEmission = false;
     }
@@ -38,6 +40,8 @@ public class TurnSkipClock : MonoBehaviour
     {
         if (isLooked && Input.GetAxis("Fire1") > 0)
         {
+            cam.enabled = true;
+            cam.setChangePosition(true);
             generator.GetComponent<GenerateAround>().SetRefill(true);
         }
     }
