@@ -52,6 +52,12 @@ public class MinionCharacter : MonoBehaviour
         PlaySummon();
     }
 
+    public void UpdateInitialPosition()
+    {
+        handInitialPosition = cardsHand.transform.position;
+        actionInitialPosition = actionCards.transform.position;
+    }
+
     void Update()
     {
         if (IsLooked)
@@ -146,8 +152,16 @@ public class MinionCharacter : MonoBehaviour
         if (moveCards)
         {
             // Show action cards
-            handEndPosition = handInitialPosition - new Vector3(3, 0, 0);
-            actionEndPosition = actionInitialPosition + new Vector3(0, 0, 3);
+            if (player == 1)
+            {
+                handEndPosition = handInitialPosition - new Vector3(3, 0, 0);
+                actionEndPosition = actionInitialPosition + new Vector3(0, 0, 3);
+            }
+            else
+            {
+                handEndPosition = handInitialPosition + new Vector3(3, 0, 0);
+                actionEndPosition = actionInitialPosition - new Vector3(0, 0, 3);
+            }
             actionCards.GetComponentsInChildren<ActionCard>().ToList().ForEach(card => { if (card.minion == null) card.minion = gameObject; });
             if (!tile.gameController.IsAttacking && !tile.gameController.IsMoving)
                 moveCards = false;

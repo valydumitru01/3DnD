@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ChangePosition : MonoBehaviour
@@ -24,14 +25,14 @@ public class ChangePosition : MonoBehaviour
     {
         if (positionKnight.occupied == true)
         {
-            goHere(positionKnight,positionDemon.gameObject);
+            goHere(positionKnight, positionDemon.gameObject);
         }
         else
         {
-            goHere(positionKnight,positionKnight.gameObject);
+            goHere(positionKnight, positionKnight.gameObject);
         }
     }
-    private void goHere(SitDownPosition positionKnight ,GameObject where)
+    private void goHere(SitDownPosition positionKnight, GameObject where)
     {
         //Not normalized, the further the faster
         Vector3 dir = (where.transform.position - transform.position);
@@ -41,12 +42,12 @@ public class ChangePosition : MonoBehaviour
         }
         else
         {
-            if(positionKnight.occupied==true)
+            if (positionKnight.occupied == true)
                 positionKnight.occupied = false;
             else
                 positionKnight.occupied = true;
             changingPosition = false;
-            foreach(ChangePositionCards card in this.cards)
+            foreach (ChangePositionCards card in this.cards)
                 card.changePosition();
         }
     }
@@ -57,6 +58,11 @@ public class ChangePosition : MonoBehaviour
         if (changingPosition == true)
         {
             changePosition();
+            FindObjectsOfType<MinionCharacter>().ToList().ForEach(minion =>
+            {
+                if (minion.player == 2)
+                    minion.UpdateInitialPosition();
+            });
         }
     }
 }
