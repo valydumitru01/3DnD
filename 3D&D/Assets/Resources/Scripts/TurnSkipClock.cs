@@ -59,17 +59,14 @@ public class TurnSkipClock : MonoBehaviour
 
     public void OnPointerClick()
     {
-        var characters = FindObjectsOfType<MinionCharacter>();
-        if (!characters.Any(character => character.cardsInPlace))
-        {
-            cam.enabled = true;
-            cam.setChangePosition(true);
-            gameController.changePlayer();
-            gameController.updateManaCharacter();
-            nextTurnMana();
-            generator.GetComponent<GenerateAround>().SetRefill(true);
+        
+        cam.enabled = true;
+        cam.setChangePosition(true);
+        gameController.changePlayer();
+        gameController.updateManaCharacter();
+        nextTurnMana();
+        generator.GetComponent<GenerateAround>().SetRefill(true);
 
-        }
     }
 
     private void nextTurnMana()
