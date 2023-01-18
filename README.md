@@ -5,22 +5,22 @@
 Card PvP RPG
 
 ### __Story/Narrative:__ 
-You're a casual D&D player in a basement challenging your friends. The game is about evil versus good. Humans versus demons and creatures.
+You're a casual D&D player, in a basement, ready to challenge your friends. The game is about evil versus good. Humans versus demons and creatures.
 
 ![Storyboard](./images/StoryBoard_3D&D_Colored.jpg)
 
 
 ### __Characters:__
-The game is multiplater mainly and has no story characters.
+The game is mainly multiplayer focus and has no story characters.
 
-The 2 main characters of the game are each players, one will be the "good" character while the other one will be "evil".
+The 2 main characters of the game are both the players, one will be the "good" character, the blue knight, while the other one will be "evil" character, the red mage.
 
 ### __World/Levels:__
-A medieval decorated table in a basement for you to play.
+A table decorated with a medieval style in a basement of similar theme for you to play.
 
 ### __Gameplay/Mechanics:__
 
-This is a pvp game, therefore the gameplay is focused around multiplayer fighting in an arena. 
+This is a pvp game, therefore the gameplay is focused around multiplayer fighting in an arena, where both players will be able to summon creatures and use them to defeat their opponent.
 #### __Board__ 
 This arena will be a board with pieces and other decoration. 
 
@@ -101,9 +101,9 @@ The development planning will be structured around a Kanban.
 We will create an item inside the kanban for each functionality. 
 
 #### __New__
-In the new section, we will place yet not decided functionalities. Functionalities that must be debated and decided before including definitely.
+In the new section, we will place functionalities we have not decided yet. Functionalities that must be debated and discussed before including them.
 #### __Backlog__
-Inside the backlog we will place well thought functionalities. The ones that will be implemented.
+Inside the backlog we will place well thought and already discussed functionalities. The ones that will be implemented.
 #### __Ready__
 Ready will store refined functionalities. So it can be worked on by a single individual. 
 #### __In progress__
@@ -111,7 +111,7 @@ This container will store functionalities that is actually being worked on and t
 #### __In review__
 Once the functionality is finished, the item will go here. It will be awaiting the approval of the rest of the team.
 #### __Done__
-Here will be stored the functionalities that are approved and there is nothing to be worked on anymore. 
+Here will be stored the functionalities that are completed and there is nothing to be improved on anymore. 
 
 ___Note:___ It is possible that more than one person can be assigned to a single functionality.
 
@@ -152,7 +152,7 @@ For the rest of the characters, we will download them from the asset store. The 
 
 ### Gameplay
 
-For the management of the hand of cards we made some scripts that let the player select cards and cycle through the hand. The player can also place the cards on the board.
+For the management of the hand of cards we made some scripts that let the player select and cycle through the hand. The player can also place the cards on the board.
 
 ![Manejo mano](./images/card_jump.png)
 
@@ -174,7 +174,7 @@ We have added sound effects to the different characters of the game.
 
 ### Gameplay
 
-The player can summon the different creatures using the cards of his hand.
+The player can summon the different creatures using the cards in his hand.
 
 ![Criaturas](./images/criaturas.png)
 
@@ -187,6 +187,10 @@ The player can move the creatures and attack with them.
 # Alpha Release
 
 We have finally arrived to Alpha release, but sadly we haven´t been able to create the multiplayer experience we hoped for, mainly because Unity´s multiplayer support is very limited, but the game is still playable and we have achieved most of the funcionalities we wanted in our game.
+
+## Controls
+
+To navigate throught the menu we need to use a controller connected to our phone, but during the match we will use gaze-input to move through the table, summon creatures, select cards, etc...
 
 ## Walk-through
 
@@ -345,6 +349,6 @@ devise a strategy to defeat the enemy´s commander and win the game!:
 - Online research.
 - Board logic.
 
-## Video
+## Video & APK
 
-[Videos](https://unioviedo-my.sharepoint.com/personal/uo277931_uniovi_es/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fuo277931_uniovi_es%2FDocuments%2F4%2FRAA%2FTrabajo%20grupal&ct=1672951928917&or=Teams-HL&ga=1)
+[Video and APK](https://unioviedo-my.sharepoint.com/personal/uo277931_uniovi_es/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fuo277931_uniovi_es%2FDocuments%2F4%2FRAA%2FTrabajo%20grupal&ct=1672951928917&or=Teams-HL&ga=1)
