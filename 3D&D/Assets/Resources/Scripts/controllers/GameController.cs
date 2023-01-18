@@ -56,33 +56,34 @@ public class GameController : MonoBehaviour
 
     public void PerformMove(Tile end)
     {
-        // TODO Ejecutar animación en el gameObject de TP
-        // TODO Particulas alrededor del gameObject
-        Tile start = activatedTile;
+        if(GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaMovement)){
+            Tile start = activatedTile;
 
-        // Mover minion de una casilla a otra
-        // TODO ARREGLAR, AHORA LA CASILLA TIENE MAS DE 1 HIJO
-        GameObject minion = start.transform.GetChild(3).gameObject;
-        Vector3 position = minion.transform.localPosition;
-        minion.transform.SetParent(end.transform);
-        minion.transform.localPosition = position;
-        minion.GetComponent<MinionCharacter>().tile = end;
+            // Mover minion de una casilla a otra
+            GameObject minion = start.transform.GetChild(3).gameObject;
+            Vector3 position = minion.transform.localPosition;
+            minion.transform.SetParent(end.transform);
+            minion.transform.localPosition = position;
+            minion.GetComponent<MinionCharacter>().tile = end;
 
-        GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaMovement);
+            GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaMovement);
 
-        // TP GameObject
-        minion.GetComponent<MinionCharacter>().isSelected = false;
-        ResetTiles();
+            // TP GameObject
+            minion.GetComponent<MinionCharacter>().isSelected = false;
 
-        ParticleSystem teleportParticleSystem = end.GetParticleSystem("teleport");
-        teleportParticleSystem.Play();
+            // Particulas alrededor del gameObject
+            ParticleSystem teleportParticleSystem = end.GetParticleSystem("teleport");
+            teleportParticleSystem.Play();
 
-        Animator animator = minion.GetComponent<Animator>();
-        if (animator != null)
-        {
-            animator.SetBool("isWalking", true);
-            StartCoroutine(minion.GetComponent<MinionCharacter>().ReturnToIdle());
+            // Ejecutar animación en el gameObject de TP
+            Animator animator = minion.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetBool("isWalking", true);
+                StartCoroutine(minion.GetComponent<MinionCharacter>().ReturnToIdle());
+            }
         }
+        ResetTiles();
     }
 
     public void StartAttack(Tile tile, MinionCharacter minionCharacter)
@@ -115,25 +116,26 @@ public class GameController : MonoBehaviour
         activatedTile = tile;
     }
 
-    // TODO quitar vida, mana, animacinoes
     public void PerformAttack(MinionCharacter minionCharacter)
     {
         if (minionCharacter.Equals(selectedMinion))
             return;
-        // Ejecutar animación en el gameObject
-        Animator animator = selectedMinion.GetComponent<Animator>();
-        if (animator != null)
-        {
-            animator.SetBool("isFighting", true);
-            StartCoroutine(minionCharacter.ReturnToIdle());
-        }
-        selectedMinion.PlayAttack();
-        StartCoroutine(PlayHitSound(minionCharacter));
+        
+        if(GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaAttack)){
+            // Ejecutar animación en el gameObject
+            Animator animator = selectedMinion.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetBool("isFighting", true);
+                StartCoroutine(minionCharacter.ReturnToIdle());
+            }
+            selectedMinion.PlayAttack();
+            StartCoroutine(PlayHitSound(minionCharacter));
 
-        minionCharacter.DamageMinion(selectedMinion.damage);
-        GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaAttack);
-        // Bajar vida al enemigo
-        Debug.Log(selectedMinion.cardName + " atacando a: " + minionCharacter.cardName);
+            // Bajar vida al enemigo
+            minionCharacter.DamageMinion(selectedMinion.damage);
+            Debug.Log(selectedMinion.cardName + " atacando a: " + minionCharacter.cardName);
+        }
         ResetTiles();
     }
     /**
