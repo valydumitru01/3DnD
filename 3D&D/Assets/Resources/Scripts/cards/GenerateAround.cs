@@ -49,6 +49,11 @@ public class GenerateAround : MonoBehaviour
     {
         var rnd = new System.Random();
         bool generated = false;
+
+        hand.Clear();
+        cards.Clear();
+        cardsHand.DetachChildren();
+
         while (hand.Count < 3)
         {
             var character = characters.ElementAt(rnd.Next(0, 6));
@@ -62,6 +67,7 @@ public class GenerateAround : MonoBehaviour
         if (generated)
         {
             PositionCards();
+            cardsHand.GetComponent<CardsManagement>().NextTurn();
             generated = false;
         }
     }

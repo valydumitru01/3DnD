@@ -80,4 +80,16 @@ public class CardsManagement : MonoBehaviour
             card.CanBeFocused = false;
         }
     }
+
+    public void NextTurn()
+    {
+        cardsInput = GameObject.FindGameObjectsWithTag(cardTag)
+                               .Select(card => card.GetComponent<CardGazeInput>());
+
+        foreach (var card in cardsInput)
+        {
+            card.CanBeFocused = true;
+            card.IsSelected = false;
+        }
+    }
 }
