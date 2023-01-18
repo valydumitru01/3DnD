@@ -515,7 +515,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190538786}
-  m_LocalRotation: {x: -0.02383346, y: 0.96378016, z: -0.2225677, w: 0.14499485}
+  m_LocalRotation: {x: -0.023833456, y: 0.96378016, z: -0.2225677, w: 0.14499484}
   m_LocalPosition: {x: -2.3080883, y: 3.6274009, z: 14.853068}
   m_LocalScale: {x: 0.20379104, y: 0.6137982, z: 0.353001}
   m_Children:
@@ -3619,7 +3619,7 @@ GameObject:
   - component: {fileID: 943308983}
   m_Layer: 5
   m_Name: TextVictory
-  m_TagString: Untagged
+  m_TagString: VictoryText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

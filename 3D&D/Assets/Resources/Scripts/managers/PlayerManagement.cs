@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerManagement : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PlayerManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CheckGameIsOver)
+        if(CheckGameIsOver())
             StartCoroutine(FinishGame());
     }
 
@@ -41,12 +42,12 @@ public class PlayerManagement : MonoBehaviour
 
     private IEnumerator FinishGame(){
         yield return new WaitForSeconds(10);
-        var victoryText = GameObject.FindGameObjectsWithTag("VictoryText");
-        victoryText.active = true;
+        var victoryText = GameObject.FindGameObjectWithTag("VictoryText").GetComponent<TextMeshPro>();
         if(activePlayer == 1){
             victoryText.text = "Knight Warrior won";
         }else{
             victoryText.text = "Demonic Mage won";
         }
+        victoryText.enabled = true;
     }
 }
