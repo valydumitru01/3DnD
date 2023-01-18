@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 431974}
   - component: {fileID: 3342860}
   - component: {fileID: 2353708}
+  - component: {fileID: 4056945897810511493}
   m_Layer: 0
   m_Name: Potion_Mana
   m_TagString: Untagged
@@ -82,6 +83,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4056945897810511493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67816dff818305e40ac0e9e74bdcfba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMana: 100
+  currentMana: 100
+  manaRecoveryPerTurn: 10
+  Player: 0
 --- !u!1 &6864205436723630058
 GameObject:
   m_ObjectHideFlags: 0
