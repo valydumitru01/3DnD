@@ -190,7 +190,7 @@ We have finally arrived to Alpha release, but sadly we haven´t been able to cre
 
 ## Controls
 
-To navigate throught the menu we need to use a controller connected to our phone, but during the match we will use gaze-input to move through the table, summon creatures, select cards, etc...
+To navigate throught the menu we need to use a controller connected to our phone, but during the match we will use gaze-input to move through the table, summon creatures, select cards, etc... To simulate a click or an interaction, the user must look to an object for exactly 1.5 seconds.
 
 ## Walk-through
 
@@ -222,27 +222,27 @@ You have summoned the dog, good choice, he is a very strong card and because of 
 
 ![First Mana Use](./images/alpha_0mana.png)
 
-But dont worry, this is the end of your turn, so if you look at the hourglass to your left your turn will end and your mana will be replenished!
+But don't worry, this is the end of your turn, so if you look at the hourglass to your left, your turn will end and the demonic mage will start its attack!
 
 ![HourGlass](./images/alpha_hourglass.png)
 
-If you had enough mana, you could move or attack, move is 10 mana while attack is 20 mana, to do either of those you had to select their respective cards:
+If you had enough mana, you could move or attack, move costs 10 mana while attack costs 20 mana, to do either of those you had to select their respective cards:
 
 ![Attack and Move cards](./images/alpha_move_attack.png)
 
-Now is your oponents turn, and he decided to summon a troll, he is a very dangerous unit:
+Now is your oponents turn, and he decided to summon a troll, he is a very dangerous unit.
 
 ![Troll summon](./images/alpha_troll.png)
 
-You can use your dog to move in close and attack:
+You can use your dog to move in close and attack.
 
 ![Dog attack](./images/alpha_attackdog.png)
 
-be careful though, the troll is hitting you back!:
+Be careful though, the troll is hitting you back!
 
 ![Troll attack](./images/alpha_troll_attack.png)
 
-devise a strategy to defeat the enemy´s commander and win the game!:
+Devise a strategy to defeat the enemy´s commander and win the game!
 
 ![Fight](./images/alpha_fight.png)
 
@@ -258,6 +258,7 @@ devise a strategy to defeat the enemy´s commander and win the game!:
 - Movement Range: 2 
 - Minimum Attack Range: 1  
 - Maximum Attack Range: 2
+
 ### __Perro__
 ![Perro](./images/carta_front_perro.png)
 - Hit Points: 10
@@ -266,6 +267,7 @@ devise a strategy to defeat the enemy´s commander and win the game!:
 - Movement Range: 3
 - Minimum Attack Range: 2
 - Maximum Attack Range: 3
+
 ### __Mago__
 ![Mago](./images/carta_front_mago.png)
 - Hit Points: 3
@@ -274,6 +276,7 @@ devise a strategy to defeat the enemy´s commander and win the game!:
 - Movement Range: 2
 - Minimum Attack Range: 2
 - Maximum Attack Range: 3
+
 ### __Hada__
 ![Hada](./images/carta_front_hada.png)
 - Hit Points: 3
@@ -282,6 +285,7 @@ devise a strategy to defeat the enemy´s commander and win the game!:
 - Movement Range: 30
 - Minimum Attack Range: 1
 - Maximum Attack Range: 1
+
 ### __Esqueleto__
 ![Esqueleto](./images/carta_front_esqueleto.png)
 - Hit Points: 2
