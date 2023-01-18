@@ -31,10 +31,10 @@ public class ActionCard : CardGazeInput
     // Update is called once per frame
     public override void Update()
     {
-        if (Input.GetAxis("Fire1") > 0 && IsLooked)
-        {
-            OnPointerClick();
-        }
+        // if (Input.GetAxis("Fire1") > 0 && IsLooked)
+        // {
+        //     OnPointerClick();
+        // }
         if (IsLooked)
         {
             lookTimer += Time.deltaTime;

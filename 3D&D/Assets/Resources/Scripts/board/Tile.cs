@@ -22,7 +22,7 @@ public class Tile : MonoBehaviour
     private ManaManager mana;
 
     private bool isLooked;
-    public float timerDuration = 3f;
+    public float timerDuration = 1.5f;
     private float lookTimer = 0f;
     private bool once=true;
 
@@ -59,11 +59,11 @@ public class Tile : MonoBehaviour
 
                 lookTimer += Time.deltaTime;
 
-                if(Input.GetAxis("Fire1")>0 && once) {
-                    once = false;
-                    OnPointerClick();
-                    Invoke(nameof(ResetTimer), 0.5f);
-                }
+                // if(Input.GetAxis("Fire1")>0 && once) {
+                //     once = false;
+                //     OnPointerClick();
+                //     Invoke(nameof(ResetTimer), 0.5f);
+                // }
                 if (lookTimer > timerDuration)
                 {
                     lookTimer = 0f;

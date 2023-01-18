@@ -14,12 +14,12 @@ public class MinionCharacter : MonoBehaviour
 
     public bool IsLooked { get; set; }
     //TIMER
-    public float timerDuration = 3f;
+    public float timerDuration = 1.5f;
     private float lookTimer = 0f;
 
     public bool isSelected;
     public bool moveCards = true;
-    private bool cardsInPlace = false;
+    public bool cardsInPlace = false;
 
     public int MaxMovementDistance;
     public int MinAttackDistance;
@@ -57,12 +57,12 @@ public class MinionCharacter : MonoBehaviour
         if (IsLooked)
         {
             lookTimer += Time.deltaTime;
-            if(once && Input.GetAxis("Fire1")>0)
-            {
-                once= false;
-                OnPointerClick();
-                Invoke(nameof(waitOnce), 0.5f);
-            }
+            // if(once && Input.GetAxis("Fire1")>0)
+            // {
+            //     once= false;
+            //     OnPointerClick();
+            //     Invoke(nameof(waitOnce), 0.5f);
+            // }
             if (lookTimer > timerDuration)
             {
                 lookTimer = 0f;
@@ -145,6 +145,7 @@ public class MinionCharacter : MonoBehaviour
 
         if (moveCards)
         {
+            // Show action cards
             handEndPosition = handInitialPosition - new Vector3(3, 0, 0);
             actionEndPosition = actionInitialPosition + new Vector3(0, 0, 3);
             actionCards.GetComponentsInChildren<ActionCard>().ToList().ForEach(card => { if (card.minion == null) card.minion = gameObject; });
@@ -157,6 +158,7 @@ public class MinionCharacter : MonoBehaviour
         }
         else
         {
+            // Show incovation cards
             handEndPosition = handInitialPosition;
             actionEndPosition = actionInitialPosition;
             moveCards = true;

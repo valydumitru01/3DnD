@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TurnSkipClock : MonoBehaviour
 {
-    public GameObject generator;
-    public bool isLooked = false; 
+    private GameObject generator;
+    public bool isLooked = false;
+    public float timerDuration = 1.5f;
+    private float lookTimer = 0f;
     // Start is called before the first frame update
     void Start()
     {
+        generator = GameObject.FindWithTag("CardGenerator");
         SetEnabledAnimation(false);
         GetComponentInChildren<ParticleSystem>().enableEmission = false;
     }
@@ -18,7 +20,7 @@ public class TurnSkipClock : MonoBehaviour
         isLooked = true;
         SetEnabledAnimation(true);
         GetComponentInChildren<ParticleSystem>().enableEmission = true;
-        
+
 
     }
     public void DisableAnimation()
@@ -29,14 +31,32 @@ public class TurnSkipClock : MonoBehaviour
     }
     private void SetEnabledAnimation(bool value)
     {
-        foreach(Animator anim in GetComponentsInChildren<Animator>())
+        foreach (Animator anim in GetComponentsInChildren<Animator>())
         {
             anim.enabled = value;
         }
     }
     private void Update()
     {
-        if (isLooked && Input.GetAxis("Fire1") > 0)
+        if (isLooked)
+        {
+            lookTimer += Time.deltaTime;
+            if (lookTimer > timerDuration)
+            {
+                lookTimer = 0f;
+                OnPointerClick();
+            }
+        }
+        else
+        {
+            lookTimer = 0f;
+        }
+    }
+
+    public void OnPointerClick()
+    {
+        var characters = FindObjectsOfType<MinionCharacter>();
+        if (!characters.Any(character => character.cardsInPlace))
         {
             generator.GetComponent<GenerateAround>().SetRefill(true);
         }

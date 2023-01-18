@@ -7,7 +7,7 @@ public class CardGazeInput : MonoBehaviour
     private Vector3 initialPosition;
     private CardCharacter character;
     //TIMER
-    public float timerDuration = 1f;
+    public float timerDuration = 1.5f;
     public float lookTimer = 0f;
 
     public bool IsSelected { get; set; }

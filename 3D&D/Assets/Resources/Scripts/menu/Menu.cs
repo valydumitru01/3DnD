@@ -36,7 +36,7 @@ public class Menu : MonoBehaviour
     {
 
         menuChangeInput = Input.GetAxis("Horizontal");
-        Debug.Log("Input:"+menuChangeInput);
+        // Debug.Log("Input:"+menuChangeInput);
         if(menuChangeInput != 0 && waitChangeSelectedEnded) {
             waitChangeSelectedEnded = false;
             Invoke(nameof(ChangeSelected), timeBetweenChanges);
