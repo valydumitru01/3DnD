@@ -14,12 +14,12 @@ public class MinionCharacter : MonoBehaviour
 
     public bool IsLooked { get; set; }
     //TIMER
-    public float timerDuration = 3f;
+    public float timerDuration = 1.5f;
     private float lookTimer = 0f;
 
     public bool isSelected;
     public bool moveCards = true;
-    private bool cardsInPlace = false;
+    public bool cardsInPlace = false;
 
     public int MaxMovementDistance;
     public int MinAttackDistance;
@@ -36,7 +36,7 @@ public class MinionCharacter : MonoBehaviour
     private AudioClip hitClip;
     private AudioClip summonClip;
     private AudioClip deathClip;
-
+    private bool once = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,14 +52,23 @@ public class MinionCharacter : MonoBehaviour
         PlaySummon();
     }
 
+    public void UpdateInitialPosition()
+    {
+        handInitialPosition = cardsHand.transform.position;
+        actionInitialPosition = actionCards.transform.position;
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            DamageMinion(1);
         if (IsLooked)
         {
             lookTimer += Time.deltaTime;
-
+            // if(once && Input.GetAxis("Fire1")>0)
+            // {
+            //     once= false;
+            //     OnPointerClick();
+            //     Invoke(nameof(waitOnce), 0.5f);
+            // }
             if (lookTimer > timerDuration)
             {
                 lookTimer = 0f;
@@ -70,6 +79,10 @@ public class MinionCharacter : MonoBehaviour
         {
             lookTimer = 0f;
         }
+    }
+    private void waitOnce()
+    {
+        once = true;
     }
 
     public void SetIsLooked(bool looked)
@@ -138,8 +151,17 @@ public class MinionCharacter : MonoBehaviour
 
         if (moveCards)
         {
-            handEndPosition = handInitialPosition - new Vector3(3, 0, 0);
-            actionEndPosition = actionInitialPosition + new Vector3(0, 0, 3);
+            // Show action cards
+            if (player == 1)
+            {
+                handEndPosition = handInitialPosition - new Vector3(3, 0, 0);
+                actionEndPosition = actionInitialPosition + new Vector3(0, 0, 3);
+            }
+            else
+            {
+                handEndPosition = handInitialPosition + new Vector3(3, 0, 0);
+                actionEndPosition = actionInitialPosition - new Vector3(0, 0, 3);
+            }
             actionCards.GetComponentsInChildren<ActionCard>().ToList().ForEach(card => { if (card.minion == null) card.minion = gameObject; });
             if (!tile.gameController.IsAttacking && !tile.gameController.IsMoving)
                 moveCards = false;
@@ -150,6 +172,7 @@ public class MinionCharacter : MonoBehaviour
         }
         else
         {
+            // Show incovation cards
             handEndPosition = handInitialPosition;
             actionEndPosition = actionInitialPosition;
             moveCards = true;

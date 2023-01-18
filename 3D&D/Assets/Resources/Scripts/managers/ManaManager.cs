@@ -9,6 +9,7 @@ public class ManaManager : MonoBehaviour
     [Range(0, 1000)]
     public int manaRecoveryPerTurn = 10;
     private TextMesh text;
+    public PlayerEnum Player=PlayerEnum.KNIGHT;
 
     private void Start()
     {
@@ -35,7 +36,7 @@ public class ManaManager : MonoBehaviour
             currentMana -= manaCost;
 
     }
-    public bool CanUpdate(int cost)
+    public bool UpdateMana(int cost)
     {
         if (cost <= currentMana)
         {
@@ -48,6 +49,12 @@ public class ManaManager : MonoBehaviour
             return false;
         }
     }
+
+    public bool CanUpdate(int cost)
+    {
+        return cost <= currentMana;
+    }
+
     private void updateString()
     {
         text.text = currentMana + "/" + maxMana;
@@ -55,7 +62,7 @@ public class ManaManager : MonoBehaviour
     private void updateColor()
     {
 
-        if (maxMana > 0 && currentMana > 0)
+        if (maxMana > 0 && currentMana >= 0)
         {
             float r = 255 - 255 * currentMana / maxMana;
             float g = Color.cyan.g * currentMana / maxMana;

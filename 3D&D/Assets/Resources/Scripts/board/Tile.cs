@@ -22,9 +22,10 @@ public class Tile : MonoBehaviour
     private ManaManager mana;
 
     private bool isLooked;
-    public float timerDuration = 3f;
+    public float timerDuration = 1.5f;
     private float lookTimer = 0f;
     private bool once=true;
+    private GameObject currentMana;
 
 
     // Start is called before the first frame update
@@ -38,8 +39,6 @@ public class Tile : MonoBehaviour
         teleportParticleSystem.Stop();
         cardsInput = GameObject.FindGameObjectsWithTag("Card")
                            .Select(card => card.GetComponent<CardGazeInput>());
-
-        mana = GameObject.FindWithTag("Mana").GetComponent<ManaManager>();
     }
 
     // Update is called once per frame
@@ -59,11 +58,11 @@ public class Tile : MonoBehaviour
 
                 lookTimer += Time.deltaTime;
 
-                if(Input.GetAxis("Fire1")>0 && once) {
-                    once = false;
-                    OnPointerClick();
-                    Invoke(nameof(ResetTimer), 0.5f);
-                }
+                // if(Input.GetAxis("Fire1")>0 && once) {
+                //     once = false;
+                //     OnPointerClick();
+                //     Invoke(nameof(ResetTimer), 0.5f);
+                // }
                 if (lookTimer > timerDuration)
                 {
                     lookTimer = 0f;
@@ -131,7 +130,7 @@ public class Tile : MonoBehaviour
 
     private bool ThereIsEnoughMana(IEnumerable<CardGazeInput> selectedCard)
     {
-        return mana.CanUpdate(selectedCard.First().GetComponent<CardCharacter>().manaCost);
+        return gameController.getMana().UpdateMana(selectedCard.First().GetComponent<CardCharacter>().manaCost);
     }
 
     private bool IsYourSideOfTable()

@@ -16,16 +16,41 @@ public class GameController : MonoBehaviour
     public bool IsMoving = false;
     public bool IsAttacking = false;
 
+    private PlayerEnum player = PlayerEnum.KNIGHT;
+
     public int manaMovement = 10;
     public int manaAttack = 20;
+
+    private GameObject currentMana;
+    private ManaManager manaManager;
 
     // Start is called before the first frame update
     void Start()
     {
         Grid.SetGameController(this);
         Grid.GenerateGrid();
+        updateManaCharacter();
     }
-
+    internal void changePlayer()
+    {
+        if(player == PlayerEnum.KNIGHT)
+            player = PlayerEnum.DEMON;
+        else
+            player = PlayerEnum.KNIGHT;
+    }
+    public void updateManaCharacter()
+    {
+        GameObject[] manas = GameObject.FindGameObjectsWithTag("Mana");
+        foreach (GameObject mana in manas) 
+        { 
+            if (mana.GetComponent<ManaManager>().Player == player) 
+            { 
+                currentMana = mana;
+                manaManager = mana.GetComponent<ManaManager>(); 
+                return;
+            }
+        }
+    }
     // Block controls for all tiles except area to be selected
     // Block particles for all tiles except area to be selected
     // Change click interaction to move interaction
@@ -54,35 +79,38 @@ public class GameController : MonoBehaviour
         activatedTile = tile;
     }
 
+    
+
     public void PerformMove(Tile end)
     {
-        // TODO Ejecutar animación en el gameObject de TP
-        // TODO Particulas alrededor del gameObject
-        Tile start = activatedTile;
-
-        // Mover minion de una casilla a otra
-        // TODO ARREGLAR, AHORA LA CASILLA TIENE MAS DE 1 HIJO
-        GameObject minion = start.transform.GetChild(3).gameObject;
-        Vector3 position = minion.transform.localPosition;
-        minion.transform.SetParent(end.transform);
-        minion.transform.localPosition = position;
-        minion.GetComponent<MinionCharacter>().tile = end;
-
-        GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaMovement);
-
-        // TP GameObject
-        minion.GetComponent<MinionCharacter>().isSelected = false;
-        ResetTiles();
-
-        ParticleSystem teleportParticleSystem = end.GetParticleSystem("teleport");
-        teleportParticleSystem.Play();
-
-        Animator animator = minion.GetComponent<Animator>();
-        if (animator != null)
+        if (currentMana.GetComponent<ManaManager>().UpdateMana(manaMovement))
         {
-            animator.SetBool("isWalking", true);
-            StartCoroutine(minion.GetComponent<MinionCharacter>().ReturnToIdle());
+            Tile start = activatedTile;
+
+            // Mover minion de una casilla a otra
+            GameObject minion = start.transform.GetChild(3).gameObject;
+            Vector3 position = minion.transform.localPosition;
+            minion.transform.SetParent(end.transform);
+            minion.transform.localPosition = position;
+            minion.GetComponent<MinionCharacter>().tile = end;
+
+
+            // TP GameObject
+            minion.GetComponent<MinionCharacter>().isSelected = false;
+
+            // Particulas alrededor del gameObject
+            ParticleSystem teleportParticleSystem = end.GetParticleSystem("teleport");
+            teleportParticleSystem.Play();
+
+            // Ejecutar animación en el gameObject de TP
+            Animator animator = minion.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetBool("isWalking", true);
+                StartCoroutine(minion.GetComponent<MinionCharacter>().ReturnToIdle());
+            }
         }
+        ResetTiles();
     }
 
     public void StartAttack(Tile tile, MinionCharacter minionCharacter)
@@ -115,30 +143,42 @@ public class GameController : MonoBehaviour
         activatedTile = tile;
     }
 
-    // TODO quitar vida, mana, animacinoes
     public void PerformAttack(MinionCharacter minionCharacter)
     {
         if (minionCharacter.Equals(selectedMinion))
             return;
-        // Ejecutar animación en el gameObject
-        Animator animator = selectedMinion.GetComponent<Animator>();
-        if (animator != null)
-        {
-            animator.SetBool("isFighting", true);
-            StartCoroutine(minionCharacter.ReturnToIdle());
-        }
-        selectedMinion.PlayAttack();
-        StartCoroutine(PlayHitSound(minionCharacter));
 
-        minionCharacter.DamageMinion(selectedMinion.damage);
-        GameObject.FindWithTag("Mana").GetComponent<ManaManager>().CanUpdate(manaAttack);
-        // Bajar vida al enemigo
-        Debug.Log(selectedMinion.cardName + " atacando a: " + minionCharacter.cardName);
+        Debug.Log("Atacando jugador: " + selectedMinion.player);
+        Debug.Log("Defendiendo jugador: " + minionCharacter.player);
+
+        if (currentMana.GetComponent<ManaManager>().CanUpdate(manaAttack) && selectedMinion.player != minionCharacter.player)
+        {
+            currentMana.GetComponent<ManaManager>().UpdateMana(manaAttack);
+            // Ejecutar animación en el gameObject
+            Animator animator = selectedMinion.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetBool("isFighting", true);
+                StartCoroutine(minionCharacter.ReturnToIdle());
+            }
+            selectedMinion.PlayAttack();
+            StartCoroutine(PlayHitSound(minionCharacter));
+
+            // Bajar vida al enemigo
+            minionCharacter.DamageMinion(selectedMinion.damage);
+            Debug.Log(selectedMinion.cardName + " atacando a: " + minionCharacter.cardName);
+        }
         ResetTiles();
     }
+
+    internal ManaManager getMana()
+    {
+        return manaManager;
+    }
+
     /**
-    * min included, max excluded
-    */
+* min included, max excluded
+*/
     private (GameObject[], GameObject[]) GetTilesAtDistance(Tile tile, int minDistance, int maxDistance, DistanceType distanceType)
     {
         ArrayList tilesAtDistance = new ArrayList();

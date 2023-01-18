@@ -7,7 +7,7 @@ public class CardGazeInput : MonoBehaviour
     private Vector3 initialPosition;
     private CardCharacter character;
     //TIMER
-    public float timerDuration = 1f;
+    public float timerDuration = 1.5f;
     public float lookTimer = 0f;
 
     public bool IsSelected { get; set; }
@@ -28,7 +28,6 @@ public class CardGazeInput : MonoBehaviour
 
     public virtual void Update()
     {
-        Debug.Log(Input.GetAxis("Fire1"));
         if (Input.GetAxis("Fire1") > 0 && IsLooked)
         {
             OnPointerClick();
