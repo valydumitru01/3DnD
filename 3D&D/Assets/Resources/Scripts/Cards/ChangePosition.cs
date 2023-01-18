@@ -60,7 +60,7 @@ public class ChangePosition : MonoBehaviour
             changePosition();
             FindObjectsOfType<MinionCharacter>().ToList().ForEach(minion =>
             {
-                if (minion.player == 2)
+                //if (minion.player == 2)
                     minion.UpdateInitialPosition();
             });
         }
