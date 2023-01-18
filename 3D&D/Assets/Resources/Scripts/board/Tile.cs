@@ -130,7 +130,7 @@ public class Tile : MonoBehaviour
 
     private bool ThereIsEnoughMana(IEnumerable<CardGazeInput> selectedCard)
     {
-        return gameController.getMana().CanUpdate(selectedCard.First().GetComponent<CardCharacter>().manaCost);
+        return gameController.getMana().UpdateMana(selectedCard.First().GetComponent<CardCharacter>().manaCost);
     }
 
     private bool IsYourSideOfTable()
