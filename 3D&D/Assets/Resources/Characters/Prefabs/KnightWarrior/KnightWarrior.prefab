@@ -967,7 +967,7 @@ GameObject:
   - component: {fileID: 6253922073048900908}
   m_Layer: 0
   m_Name: KnightWarrior
-  m_TagString: Untagged
+  m_TagString: Avatar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1083,8 +1083,10 @@ MonoBehaviour:
   damage: 20
   manaCost: 0
   tile: {fileID: 0}
+  player: 0
   timerDuration: 3
   isSelected: 0
+  moveCards: 1
   MaxMovementDistance: 3
   MinAttackDistance: 3
   MaxAttackDistance: 3

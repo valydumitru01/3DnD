@@ -24,6 +24,7 @@ public class Tile : MonoBehaviour
     private bool isLooked;
     public float timerDuration = 3f;
     private float lookTimer = 0f;
+    private bool once=true;
 
 
     // Start is called before the first frame update
@@ -49,7 +50,7 @@ public class Tile : MonoBehaviour
             areaParticleSystem.Play();
             if (isLooked)
             {
-                if (Player == 1)
+                if (GameObject.FindWithTag("PlayerManager").GetComponent<PlayerManagement>().activePlayer == 1)
                     cursorParticleSystem.startColor = Color.blue;
                 else
                     cursorParticleSystem.startColor = Color.red;
@@ -58,8 +59,11 @@ public class Tile : MonoBehaviour
 
                 lookTimer += Time.deltaTime;
 
-                if(Input.GetAxis("Fire1")>0)
+                if(Input.GetAxis("Fire1")>0 && once) {
+                    once = false;
                     OnPointerClick();
+                    Invoke(nameof(ResetTimer), 0.5f);
+                }
                 if (lookTimer > timerDuration)
                 {
                     lookTimer = 0f;
@@ -79,7 +83,10 @@ public class Tile : MonoBehaviour
         cardsInput = GameObject.FindGameObjectsWithTag("Card")
                            .Select(card => card.GetComponent<CardGazeInput>());
     }
-
+    private void ResetTimer()
+    {
+        once = true;
+    }
     public void SetGameController(GameController gameController)
     {
         this.gameController = gameController;
@@ -129,7 +136,7 @@ public class Tile : MonoBehaviour
 
     private bool IsYourSideOfTable()
     {
-        if (Player == 1)
+        if (GameObject.FindWithTag("PlayerManager").GetComponent<PlayerManagement>().activePlayer == 1)
             return Row >= TableSeparation;
         else
             return Row < TableSeparation;
@@ -156,7 +163,9 @@ public class Tile : MonoBehaviour
         }
         yield return new WaitForSeconds(time);
         selectedCard.gameObject.SetActive(false);
-        selectedCard.InvocateMinion(this, Player);
+
+        var playerManager = GameObject.FindWithTag("PlayerManager");
+        selectedCard.InvocateMinion(this, playerManager.GetComponent<PlayerManagement>().activePlayer);
     }
 
     public ParticleSystem GetParticleSystem(String msg)

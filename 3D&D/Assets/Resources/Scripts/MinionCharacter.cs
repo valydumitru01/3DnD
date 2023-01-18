@@ -10,6 +10,7 @@ public class MinionCharacter : MonoBehaviour
     public int damage;
     public int manaCost;
     public Tile tile;
+    public int player;
 
     public bool IsLooked { get; set; }
     //TIMER
@@ -35,7 +36,7 @@ public class MinionCharacter : MonoBehaviour
     private AudioClip hitClip;
     private AudioClip summonClip;
     private AudioClip deathClip;
-
+    private bool once=true;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,12 +54,15 @@ public class MinionCharacter : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            DamageMinion(1);
         if (IsLooked)
         {
             lookTimer += Time.deltaTime;
-
+            if(once && Input.GetAxis("Fire1")>0)
+            {
+                once= false;
+                OnPointerClick();
+                Invoke(nameof(waitOnce), 0.5f);
+            }
             if (lookTimer > timerDuration)
             {
                 lookTimer = 0f;
@@ -69,6 +73,10 @@ public class MinionCharacter : MonoBehaviour
         {
             lookTimer = 0f;
         }
+    }
+    private void waitOnce()
+    {
+        once= true;
     }
 
     public void SetIsLooked(bool looked)
