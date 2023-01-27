@@ -355,4 +355,4 @@ Devise a strategy to defeat the enemy´s commander and win the game!
 
 ## Video & APK
 
-[Video and APK](https://unioviedo-my.sharepoint.com/personal/uo277931_uniovi_es/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fuo277931_uniovi_es%2FDocuments%2F4%2FRAA%2FTrabajo%20grupal&ct=1672951928917&or=Teams-HL&ga=1)
+[Video and APK](https://unioviedo-my.sharepoint.com/:f:/g/personal/uo277931_uniovi_es/EoH_kgfvRXZNmn1HyUGv0w8BWT-l2O0XspjGWJ_rpQ_MUA?e=HjuyhW)
